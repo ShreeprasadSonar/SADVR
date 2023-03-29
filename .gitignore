@@ -60,3 +60,6 @@ crashlytics-build.properties
 
 # User settings .dwlt file
 UserSettings/Layouts/default-2021.dwlt
+
+# Misc files
+*.DS_Store
