@@ -10,3 +10,10 @@
 - Spacecraft internals:
   - https://assetstore.unity.com/packages/3d/environments/sci-fi/obligatory-sci-fi-corridor-vol-1-85445
 - Interactable Objects
+
+
+# Reference links (to avoid plagiarism):
+- Red Alarm
+  - https://youtu.be/JuvY0fYVPM0
+- Automatic Door
+  - https://youtu.be/tJiO4cvsHAo
