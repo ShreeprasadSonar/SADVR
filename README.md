@@ -17,3 +17,5 @@
   - https://youtu.be/JuvY0fYVPM0
 - Automatic Door
   - https://youtu.be/tJiO4cvsHAo
+- Planet Earth
+  - https://assetstore.unity.com/packages/3d/environments/sci-fi/planet-earth-free-23399
