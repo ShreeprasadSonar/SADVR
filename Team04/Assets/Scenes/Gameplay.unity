@@ -1985,7 +1985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48bceffc068c89409e24fe427d4bd7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 8691228274398558285, guid: 1532bc5179412cf48ba5a50a8ece61b3, type: 3}
+  player: {fileID: 978122755445060182, guid: 1532bc5179412cf48ba5a50a8ece61b3, type: 3}
   spawnPoint: {fileID: 1291030603}
 --- !u!4 &124811420
 Transform:
@@ -4005,7 +4005,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &330000740
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4013,7 +4013,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330000739}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 915cd294bcb93404aa8c8b5ca0429653, type: 3}

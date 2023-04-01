@@ -39,5 +39,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
         base.OnJoinedRoom();
         Debug.Log(message:"Joined Room");
         GameObject _player = PhotonNetwork.Instantiate(player.name, spawnPoint.position, Quaternion.Euler(0,180f,0)); // In Quaternion plater is making 180* turn, else use Quaternion.Identity
+        _player.GetComponent<PlayerSetup>().IsLocalPlayer(); // will only be called on local player
+
     }
 }
