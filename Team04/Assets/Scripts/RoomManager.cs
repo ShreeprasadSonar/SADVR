@@ -5,6 +5,9 @@ using Photon.Pun;
 
 public class RoomManager : MonoBehaviourPunCallbacks
 {
+    public GameObject player;
+    [Space]
+    public Transform spawnPoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,5 +32,12 @@ public class RoomManager : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinOrCreateRoom(roomName: "test", roomOptions: null, typedLobby: null);
         
         Debug.Log(message:"Joined Lobby");
+    }
+
+    public override void OnJoinedRoom()
+    {
+        base.OnJoinedRoom();
+        Debug.Log(message:"Joined Room");
+        GameObject _player = PhotonNetwork.Instantiate(player.name, spawnPoint.position, Quaternion.Euler(0,180f,0)); // In Quaternion plater is making 180* turn, else use Quaternion.Identity
     }
 }

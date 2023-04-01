@@ -6,7 +6,7 @@ public class GrabItem : MonoBehaviour
 {
     private GameObject player;
 
-    [SerializeField] private GameObject reticlePointer;
+    [SerializeField] private GameObject reticlePointer = null;
     //[SerializeField] private GameObject[] interactableObjects;
     private GameObject currentObject;
 
@@ -17,7 +17,7 @@ public class GrabItem : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-
+        reticlePointer = player.transform.Find("Reticle")?.gameObject;
     }
 
     // Update is called once per frame
