@@ -19,3 +19,5 @@
   - https://youtu.be/tJiO4cvsHAo
 - Planet Earth
   - https://assetstore.unity.com/packages/3d/environments/sci-fi/planet-earth-free-23399
+- Temp Astronaut
+  - https://assetstore.unity.com/packages/3d/characters/humanoids/sci-fi/stylized-astronaut-114298
