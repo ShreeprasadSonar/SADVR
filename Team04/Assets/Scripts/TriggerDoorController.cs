@@ -9,6 +9,7 @@ public class TriggerDoorController : MonoBehaviour
 
     [SerializeField] private bool openTrigger = false;
     [SerializeField] private bool closeTrigger = false;
+    private bool isDoorOpen = false;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,13 +17,33 @@ public class TriggerDoorController : MonoBehaviour
         {
             if (openTrigger)
             {
-                door.Play("DoorOpen", 0, 0.0f);
-                gameObject.SetActive(false);
+                if (isDoorOpen)
+                {
+                    door.Play("DoorClose", 0, 0.0f);
+                    isDoorOpen = false;
+                    // gameObject.SetActive(false);
+                }
+                else
+                {
+                    door.Play("DoorOpen", 0, 0.0f);
+                    isDoorOpen = true;
+                }
+                // gameObject.SetActive(false);
             }
             else if (closeTrigger)
             {
-                door.Play("DoorClose", 0, 0.0f);
-                gameObject.SetActive(false);
+                if (!isDoorOpen)
+                {
+                    door.Play("DoorOpen", 0, 0.0f);
+                    isDoorOpen = true;
+                    // gameObject.SetActive(false);
+                }
+                else
+                {
+                    door.Play("DoorClose", 0, 0.0f);
+                    isDoorOpen = false;
+                }
+                // gameObject.SetActive(false);
             }
         }
     }
