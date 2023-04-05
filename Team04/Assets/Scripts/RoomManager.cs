@@ -42,6 +42,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
+        JoinRoomButtonPressed();
     }
 
     public override void OnConnectedToMaster()
