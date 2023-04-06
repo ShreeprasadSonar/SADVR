@@ -7,6 +7,7 @@ Tasks | Keybopard | Gamepad
 Grab Object | Q | Y
 Open Door | E | X
 Start Monitoring System  | P | A
+Long Press Alarm Button | R (Hold) | None
 
 
 # Helpful links:
