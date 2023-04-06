@@ -7,6 +7,8 @@ public class RoomManager : MonoBehaviourPunCallbacks
 {
     public static RoomManager instance;
 
+    public GameObject AudioManager;
+
     public GameObject player;
     [Space]
     public Transform spawnPoint;
@@ -77,5 +79,6 @@ public class RoomManager : MonoBehaviourPunCallbacks
         _player.GetComponent<PlayerSetup>().IsLocalPlayer(); // will only be called on local player
 
         _player.GetComponent<PhotonView>().RPC("SetNickname", RpcTarget.AllBuffered, nickname);
+        AudioManager.GetComponent<AudioManager>().PlaySound(0);
     }
 }
