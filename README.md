@@ -8,7 +8,7 @@ Grab Object | Q | Y
 Open Door | E | X
 Start Monitoring System  | P | A
 Long Press Alarm Button | R (Hold) | None
-
+Long Press Wire | L (Hold) | None
 
 # Helpful links:
 - Astronaut characters:
@@ -19,6 +19,7 @@ Long Press Alarm Button | R (Hold) | None
 - Spacecraft internals:
   - https://assetstore.unity.com/packages/3d/environments/sci-fi/obligatory-sci-fi-corridor-vol-1-85445
 - Interactable Objects
+  - Wire: https://sketchfab.com/3d-models/bunch-of-electric-wires-b45c18880f9147429394274411e97dc8
 
 
 # Reference links (to avoid plagiarism):

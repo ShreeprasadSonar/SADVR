@@ -8,6 +8,7 @@ public class GrabObject : MonoBehaviour
   [SerializeField] Transform holdArea;
   private GameObject heldObj;
   private Rigidbody heldObjRB;
+  //public bool isObjHeld=false;
 
   [Header("Physics Parameters")]
   [SerializeField] private float pickupRange = 5.0f;
@@ -57,6 +58,7 @@ public class GrabObject : MonoBehaviour
 
       heldObjRB.transform.parent = holdArea;
       heldObj = pickObj;
+      //isObjHeld=true;
     }
   }
 
@@ -68,5 +70,6 @@ public class GrabObject : MonoBehaviour
 
     heldObjRB.transform.parent = null;
     heldObj = null;
+    //isObjHeld=false;
   }
 }

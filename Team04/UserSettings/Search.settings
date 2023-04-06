@@ -10,6 +10,9 @@ scopes = {
 	"last_search.DA949528" = "light"
 	"OpenInspectorPreview.DA949528" = "0"
 	"currentGroup.DA949528" = "menu"
+	"last_search.71A69CD8" = ""
+	"OpenInspectorPreview.71A69CD8" = "0"
+	"currentGroup.71A69CD8" = "all"
 }
 providers = {
 	adb = {
