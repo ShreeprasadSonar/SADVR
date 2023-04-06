@@ -5919,7 +5919,7 @@ MeshCollider:
   m_GameObject: {fileID: 478578504}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -18518,7 +18518,7 @@ MeshCollider:
   m_GameObject: {fileID: 313381579}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -18537,7 +18537,7 @@ MeshCollider:
   m_GameObject: {fileID: 1290448998}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
@@ -24414,7 +24414,7 @@ MeshCollider:
   m_GameObject: {fileID: 1709350350}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -24939,7 +24939,7 @@ MeshCollider:
   m_GameObject: {fileID: 1728384102}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -28681,8 +28681,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 12.758524, y: 0.12089258, z: 11.983633}
-  m_Center: {x: 1.6132793, y: 0, z: -5.2416525}
+  m_Size: {x: 9.422334, y: 0.12089258, z: 11.983633}
+  m_Center: {x: -0.05481577, y: 0, z: -5.2416525}
 --- !u!154 &2068861188
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -28691,7 +28691,7 @@ TerrainCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2068861182}
   m_Material: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_TerrainData: {fileID: 0}
   m_EnableTreeColliders: 1
 --- !u!1 &2075084729 stripped
