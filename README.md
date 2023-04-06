@@ -1,6 +1,14 @@
 # S.A.D.V.R.
 ## VR Project for CS 6334
 
+# Input/Controls
+Tasks | Keybopard | Gamepad
+------- | ------------- | -----------------------------
+Grab Object | Q | Y
+Open Door | E | X
+Start Monitoring System  | P | A
+
+
 # Helpful links:
 - Astronaut characters:
   - https://assetstore.unity.com/packages/3d/characters/humanoids/sci-fi/stylized-astronaut-114298
