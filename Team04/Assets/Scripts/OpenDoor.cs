@@ -9,7 +9,7 @@ public class OpenDoor : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetButton("js2"))
         {
             print(isPointerOnDoor);
             if (isPointerOnDoor)
