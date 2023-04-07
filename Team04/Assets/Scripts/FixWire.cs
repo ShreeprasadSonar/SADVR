@@ -9,7 +9,7 @@ public class FixWire : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetKey(KeyCode.L)&&isPointerOnWire)
+        if ((Input.GetKey(KeyCode.L) ||  || Input.GetButton("js3")) && isPointerOnWire)
         {
             
             holdTime += Time.deltaTime;
