@@ -16,7 +16,7 @@ public class GrabObject : MonoBehaviour
 
   private void Update()
   {
-    if (Input.GetKeyDown(KeyCode.Q) || Input.GetButton("js3"))
+    if (Input.GetKeyDown(KeyCode.Q) || Input.GetButton("js2"))
     {
       if (heldObj == null)
       {

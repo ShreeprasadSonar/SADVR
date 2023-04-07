@@ -22,7 +22,7 @@ public class CloseAlarm : MonoBehaviour
     // }
     void Update()
     {
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKey(KeyCode.R) || Input.GetButton("js3"))
         {
             holdTime += Time.deltaTime;
 

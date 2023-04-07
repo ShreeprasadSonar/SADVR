@@ -19,7 +19,7 @@ public class VideoPlay : MonoBehaviour
         //     Debug.Log("Object hit: " + hit.collider.gameObject.name);
         // }
 
-        if (Input.GetKeyDown(KeyCode.P) || Input.GetButton("js10"))
+        if (Input.GetKeyDown(KeyCode.P) || Input.GetButton("js2"))
         {
             print(isPointerOnMonitor);
             if (isPointerOnMonitor)
