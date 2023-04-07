@@ -4,11 +4,11 @@
 # Input/Controls
 Tasks | Keybopard | Gamepad
 ------- | ------------- | -----------------------------
-Grab Object | Q | Y
+Grab Object | Q | X
 Open Door | E | X
-Start Monitoring System  | P | A
-Long Press Alarm Button | R (Hold) | None
-Long Press Wire | L (Hold) | None
+Start Monitoring System  | P | X
+Long Press Alarm Button | R (Hold) | Y
+Long Press Wire | L (Hold) | Y
 
 # Helpful links:
 - Astronaut characters:
