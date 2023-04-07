@@ -6,13 +6,15 @@ public class AudioManager : MonoBehaviour
 {
     public AudioSource source;
     public AudioClip[] clips;
-    // Start is called before the first frame update
+    public int volumeLevel = 0;
+
+    private float[] volumeArray = {0.2f, 0.5f, 0.9f};
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -22,4 +24,10 @@ public class AudioManager : MonoBehaviour
         source.clip = clips[clip];
         source.Play();
     }
+
+    public void SetVolumeLevel(int level){
+        volumeLevel = level;
+        source.volume = volumeArray[level];
+    }
+
 }

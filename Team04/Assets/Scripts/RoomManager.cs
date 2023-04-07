@@ -21,10 +21,32 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     public GameObject connectingUI;
 
+    public GameObject gameStartMenuCanvas;
+    public GameObject inGameMenuCanvas;
+
     private string nickname = "unnamed";
 
     void Awake() {
         instance = this;
+    }
+
+    void Start()
+    {
+        inGameMenuCanvas.SetActive(false);
+        gameStartMenuCanvas.SetActive(true);
+    }
+
+    public void StartGameButtonHandler()
+    {
+        Debug.Log("Start Game Button Pressed");
+        gameStartMenuCanvas.SetActive(false);
+        JoinRoomButtonPressed();
+    }
+
+    public void QuitGame() 
+    {
+        Debug.Log("QuitGame() called");
+        Application.Quit();
     }
 
     public void ChangeNickname(string _name){
@@ -39,12 +61,6 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
         nameUI.SetActive(false);
         connectingUI.SetActive(true);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        JoinRoomButtonPressed();
     }
 
     public override void OnConnectedToMaster()
