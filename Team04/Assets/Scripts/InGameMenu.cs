@@ -10,7 +10,7 @@ public class InGameMenu : MonoBehaviour
     public GameObject inGameMenu;
     public GameObject gameStartMenu;
     
-    // public GameObject audioManager;
+    public GameObject playerSpeedManager;
     public AudioManager audioManager;
     
     private GameObject player;
@@ -31,8 +31,6 @@ public class InGameMenu : MonoBehaviour
     public Sprite softAudioLevelButtonImageSprite;
     public Sprite defaultAudioLevelButtonImageSprite;
     public Sprite loudAudioLevelButtonImageSprite;
-
-    public int speedCounter = 1;
 
     void Start()
     {
@@ -112,9 +110,14 @@ public class InGameMenu : MonoBehaviour
     {
         Debug.Log("PlayerSpeed() called");
 
-        int newSpeedLevel = (this.speedCounter + 1) % 3;
+        int currentSpeedLevel = playerSpeedManager.GetComponent<PlayerSpeedManager>().playerSpeed;
 
-        this.speedCounter = newSpeedLevel;
+        int newSpeedLevel = (currentSpeedLevel + 1) % 3;
+
+        playerSpeedManager.GetComponent<PlayerSpeedManager>().SetPlayerSpeedLevel(newSpeedLevel);
+
+        Debug.Log("currentSpeedLevel: " + currentSpeedLevel);
+        Debug.Log("newSpeedLevel: " + newSpeedLevel);
 
         if (newSpeedLevel == 0) {
             speedButton.GetComponent<Image>().sprite = lowSpeedButtonImageSprite; // low

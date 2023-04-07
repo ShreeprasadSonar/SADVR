@@ -22,7 +22,9 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public GameObject connectingUI;
 
     public GameObject gameStartMenuCanvas;
+    public GameObject gameSettingsMenuCanvas;
     public GameObject inGameMenuCanvas;
+    public GameObject playerSpeedManager;
 
     private string nickname = "unnamed";
 
@@ -33,6 +35,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     void Start()
     {
         inGameMenuCanvas.SetActive(false);
+        gameSettingsMenuCanvas.SetActive(false);
         gameStartMenuCanvas.SetActive(true);
     }
 
@@ -41,6 +44,13 @@ public class RoomManager : MonoBehaviourPunCallbacks
         Debug.Log("Start Game Button Pressed");
         gameStartMenuCanvas.SetActive(false);
         JoinRoomButtonPressed();
+    }
+
+    public void GameSettingsButtonHandler()
+    {
+        Debug.Log("Game Settings Button Pressed");
+        gameStartMenuCanvas.SetActive(false);
+        gameSettingsMenuCanvas.SetActive(true);
     }
 
     public void QuitGame() 
@@ -96,5 +106,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
         _player.GetComponent<PhotonView>().RPC("SetNickname", RpcTarget.AllBuffered, nickname);
         AudioManager.GetComponent<AudioManager>().PlaySound(0);
+
+        playerSpeedManager.GetComponent<PlayerSpeedManager>().SetInitialLoadPlayerSpeed();
     }
 }

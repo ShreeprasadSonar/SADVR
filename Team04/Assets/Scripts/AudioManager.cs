@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     public AudioSource source;
     public AudioClip[] clips;
-    public int volumeLevel = 0;
+    public int volumeLevel = 1;
 
     private float[] volumeArray = {0.2f, 0.5f, 0.9f};
 
