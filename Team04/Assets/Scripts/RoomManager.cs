@@ -25,6 +25,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public GameObject gameSettingsMenuCanvas;
     public GameObject inGameMenuCanvas;
     public GameObject playerSpeedManager;
+    public GameObject gameMenuEventSystem;
 
     private string nickname = "unnamed";
 
@@ -37,12 +38,14 @@ public class RoomManager : MonoBehaviourPunCallbacks
         inGameMenuCanvas.SetActive(false);
         gameSettingsMenuCanvas.SetActive(false);
         gameStartMenuCanvas.SetActive(true);
+        gameMenuEventSystem.SetActive(true);
     }
 
     public void StartGameButtonHandler()
     {
         Debug.Log("Start Game Button Pressed");
         gameStartMenuCanvas.SetActive(false);
+        gameMenuEventSystem.SetActive(false);
         JoinRoomButtonPressed();
     }
 

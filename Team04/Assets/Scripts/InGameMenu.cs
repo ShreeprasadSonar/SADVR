@@ -12,14 +12,21 @@ public class InGameMenu : MonoBehaviour
     
     public GameObject playerSpeedManager;
     public AudioManager audioManager;
+    public GameObject gameMenuEventSystem;
     
     private GameObject player;
+    private GameObject playerXRCardboardRig = null;
+    private GameObject playerEventSystem = null;
+    private GameObject playerMainCamera = null;
+    private GameObject playerReticleMesh1 = null;
+    private GameObject playerReticleMesh2 = null;
 
     private GameObject mainCamera;
     private GameObject Reticle;
     private GameObject XRCardboardRig;
     private GameObject EventSystem;
     
+    public GameObject resumeButton;
     public GameObject speedButton;
     public GameObject audioLevelButton;
     // public GameObject inventoryMenu;
@@ -39,7 +46,7 @@ public class InGameMenu : MonoBehaviour
 
     void Update()
     {
-        if (!gameStartMenu.activeSelf && Input.GetButtonDown("js7")) { // 'h'
+        if (!gameStartMenu.activeSelf && Input.GetButtonDown("js7")) { // 'H' key
 
           Debug.Log("InGameMenu.cs :: 'H' key pressed!");
 
@@ -49,18 +56,25 @@ public class InGameMenu : MonoBehaviour
 
           player = GameObject.FindWithTag("Player");
 
+          playerXRCardboardRig = player.transform.GetChild(0).gameObject;
+          playerEventSystem = playerXRCardboardRig.transform.GetChild(1).gameObject;
+          playerMainCamera = playerXRCardboardRig.transform.GetChild(0).GetChild(0).gameObject;
+          playerReticleMesh1 = playerMainCamera.transform.GetChild(1).GetChild(0).gameObject;
+          playerReticleMesh2 = playerMainCamera.transform.GetChild(1).GetChild(0).GetChild(0).gameObject;
+
           // XRCardboardRig = player.transform.Find("XRCardboardRig").gameObject;
           // EventSystem = player.transform.Find("EventSystem").gameObject;
           // mainCamera = player.transform.Find("Main Camera").gameObject;
           // Reticle = player.transform.Find("Reticle").gameObject;
 
-          Debug.Log("\n*******");
+          Debug.Log("*******");
           Debug.Log("player: " + player);
-          // Debug.Log("XRCardboardRig: " + XRCardboardRig);
-          // Debug.Log("EventSystem: " + EventSystem);
-          // Debug.Log("mainCamera: " + mainCamera);
-          // Debug.Log("Reticle: " + Reticle);
-          Debug.Log("*******\n");
+          Debug.Log("playerXRCardboardRig: " + playerXRCardboardRig);
+          Debug.Log("playerEventSystem: " + playerEventSystem);
+          Debug.Log("playerMainCamera: " + playerMainCamera);
+          Debug.Log("playerReticleMesh1: " + playerReticleMesh1);
+          Debug.Log("playerReticleMesh2: " + playerReticleMesh2);
+          Debug.Log("*******");
 
           OpenInGameMenu();
         }
@@ -74,14 +88,17 @@ public class InGameMenu : MonoBehaviour
 
         player.GetComponent<CharacterMovement>().enabled = false;
 
-        // mainCamera.GetComponent<PhysicsRaycaster>().enabled = false;
-        // Reticle.GetComponent<MeshRenderer>().enabled = false;
-        // XRCardboardRig.GetComponent<XRCardboardController>().enabled = false;
+        playerXRCardboardRig.GetComponent<XRCardboardController>().enabled = false;
+        playerMainCamera.GetComponent<PhysicsRaycaster>().enabled = false;
+        playerReticleMesh1.GetComponent<MeshRenderer>().enabled = false;
+        playerReticleMesh2.GetComponent<MeshRenderer>().enabled = false;
 
-        // EventSystem.GetComponent<StandaloneInputModule>().enabled = true;
-        // if (EventSystem.GetComponent<XRCardboardInputModule>().enabled != false){
-        //     EventSystem.GetComponent<XRCardboardInputModule>().enabled = false;
-        // }
+        playerEventSystem.GetComponent<StandaloneInputModule>().enabled = true;
+        if (playerEventSystem.GetComponent<XRCardboardInputModule>().enabled != false){
+            playerEventSystem.GetComponent<XRCardboardInputModule>().enabled = false;
+        }
+
+        playerEventSystem.GetComponent<EventSystem>().SetSelectedGameObject(resumeButton);
     }
 
     public void CloseInGameMenu()
@@ -92,12 +109,15 @@ public class InGameMenu : MonoBehaviour
 
         player.GetComponent<CharacterMovement>().enabled = true;
 
-        // mainCamera.GetComponent<PhysicsRaycaster>().enabled = true;
-        // Reticle.GetComponent<MeshRenderer>().enabled = true;
-        // XRCardboardRig.GetComponent<XRCardboardController>().enabled = true;
+        playerXRCardboardRig.GetComponent<XRCardboardController>().enabled = true;
+        playerMainCamera.GetComponent<PhysicsRaycaster>().enabled = true;
+        playerReticleMesh1.GetComponent<MeshRenderer>().enabled = true;
+        playerReticleMesh2.GetComponent<MeshRenderer>().enabled = true;
 
-        // EventSystem.GetComponent<StandaloneInputModule>().enabled = false;
-        // EventSystem.GetComponent<XRCardboardInputModule>().enabled = true;
+        playerEventSystem.GetComponent<StandaloneInputModule>().enabled = false;
+        playerEventSystem.GetComponent<XRCardboardInputModule>().enabled = true;
+
+        playerEventSystem.GetComponent<EventSystem>().SetSelectedGameObject(null);
     }
 
     public void ResumeGame()
