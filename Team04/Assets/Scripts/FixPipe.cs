@@ -20,7 +20,7 @@ public class FixPipe : MonoBehaviour
             if (holdTime >= 3f)
             {
                 Vector3 position = Pipe.transform.position;
-                position.y += 0.004f;
+                position.y += 0.0045f;
                 position.z -= 0.002f;
                 Pipe.transform.position = position;
                 Smoke.SetActive(false);
