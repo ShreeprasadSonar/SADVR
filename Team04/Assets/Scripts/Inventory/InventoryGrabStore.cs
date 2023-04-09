@@ -21,7 +21,7 @@ public class InventoryGrabStore : MonoBehaviour
 
     void Start()
     {
-        // inventoryFullMsgCanvas.SetActive(false);
+        inventoryFullMsgCanvas.SetActive(false);
     }
 
     void Update()
@@ -55,13 +55,18 @@ public class InventoryGrabStore : MonoBehaviour
 
         if (Physics.Raycast(playerReticlePointer.transform.position, playerReticlePointer.transform.forward, out hit, Mathf.Infinity))
         {
-
             // Debug.Log("InventoryGrabStore :: hit.collider.gameObject -> " + hit.collider.gameObject);
 
             // check if raycast hitting object is interactable or not
 
             bool isInteractable = hit.collider.gameObject.CompareTag("Interactable");
-            bool isInteractableParent = hit.collider.gameObject.transform.parent.CompareTag("Interactable");
+            bool isInteractableParent = false;
+
+            if (hit.collider.gameObject.transform.parent != null) 
+            {
+                isInteractableParent = hit.collider.gameObject.transform.parent.CompareTag("Interactable");
+            }
+           
 
             if (isInteractable || isInteractableParent)
             {
@@ -83,6 +88,25 @@ public class InventoryGrabStore : MonoBehaviour
                     StoreObject();
                 }
             }
+        }
+    }
+
+    public int GetCurrentInventorySize()
+    {
+        return inventorySize;
+    }
+
+    public void SetCurrentInventorySize(int inventoryItemsCount)
+    {
+        inventorySize = inventoryItemsCount;
+
+        if (inventorySize <= 0)
+        {
+            inventoryFull = true;
+        }
+        else
+        {
+            inventoryFull = false;
         }
     }
 
@@ -148,12 +172,13 @@ public class InventoryGrabStore : MonoBehaviour
 
     IEnumerator ShowInventoryFullMessage()
     {
-        // inventoryFullMsgCanvas.SetActive(true);
-        // inventoryFullMsgCanvas.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Inventory is Full";
-        Debug.Log("InventoryGrabStore :: Inventory is Full");
-        yield return new WaitForSeconds(2f);
-        // inventoryFullMsgCanvas.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "";
-        // inventoryFullMsgCanvas.SetActive(false);
+        Debug.Log("InventoryGrabStore :: ShowInventoryFullMessage() called");
+
+        inventoryFullMsgCanvas.SetActive(true);
+
+        yield return new WaitForSeconds(2f); // 2 seconds
+
+        inventoryFullMsgCanvas.SetActive(false);
     }
 
 }

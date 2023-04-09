@@ -147,6 +147,8 @@ public class InventoryManager : MonoBehaviour
 
         GameObject item = itemButton.GetComponent<InventoryItemButton>().GetItemGameObject();
 
+        if (item == null) return;
+
         Debug.Log("item: " + item);
         
         for (int i = 0; i < interactableItemsCount; i++)
@@ -155,6 +157,10 @@ public class InventoryManager : MonoBehaviour
 
             if (currentObj == item) {
                 currentObj.GetComponent<InventoryItem>().SetItemNotInInventory();
+
+                int currentInventoryItemsCount = inventoryManager.GetComponent<InventoryGrabStore>().GetCurrentInventorySize();
+                
+                inventoryManager.GetComponent<InventoryGrabStore>().SetCurrentInventorySize(currentInventoryItemsCount + 1);
 
                 itemButton.GetComponent<InventoryItemButton>().SetItemGameObject(null);
                 itemButton.GetComponent<Image>().sprite = null;
