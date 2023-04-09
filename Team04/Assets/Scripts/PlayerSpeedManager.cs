@@ -7,7 +7,7 @@ public class PlayerSpeedManager : MonoBehaviour
     private GameObject player = null;
     // public GameObject gameStartMenu;
     public int playerSpeed = 1; // medium
-    private int[] speedLevelArray = { 5, 10, 20 };
+    private int[] speedLevelArray = { 6, 8, 10 };
 
     void Start()
     {

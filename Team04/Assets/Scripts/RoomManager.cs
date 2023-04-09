@@ -32,7 +32,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public GameObject startGameButton;
     public GameObject playerSpeedSettingsButton;
 
-    private string nickname = "unnamed";
+    private string nickname = "Astroboy";
 
     void Awake() {
         instance = this;

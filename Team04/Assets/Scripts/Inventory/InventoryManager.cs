@@ -37,7 +37,7 @@ public class InventoryManager : MonoBehaviour
 
     void Update()
     {
-        if (!gameStartMenu.activeSelf && Input.GetButtonDown("js8")) { // 'I' key
+        if (!gameStartMenu.activeSelf && Input.GetButtonDown("js11")) { // 'Y' key, js11 (Options)
             Debug.Log("InventoryManager :: Opening inventory menu...");
 
             player = GameObject.FindWithTag("Player");
@@ -56,7 +56,7 @@ public class InventoryManager : MonoBehaviour
             OpenInventoryMenu();
         }
 
-        if (inventoryMenuCanvas.activeSelf && !gameStartMenu.activeSelf && Input.GetButtonDown("js11")){ // 'L' key
+        if (inventoryMenuCanvas.activeSelf && !gameStartMenu.activeSelf && Input.GetButtonDown("js11")) { // 'Y' key, js11 (Options)
             CloseInventoryMenu();
         }
     }
