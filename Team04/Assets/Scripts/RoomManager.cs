@@ -22,6 +22,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public GameObject connectingUI;
 
     public GameObject gameStartMenuCanvas;
+    public GameObject inventoryMenuCanvas;
     public GameObject gameSettingsMenuCanvas;
     public GameObject inGameMenuCanvas;
     public GameObject playerSpeedManager;
@@ -37,6 +38,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     {
         inGameMenuCanvas.SetActive(false);
         gameSettingsMenuCanvas.SetActive(false);
+        inventoryMenuCanvas.SetActive(false);
         gameStartMenuCanvas.SetActive(true);
         gameMenuEventSystem.SetActive(true);
     }

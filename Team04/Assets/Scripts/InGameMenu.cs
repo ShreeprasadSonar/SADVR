@@ -20,11 +20,6 @@ public class InGameMenu : MonoBehaviour
     private GameObject playerMainCamera = null;
     private GameObject playerReticleMesh1 = null;
     private GameObject playerReticleMesh2 = null;
-
-    private GameObject mainCamera;
-    private GameObject Reticle;
-    private GameObject XRCardboardRig;
-    private GameObject EventSystem;
     
     public GameObject resumeButton;
     public GameObject speedButton;
