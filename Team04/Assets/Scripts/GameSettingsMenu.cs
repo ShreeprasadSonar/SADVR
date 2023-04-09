@@ -10,11 +10,14 @@ public class GameSettingsMenu : MonoBehaviour
     public GameObject gameStartMenuCanvas;
     public GameObject gameSettingsMenuCanvas;
 
+    public GameObject gameMenuEventSystem;
+
     public GameObject playerSpeedManager;
     public AudioManager audioManager;
     
     public GameObject playerSpeedButton;
     public GameObject audioLevelButton;
+    public GameObject startGameButton;
 
     public Sprite highSpeedButtonImageSprite;
     public Sprite mediumSpeedButtonImageSprite;
@@ -85,8 +88,11 @@ public class GameSettingsMenu : MonoBehaviour
     {
         Debug.Log("GameSettingsMenu.cs :: BackToGameStartMenu() called!");
         
+        gameMenuEventSystem.GetComponent<EventSystem>().SetSelectedGameObject(startGameButton);
+        
         gameSettingsMenuCanvas.SetActive(false);
         gameStartMenuCanvas.SetActive(true);
+
     }
 
 }

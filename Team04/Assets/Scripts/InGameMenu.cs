@@ -45,10 +45,6 @@ public class InGameMenu : MonoBehaviour
 
           Debug.Log("InGameMenu.cs :: 'H' key pressed!");
 
-          // if (inventoryMenu.activeSelf) {
-          //   inventoryMenu.SetActive(false);
-          // }
-
           player = GameObject.FindWithTag("Player");
 
           playerXRCardboardRig = player.transform.GetChild(0).gameObject;
@@ -71,6 +67,9 @@ public class InGameMenu : MonoBehaviour
           Debug.Log("playerReticleMesh2: " + playerReticleMesh2);
           Debug.Log("*******");
 
+          inGameMenu.GetComponent<Canvas>().worldCamera = playerMainCamera.GetComponent<Camera>();
+          inGameMenu.GetComponent<Canvas>().planeDistance = 1;
+
           OpenInGameMenu();
         }
     }
@@ -85,8 +84,10 @@ public class InGameMenu : MonoBehaviour
 
         playerXRCardboardRig.GetComponent<XRCardboardController>().enabled = false;
         playerMainCamera.GetComponent<PhysicsRaycaster>().enabled = false;
-        playerReticleMesh1.GetComponent<MeshRenderer>().enabled = false;
-        playerReticleMesh2.GetComponent<MeshRenderer>().enabled = false;
+        // playerReticleMesh1.GetComponent<MeshRenderer>().enabled = false;
+        // playerReticleMesh2.GetComponent<MeshRenderer>().enabled = false;
+        playerReticleMesh2.SetActive(false);
+        playerReticleMesh1.SetActive(false);
 
         playerEventSystem.GetComponent<StandaloneInputModule>().enabled = true;
         if (playerEventSystem.GetComponent<XRCardboardInputModule>().enabled != false){
@@ -106,8 +107,10 @@ public class InGameMenu : MonoBehaviour
 
         playerXRCardboardRig.GetComponent<XRCardboardController>().enabled = true;
         playerMainCamera.GetComponent<PhysicsRaycaster>().enabled = true;
-        playerReticleMesh1.GetComponent<MeshRenderer>().enabled = true;
-        playerReticleMesh2.GetComponent<MeshRenderer>().enabled = true;
+        // playerReticleMesh1.GetComponent<MeshRenderer>().enabled = true;
+        // playerReticleMesh2.GetComponent<MeshRenderer>().enabled = true;
+        playerReticleMesh2.SetActive(true);
+        playerReticleMesh1.SetActive(true);
 
         playerEventSystem.GetComponent<StandaloneInputModule>().enabled = false;
         playerEventSystem.GetComponent<XRCardboardInputModule>().enabled = true;

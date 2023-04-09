@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Photon.Pun;
 
 public class RoomManager : MonoBehaviourPunCallbacks
@@ -28,6 +29,9 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public GameObject playerSpeedManager;
     public GameObject gameMenuEventSystem;
 
+    public GameObject startGameButton;
+    public GameObject playerSpeedSettingsButton;
+
     private string nickname = "unnamed";
 
     void Awake() {
@@ -41,6 +45,8 @@ public class RoomManager : MonoBehaviourPunCallbacks
         inventoryMenuCanvas.SetActive(false);
         gameStartMenuCanvas.SetActive(true);
         gameMenuEventSystem.SetActive(true);
+
+        // StartGameButtonHandler();
     }
 
     public void StartGameButtonHandler()
@@ -56,6 +62,8 @@ public class RoomManager : MonoBehaviourPunCallbacks
         Debug.Log("Game Settings Button Pressed");
         gameStartMenuCanvas.SetActive(false);
         gameSettingsMenuCanvas.SetActive(true);
+
+        gameMenuEventSystem.GetComponent<EventSystem>().SetSelectedGameObject(playerSpeedSettingsButton);
     }
 
     public void QuitGame() 

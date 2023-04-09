@@ -20,6 +20,7 @@ public class InventoryManager : MonoBehaviour
     public GameObject gameStartMenu;
     public GameObject inventoryManager;
     public GameObject inventoryMenuCanvas;
+    public GameObject inventoryFullMsgCanvas;
 
     private GameObject inventoryItem1 = null;
     private GameObject inventoryItem2 = null;
@@ -46,6 +47,12 @@ public class InventoryManager : MonoBehaviour
             playerMainCamera = playerXRCardboardRig.transform.GetChild(0).GetChild(0).gameObject;
             playerReticlePointer = playerMainCamera.transform.GetChild(1).GetChild(0).gameObject;
 
+            inventoryMenuCanvas.GetComponent<Canvas>().worldCamera = playerMainCamera.GetComponent<Camera>();
+            inventoryMenuCanvas.GetComponent<Canvas>().planeDistance = 1;
+
+            inventoryFullMsgCanvas.GetComponent<Canvas>().worldCamera = playerMainCamera.GetComponent<Camera>();
+            inventoryFullMsgCanvas.GetComponent<Canvas>().planeDistance = 1;
+
             OpenInventoryMenu();
         }
 
@@ -62,7 +69,8 @@ public class InventoryManager : MonoBehaviour
 
         playerXRCardboardRig.GetComponent<XRCardboardController>().enabled = true;
         playerMainCamera.GetComponent<PhysicsRaycaster>().enabled = true;
-        playerReticlePointer.GetComponent<MeshRenderer>().enabled = true;
+        // playerReticlePointer.GetComponent<MeshRenderer>().enabled = true;
+        playerReticlePointer.SetActive(true);
 
         playerEventSystem.GetComponent<StandaloneInputModule>().enabled = false;
         playerEventSystem.GetComponent<XRCardboardInputModule>().enabled = true;
@@ -78,7 +86,8 @@ public class InventoryManager : MonoBehaviour
 
         playerXRCardboardRig.GetComponent<XRCardboardController>().enabled = false;
         playerMainCamera.GetComponent<PhysicsRaycaster>().enabled = false;
-        playerReticlePointer.GetComponent<MeshRenderer>().enabled = false;
+        // playerReticlePointer.GetComponent<MeshRenderer>().enabled = false;
+        playerReticlePointer.SetActive(false);
 
         playerEventSystem.GetComponent<StandaloneInputModule>().enabled = true;
         if (playerEventSystem.GetComponent<XRCardboardInputModule>().enabled != false){
