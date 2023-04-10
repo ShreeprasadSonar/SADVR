@@ -22,7 +22,7 @@ public class CloseAlarm : MonoBehaviour
     // }
     void Update()
     {
-        if (Input.GetKey(KeyCode.R) || Input.GetButton("js10")) // Keyboard R, Android js10 (A)
+        if (Input.GetKey(KeyCode.E) || Input.GetButton("js10")) // Keyboard R, Android js10 (A)
         {
             holdTime += Time.deltaTime;
 
