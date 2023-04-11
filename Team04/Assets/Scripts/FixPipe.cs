@@ -6,15 +6,15 @@ public class FixPipe : MonoBehaviour
 {
     public GameObject Pipe;
     public GameObject Smoke;
+    public GameObject taskCompletedMsgScriptObj;
+
     private float holdTime;
     private bool isPointerOnPipe=false;
 
     void Update()
     {
-        
         if ((Input.GetKey(KeyCode.E) || Input.GetButton("js10")) && isPointerOnPipe) // Keyboard F, Android js10 (A)
         {
-            
             holdTime += Time.deltaTime;
 
             if (holdTime >= 3f)
@@ -23,6 +23,9 @@ public class FixPipe : MonoBehaviour
                 position.y += 0.0045f;
                 position.z -= 0.002f;
                 Pipe.transform.position = position;
+
+                taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().ShowTaskCompletedMessage();
+
                 Smoke.SetActive(false);
             }
         }

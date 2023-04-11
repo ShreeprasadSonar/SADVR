@@ -1,10 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FixWire : MonoBehaviour
 {
     public GameObject Wires;
+    public GameObject taskCompletedMsgScriptObj;
+
     private float holdTime;
-    private bool isPointerOnWire=false;
+    private bool isPointerOnWire = false;
+
+    void Start()
+    {
+
+    }
 
     void Update()
     {
@@ -16,6 +26,10 @@ public class FixWire : MonoBehaviour
 
             if (holdTime >= 3f)
             {
+                Debug.Log("FixWire :: Fixing wire...");
+
+                taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().ShowTaskCompletedMessage();
+                
                 Wires.SetActive(false);
             }
         }
@@ -34,4 +48,5 @@ public class FixWire : MonoBehaviour
     {
         isPointerOnWire = false;
     }
+
 }

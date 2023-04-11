@@ -9,6 +9,8 @@ public class CloseAlarm : MonoBehaviour
     private bool isPointerOnAlarm = false;
     private float holdTime;
 
+    public GameObject taskCompletedMsgScriptObj;
+
     // void Update()
     // {
     //     if (Input.GetKeyDown(KeyCode.R))
@@ -20,6 +22,7 @@ public class CloseAlarm : MonoBehaviour
     //         }
     //     }
     // }
+
     void Update()
     {
         if (Input.GetKey(KeyCode.E) || Input.GetButton("js10")) // Keyboard R, Android js10 (A)
@@ -30,6 +33,8 @@ public class CloseAlarm : MonoBehaviour
             {
                 if (isPointerOnAlarm)
                 {
+                    taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().ShowTaskCompletedMessage();
+
                     OnPress();
                 }
             }
@@ -55,4 +60,5 @@ public class CloseAlarm : MonoBehaviour
         print("inside onpress alarm");
         Destroy(viewPoint);
     }
+
 }
