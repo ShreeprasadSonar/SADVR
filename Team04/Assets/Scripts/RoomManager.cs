@@ -31,6 +31,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     public GameObject startGameButton;
     public GameObject playerSpeedSettingsButton;
+    public GameObject taskManager;
 
     private string nickname = "Astroboy";
 
@@ -121,5 +122,16 @@ public class RoomManager : MonoBehaviourPunCallbacks
         AudioManager.GetComponent<AudioManager>().PlaySound(0);
 
         playerSpeedManager.GetComponent<PlayerSpeedManager>().SetInitialLoadPlayerSpeed();
+
+        // taskManager.GetComponent<TaskCompletionMsg>().TriggerIntroMsgCanvas();
+    
+        StartCoroutine(IntoMsgCoroutine());
+    }
+
+    IEnumerator IntoMsgCoroutine()
+    {
+        yield return new WaitForSeconds(2f); // 2 seconds
+
+        taskManager.GetComponent<TaskCompletionMsg>().TriggerIntroMsgCanvas();
     }
 }
