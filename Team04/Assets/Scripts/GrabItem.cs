@@ -64,10 +64,10 @@ public class GrabItem : MonoBehaviour
     {
         Debug.Log("ObjectMenu :: GrabObject() called");
     
-        //  updating object's position and setting kinematic to true
+        //updating object's position and setting kinematic to true
         currentObject.transform.parent = reticlePointer.transform;
         currentObject.GetComponent<Rigidbody>().isKinematic = true;
-        currentObject.transform.localPosition = new Vector3(0f, 0f, 1.5f);
+        currentObject.transform.localPosition = new Vector3(-3f, -3f, 1.5f);
         
         isObjectAttached = true;
         

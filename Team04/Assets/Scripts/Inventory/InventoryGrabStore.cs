@@ -155,7 +155,7 @@ public class InventoryGrabStore : MonoBehaviour
         //  updating object's position and setting kinematic to true
         currentObject.transform.parent = playerReticlePointer.transform;
         currentObject.GetComponent<Rigidbody>().isKinematic = true;
-        currentObject.transform.localPosition = new Vector3(0f, 0f, 1.5f);
+        currentObject.transform.localPosition = new Vector3(0f, 0.1f, 1.5f);
         
         isObjectAttached = true;
     }
