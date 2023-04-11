@@ -331,7 +331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement: {fileID: 1067678745122179890}
-  camera: {fileID: 7606077383268844464}
+  cardboardRig: {fileID: 4698210041342178732}
   nickname: 
   nicknameText: {fileID: 7875655952245431605}
 --- !u!81 &3299136863956576160
@@ -1021,7 +1021,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2936175587593562430
 Transform:
   m_ObjectHideFlags: 0
