@@ -7,13 +7,13 @@ using TMPro;
 public class PlayerSetup : MonoBehaviour
 {
     public CharacterMovement movement;
-    public GameObject cardboardRig;
+    public GameObject camera;
     public string nickname;
     public TextMeshPro nicknameText;
 
     public void IsLocalPlayer(){
         movement.enabled = true;
-        cardboardRig.SetActive(true);
+        camera.SetActive(true);
     }
 
     [PunRPC]
