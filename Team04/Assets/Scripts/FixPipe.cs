@@ -12,7 +12,7 @@ public class FixPipe : MonoBehaviour
     void Update()
     {
         
-        if ((Input.GetKey(KeyCode.F) || Input.GetButton("js10")) && isPointerOnPipe) // Keyboard F, Android js10 (A)
+        if ((Input.GetKey(KeyCode.E) || Input.GetButton("js10")) && isPointerOnPipe) // Keyboard F, Android js10 (A)
         {
             
             holdTime += Time.deltaTime;

@@ -29,7 +29,7 @@ public class Teleportation : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T)||Input.GetButtonDown("js10")) // Keyboard T, Android js10 (A)
+        if (Input.GetKeyDown(KeyCode.E)||Input.GetButtonDown("js10")) // Keyboard T, Android js10 (A)
         {
             player = GameObject.FindGameObjectWithTag("Player");
             print("PLayer : " + player);

@@ -25,7 +25,7 @@ public class GrabItem : MonoBehaviour
     {
       checkIfCurrentObjectIsInteractable();
 
-          if (isObjectAttached && (Input.GetButtonDown("js3"))){ // Keyboard K, Android js3 (Y)
+          if (isObjectAttached && (Input.GetKeyDown(KeyCode.V) || Input.GetButtonDown("js3"))){ // Keyboard K, Android js3 (Y)
             Debug.Log("ObjectMenu :: Object dropped");
             DropObject();
         }
@@ -42,7 +42,7 @@ public class GrabItem : MonoBehaviour
             if (hit.collider.gameObject.CompareTag("Interactable"))
             {
                 // Debug.Log( "Inside Interactable");
-                if ((Input.GetButtonDown("js10"))) // Keyboard M, Android js10 (A)
+                if ((Input.GetKeyDown(KeyCode.C) || Input.GetButtonDown("js10"))) // Keyboard M, Android js10 (A)
                 {
 
                     currentObject = hit.collider.gameObject;

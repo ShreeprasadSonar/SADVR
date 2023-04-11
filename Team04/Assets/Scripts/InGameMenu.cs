@@ -41,7 +41,7 @@ public class InGameMenu : MonoBehaviour
 
     void Update()
     {
-        if (!gameStartMenu.activeSelf && Input.GetButtonDown("js7")) { // 'H' key, js7 (OK)
+        if (!gameStartMenu.activeSelf && (Input.GetKeyDown(KeyCode.M) || Input.GetButtonDown("js7"))) { // 'H' key, js7 (OK)
 
           Debug.Log("InGameMenu.cs :: 'H' key pressed!");
 
