@@ -11,6 +11,7 @@ public class InventoryGrabStore : MonoBehaviour
     public GameObject inventoryManager;
     public GameObject inventoryFullMsgCanvas;
     public GameObject gameStartMenu;
+    private Rigidbody heldObjRB;
 
     private GameObject currentObject;
 
@@ -152,19 +153,29 @@ public class InventoryGrabStore : MonoBehaviour
     {
         Debug.Log("InventoryGrabStore :: GrabObject() called");
     
-        //  updating object's position and setting kinematic to true
-        currentObject.transform.parent = playerReticlePointer.transform;
-        currentObject.GetComponent<Rigidbody>().isKinematic = true;
-        currentObject.transform.localPosition = new Vector3(0f, 0.1f, 1.5f);
-        
-        isObjectAttached = true;
+        if (currentObject.GetComponent<Rigidbody>())
+        {
+            heldObjRB = currentObject.GetComponent<Rigidbody>();
+            heldObjRB.useGravity = false;
+            heldObjRB.drag = 10;
+            heldObjRB.constraints = RigidbodyConstraints.FreezeRotation;
+
+            currentObject.transform.parent = playerReticlePointer.transform;
+            currentObject.transform.localPosition = new Vector3(0f, -0.3f, 0.55f);
+            isObjectAttached = true;
+
+        }
     }
 
     void DropObject() 
     {
+        heldObjRB.useGravity = true;
+        heldObjRB.drag = 1;
+        heldObjRB.constraints = RigidbodyConstraints.None;
+
+        heldObjRB.transform.parent = null;
         // reseting everything
         currentObject.transform.parent = null;
-        currentObject.GetComponent<Rigidbody>().isKinematic = false;
         currentObject = null;
 
         isObjectAttached = false;
