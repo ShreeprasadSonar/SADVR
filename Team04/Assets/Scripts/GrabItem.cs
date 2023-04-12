@@ -42,7 +42,7 @@ public class GrabItem : MonoBehaviour
             if (hit.collider.gameObject.CompareTag("Interactable"))
             {
                 // Debug.Log( "Inside Interactable");
-                if ((Input.GetKeyDown(KeyCode.C) || Input.GetButtonDown("js10"))) // Keyboard M, Android js10 (A)
+                if ((Input.GetKeyDown(KeyCode.C) || Input.GetButtonDown("js5"))) // Keyboard M, Android js5 (B)
                 {
 
                     currentObject = hit.collider.gameObject;

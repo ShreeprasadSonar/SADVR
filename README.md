@@ -4,11 +4,13 @@
 # Input/Controls
 Tasks | Keybopard | Gamepad
 ------- | ------------- | -----------------------------
-Grab Object | Q | X
-Open Door | E | X
-Start Monitoring System  | P | X
-Long Press Alarm Button | R (Hold) | Y
-Long Press Wire | L (Hold) | Y
+Main Menu (Open/Close) | M | OK
+Store Object | F | A
+Grab Object | C | B
+Drop Object | V | Y
+Tasks | E | X
+Inventory (Open) | I | Options
+Inventory (Close) | O | X
 
 # Helpful links:
 - Astronaut characters:

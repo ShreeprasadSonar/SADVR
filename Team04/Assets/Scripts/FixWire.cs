@@ -19,7 +19,7 @@ public class FixWire : MonoBehaviour
     void Update()
     {
         
-        if ((Input.GetKey(KeyCode.E) || Input.GetButton("js10")) && isPointerOnWire) // Keyboard L, Android js10 (A)
+        if ((Input.GetKey(KeyCode.E) || Input.GetButton("js2")) && isPointerOnWire) // Keyboard L, Android js2 (X)
         {
             
             holdTime += Time.deltaTime;
