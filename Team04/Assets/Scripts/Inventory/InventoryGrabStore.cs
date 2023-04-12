@@ -73,7 +73,7 @@ public class InventoryGrabStore : MonoBehaviour
             {
                 // Debug.Log("InventoryGrabStore :: Current object is interactable");
 
-                if ((Input.GetKeyDown(KeyCode.C) || Input.GetButtonDown("js10"))) // A key
+                if ((Input.GetKeyDown(KeyCode.C) || Input.GetButtonDown("js5"))) // B key
                 {
                     Debug.Log("InventoryGrabStore :: 'M' key pressed");
 
@@ -81,7 +81,7 @@ public class InventoryGrabStore : MonoBehaviour
                     GrabObject();
                 }
 
-                if ((Input.GetKeyDown(KeyCode.F) || Input.GetButtonDown("js2"))) // X key
+                if ((Input.GetKeyDown(KeyCode.F) || Input.GetButtonDown("js10"))) // A key
                 {
                     Debug.Log("InventoryGrabStore :: 'J' key pressed");
 

@@ -37,10 +37,7 @@ public class InventoryManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I) || Input.GetButtonDown("js3"))
-            Debug.Log("InventoryManager :: Opening inventory menu... XYZ");
-
-        if (!gameStartMenu.activeSelf && (Input.GetKeyDown(KeyCode.I) || Input.GetButtonDown("js3"))) { // 'Y' key, js5 (B)
+        if (!gameStartMenu.activeSelf && (Input.GetKeyDown(KeyCode.I) || Input.GetButtonDown("js11"))) { // js11 (Options)
             Debug.Log("InventoryManager :: Opening inventory menu...");
 
             player = GameObject.FindWithTag("Player");
@@ -59,7 +56,7 @@ public class InventoryManager : MonoBehaviour
             OpenInventoryMenu();
         }
 
-        if (inventoryMenuCanvas.activeSelf && !gameStartMenu.activeSelf && (Input.GetKeyDown(KeyCode.O) || Input.GetButtonDown("js3"))) { // 'Y' key, js5 (B)
+        if (inventoryMenuCanvas.activeSelf && !gameStartMenu.activeSelf && (Input.GetKeyDown(KeyCode.O) || Input.GetButtonDown("js2"))) { // js2 (X)
             CloseInventoryMenu();
         }
     }
