@@ -161,7 +161,7 @@ public class InventoryGrabStore : MonoBehaviour
             heldObjRB.constraints = RigidbodyConstraints.FreezeRotation;
 
             currentObject.transform.parent = playerReticlePointer.transform;
-            currentObject.transform.localPosition = new Vector3(0f, -0.3f, 0.55f);
+            currentObject.transform.localPosition = new Vector3(0f, -0.3f, 0.6f);
             isObjectAttached = true;
 
         }
