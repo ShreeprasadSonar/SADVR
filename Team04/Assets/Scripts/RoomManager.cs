@@ -98,7 +98,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
         Debug.Log(message:"Joined Lobby");
 
-        PhotonNetwork.JoinOrCreateRoom(roomName: "test", roomOptions: null, typedLobby: null);
+        PhotonNetwork.JoinOrCreateRoom(roomName: "Spaceship", roomOptions: null, typedLobby: null);
     }
 
     public override void OnJoinedRoom()
@@ -117,7 +117,10 @@ public class RoomManager : MonoBehaviourPunCallbacks
         GameObject _player = PhotonNetwork.Instantiate(player.name, spawnPoint.position, Quaternion.Euler(0,180f,0)); // In Quaternion plater is making 180* turn, else use Quaternion.Identity
         _player.GetComponent<PlayerSetup>().IsLocalPlayer(); // will only be called on local player
 
-        _player.GetComponent<PhotonView>().RPC("SetNickname", RpcTarget.AllBuffered, nickname);
+        // print("Numvber of players : " + PhotonNetwork.CurrentRoom.PlayerCount);
+        
+
+        _player.GetComponent<PhotonView>().RPC("SetNickname", RpcTarget.AllBuffered, nickname + " " + PhotonNetwork.CurrentRoom.PlayerCount);
         AudioManager.GetComponent<AudioManager>().PlaySound(0);
 
         playerSpeedManager.GetComponent<PlayerSpeedManager>().SetInitialLoadPlayerSpeed();
