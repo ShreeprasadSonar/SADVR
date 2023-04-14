@@ -6,6 +6,7 @@ public class FixPipe : MonoBehaviour
 {
     public GameObject Pipe;
     public GameObject Smoke;
+    public GameObject ProgressBar;
     public GameObject taskCompletedMsgScriptObj;
 
     private float holdTime;
@@ -15,6 +16,7 @@ public class FixPipe : MonoBehaviour
     {
         if ((Input.GetKey(KeyCode.E) || Input.GetButton("js2")) && isPointerOnPipe) // Keyboard F, Android js2 (X)
         {
+            ProgressBar.SetActive(true);
             holdTime += Time.deltaTime;
 
             if (holdTime >= 3f)
@@ -27,10 +29,12 @@ public class FixPipe : MonoBehaviour
                 taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().ShowTaskCompletedMessage();
 
                 Smoke.SetActive(false);
+                ProgressBar.SetActive(false);
             }
         }
         else
         {
+            ProgressBar.SetActive(false);
             holdTime = 0f;
         }
     }
