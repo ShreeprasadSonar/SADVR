@@ -12,7 +12,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     public GameObject player;
     [Space]
-    public Transform spawnPoint;
+    public Transform[] spawnPoints;
 
     [Space]
     public GameObject roomCam;
@@ -113,6 +113,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     }
 
     public void SpawnPlayer(){
+        Transform spawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
         GameObject _player = PhotonNetwork.Instantiate(player.name, spawnPoint.position, Quaternion.Euler(0,180f,0)); // In Quaternion plater is making 180* turn, else use Quaternion.Identity
         _player.GetComponent<PlayerSetup>().IsLocalPlayer(); // will only be called on local player
 
