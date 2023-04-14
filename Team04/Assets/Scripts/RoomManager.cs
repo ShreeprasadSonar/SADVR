@@ -17,9 +17,6 @@ public class RoomManager : MonoBehaviourPunCallbacks
     [Space]
     public GameObject roomCam;
 
-    [Space]
-    public GameObject nameUI;
-
     public GameObject connectingUI;
 
     public GameObject gameStartMenuCanvas;
@@ -83,13 +80,13 @@ public class RoomManager : MonoBehaviourPunCallbacks
         // Theres a master server and once we are connected to this we can join diff rooms
         PhotonNetwork.ConnectUsingSettings();
 
-        nameUI.SetActive(false);
         connectingUI.SetActive(true);
     }
 
     public override void OnConnectedToMaster()
     {
         base.OnConnectedToMaster();
+
         Debug.Log(message:"Connected to Server");
 
         PhotonNetwork.JoinLobby();
@@ -99,14 +96,15 @@ public class RoomManager : MonoBehaviourPunCallbacks
     {
         base.OnJoinedLobby();
 
-        PhotonNetwork.JoinOrCreateRoom(roomName: "test", roomOptions: null, typedLobby: null);
-        
         Debug.Log(message:"Joined Lobby");
+
+        PhotonNetwork.JoinOrCreateRoom(roomName: "test", roomOptions: null, typedLobby: null);
     }
 
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
+
         Debug.Log(message:"Joined Room");
 
         roomCam.SetActive(false);
