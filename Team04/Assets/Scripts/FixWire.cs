@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class FixWire : MonoBehaviour
 {
     public GameObject Wires;
+    public GameObject ProgressBar;
     public GameObject taskCompletedMsgScriptObj;
 
     private float holdTime;
@@ -21,7 +22,8 @@ public class FixWire : MonoBehaviour
         
         if ((Input.GetKey(KeyCode.E) || Input.GetButton("js2")) && isPointerOnWire) // Keyboard L, Android js2 (X)
         {
-            
+
+            ProgressBar.SetActive(true);
             holdTime += Time.deltaTime;
 
             if (holdTime >= 3f)
@@ -31,10 +33,12 @@ public class FixWire : MonoBehaviour
                 taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().ShowTaskCompletedMessage();
                 
                 Wires.SetActive(false);
+                ProgressBar.SetActive(false);
             }
         }
         else
         {
+            ProgressBar.SetActive(false);
             holdTime = 0f;
         }
     }
