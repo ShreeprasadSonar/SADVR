@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class RoomManager : MonoBehaviourPunCallbacks
 {
@@ -99,6 +100,13 @@ public class RoomManager : MonoBehaviourPunCallbacks
         Debug.Log(message:"Joined Lobby");
 
         PhotonNetwork.JoinOrCreateRoom(roomName: "Spaceship", roomOptions: null, typedLobby: null);
+    }
+
+    public override void OnJoinRoomFailed(short returnCode, string message)
+    {
+        base.OnJoinRoomFailed(returnCode, message);
+
+        Debug.LogError("Failed to join room: " + message);
     }
 
     public override void OnJoinedRoom()
