@@ -5,9 +5,9 @@ using UnityEngine.EventSystems;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class RoomManager : MonoBehaviourPunCallbacks
+public class RoomManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 {
-    public static RoomManager instance;
+    // public static RoomManager instance;
 
     public GameObject AudioManager;
 
@@ -33,9 +33,9 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     private string nickname = "Astroboy";
 
-    void Awake() {
-        instance = this;
-    }
+    // void Awake() {
+    //     instance = this;
+    // }
 
     void Start()
     {
@@ -44,40 +44,28 @@ public class RoomManager : MonoBehaviourPunCallbacks
         inventoryMenuCanvas.SetActive(false);
         gameStartMenuCanvas.SetActive(true);
         gameMenuEventSystem.SetActive(true);
+        PhotonNetwork.AddCallbackTarget(this);
 
         // StartGameButtonHandler();
     }
 
-    public void StartGameButtonHandler()
+    void OnDestroy()
     {
-        Debug.Log("Start Game Button Pressed");
-        gameStartMenuCanvas.SetActive(false);
-        gameMenuEventSystem.SetActive(false);
-        JoinRoomButtonPressed();
+        PhotonNetwork.RemoveCallbackTarget(this);
     }
 
-    public void GameSettingsButtonHandler()
-    {
-        Debug.Log("Game Settings Button Pressed");
-        gameStartMenuCanvas.SetActive(false);
-        gameSettingsMenuCanvas.SetActive(true);
-
-        gameMenuEventSystem.GetComponent<EventSystem>().SetSelectedGameObject(playerSpeedSettingsButton);
-    }
-
-    public void QuitGame() 
-    {
-        Debug.Log("QuitGame() called");
-        Application.Quit();
-    }
 
     public void ChangeNickname(string _name){
         nickname = _name;
     }
 
+    public void OnRoomListUpdate(List<RoomInfo> roomList)
+    {
+        Debug.Log("Number of rooms available: " + roomList.Count);
+    }
+
     public void JoinRoomButtonPressed(){
         Debug.Log(message:"Connecting...");
-
         // Theres a master server and once we are connected to this we can join diff rooms
         PhotonNetwork.ConnectUsingSettings();
 
@@ -92,6 +80,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
         PhotonNetwork.JoinLobby();
     }
+
 
     public override void OnJoinedLobby()
     {
@@ -113,6 +102,12 @@ public class RoomManager : MonoBehaviourPunCallbacks
     {
         base.OnJoinedRoom();
 
+        Debug.Log("Current room name: " + PhotonNetwork.CurrentRoom.Name);
+
+        Debug.Log("Number of players in the room: " + PhotonNetwork.CurrentRoom.PlayerCount);
+
+        Debug.Log("Number of rooms available: " + PhotonNetwork.CountOfRooms);
+
         Debug.Log(message:"Joined Room");
 
         roomCam.SetActive(false);
@@ -123,7 +118,13 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public void SpawnPlayer(){
         Transform spawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
         GameObject _player = PhotonNetwork.Instantiate(player.name, spawnPoint.position, Quaternion.Euler(0,180f,0)); // In Quaternion plater is making 180* turn, else use Quaternion.Identity
+        
         _player.GetComponent<PlayerSetup>().IsLocalPlayer(); // will only be called on local player
+
+        if(PhotonNetwork.CurrentRoom.PlayerCount > 1){
+            _player.GetComponent<AudioListener>().enabled = false;
+            _player.GetComponentInChildren<EventSystem>().GetComponent<EventSystem>().enabled = false;
+        }
 
         // print("Numvber of players : " + PhotonNetwork.CurrentRoom.PlayerCount);
         
@@ -136,6 +137,25 @@ public class RoomManager : MonoBehaviourPunCallbacks
         // taskManager.GetComponent<TaskCompletionMsg>().TriggerIntroMsgCanvas();
     
         StartCoroutine(IntoMsgCoroutine());
+    }
+
+    public void StartGameButtonHandler()
+    {
+        gameStartMenuCanvas.SetActive(false);
+        gameMenuEventSystem.SetActive(false);
+        JoinRoomButtonPressed();
+    }
+
+    public void GameSettingsButtonHandler()
+    {
+        gameStartMenuCanvas.SetActive(false);
+        gameSettingsMenuCanvas.SetActive(true);
+        gameMenuEventSystem.GetComponent<EventSystem>().SetSelectedGameObject(playerSpeedSettingsButton);
+    }
+
+    public void QuitGame() 
+    {
+        Application.Quit();
     }
 
     IEnumerator IntoMsgCoroutine()
