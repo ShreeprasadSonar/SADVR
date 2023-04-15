@@ -8,6 +8,7 @@ public class CloseAlarm : MonoBehaviour
     [SerializeField] private GameObject viewPoint = null;
     private bool isPointerOnAlarm = false;
     private float holdTime;
+    public GameObject ProgressBar;
 
     public GameObject taskCompletedMsgScriptObj;
 
@@ -27,6 +28,7 @@ public class CloseAlarm : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.E) || Input.GetButton("js2")) // Keyboard R, Android j2 (X)
         {
+            ProgressBar.SetActive(true);
             holdTime += Time.deltaTime;
 
             if (holdTime >= 3f)
@@ -36,11 +38,13 @@ public class CloseAlarm : MonoBehaviour
                     taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().ShowTaskCompletedMessage();
 
                     OnPress();
+                    ProgressBar.SetActive(false);
                 }
             }
         }
         else
         {
+            ProgressBar.SetActive(false);
             holdTime = 0f;
         }
     }
