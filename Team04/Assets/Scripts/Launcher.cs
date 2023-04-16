@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
@@ -14,6 +15,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     public GameObject Camera;
 
     public GameObject connectingUI;
+    public GameObject waitUI;
 
     public GameObject gameStartMenuCanvas;
     public GameObject inGameMenuCanvas;
@@ -23,6 +25,10 @@ public class Launcher : MonoBehaviourPunCallbacks
     public GameObject playerSpeedSettingsButton;
     public GameObject taskManager;
 
+    public int noOfPlayers;
+    private bool joinedRoom = false;
+    private bool startGame = false;
+
     private string nickname = "Astroboy";
 
     // void Awake() {
@@ -31,10 +37,28 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     void Start()
     {
+        connectingUI.SetActive(true);
         Debug.Log("Connecting to Master");
         PhotonNetwork.ConnectUsingSettings();
     }
 
+    void Update()
+    {
+        if (startGame && joinedRoom && PhotonNetwork.CurrentRoom.PlayerCount != noOfPlayers)
+        {
+            waitUI.SetActive(true);
+            gameStartMenuCanvas.SetActive(false);
+        }
+        else if(startGame && joinedRoom && PhotonNetwork.CurrentRoom.PlayerCount == noOfPlayers){
+            //
+        }
+    }
+
+    public void StartGame()
+    {
+        Debug.Log("Starting Game");
+        startGame = true;
+    }
 
     public void ChangeNickname(string _name){
         nickname = _name;
@@ -43,14 +67,6 @@ public class Launcher : MonoBehaviourPunCallbacks
     public void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         Debug.Log("Number of rooms available: " + roomList.Count);
-    }
-
-    public void JoinRoomButtonPressed(){
-        Debug.Log(message:"Connecting...");
-        // Theres a master server and once we are connected to this we can join diff rooms
-        PhotonNetwork.ConnectUsingSettings();
-
-        connectingUI.SetActive(true);
     }
 
     public override void OnConnectedToMaster()
@@ -79,13 +95,17 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         base.OnJoinedRoom();
 
+        joinedRoom = true;
+
         Debug.Log("Current room name: " + PhotonNetwork.CurrentRoom.Name);
 
         Debug.Log("Number of players in the room: " + PhotonNetwork.CurrentRoom.PlayerCount);
 
-        Debug.Log("Number of rooms available: " + PhotonNetwork.CountOfRooms);
-
         Debug.Log(message:"Joined Room");
+
+        connectingUI.SetActive(false);
+
+        gameStartMenuCanvas.SetActive(true);
 
         // SpawnPlayer();
     }
@@ -93,7 +113,6 @@ public class Launcher : MonoBehaviourPunCallbacks
     public void StartGameButtonHandler()
     {
         gameStartMenuCanvas.SetActive(false);
-        JoinRoomButtonPressed();
     }
 
     public void GameSettingsButtonHandler()
@@ -106,10 +125,4 @@ public class Launcher : MonoBehaviourPunCallbacks
         Application.Quit();
     }
 
-    IEnumerator IntoMsgCoroutine()
-    {
-        yield return new WaitForSeconds(2f); // 2 seconds
-
-        taskManager.GetComponent<TaskCompletionMsg>().TriggerIntroMsgCanvas();
-    }
 }
