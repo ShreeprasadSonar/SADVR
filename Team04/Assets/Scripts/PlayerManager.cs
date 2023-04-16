@@ -20,6 +20,8 @@ public class PlayerManager : MonoBehaviour
     }
 
     void CreateController(){
-        PhotonNetwork.Instantiate("PlayerController", Vector3.zero, Quaternion.identity);
+        Vector3 position = new Vector3(11, 11, -4);
+        PhotonNetwork.Instantiate("PlayerController", position, Quaternion.identity);
+        // PhotonNetwork.Instantiate("PlayerController", Vector3.zero, Quaternion.identity);
     }
 }

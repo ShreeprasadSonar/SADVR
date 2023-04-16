@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class CharacterMovement : MonoBehaviour
     [Tooltip("Should be checked if using the Bluetooth Controller to move. If using keyboard, leave this unchecked.")]
     public bool joyStickMode;
 
+    Rigidbody rb;
     PhotonView PV;
 
     void Awake()
