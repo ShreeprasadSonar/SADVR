@@ -16,6 +16,7 @@ public class CharacterMovement : MonoBehaviour
 
     void Awake()
     {
+        rb = GetComponent<Rigidbody>();
         PV = GetComponent<PhotonView>();
     }
 
@@ -24,6 +25,7 @@ public class CharacterMovement : MonoBehaviour
     {
         if(!PV.IsMine){
             Destroy(GetComponentInChildren<Camera>().gameObject);
+            Destroy(rb);
         }
         charCntrl = GetComponent<CharacterController>();
     }
@@ -64,5 +66,12 @@ public class CharacterMovement : MonoBehaviour
         charCntrl.SimpleMove(moveVect);
 
 
+    }
+
+    void FixedUpdate() {
+        if (!PV.IsMine)
+        {
+            return;
+        }
     }
 }
