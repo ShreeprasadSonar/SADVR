@@ -121,10 +121,10 @@ public class RoomManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         
         _player.GetComponent<PlayerSetup>().IsLocalPlayer(); // will only be called on local player
 
-        if(PhotonNetwork.CurrentRoom.PlayerCount > 1){
-            _player.GetComponent<AudioListener>().enabled = false;
-            _player.GetComponentInChildren<EventSystem>().GetComponent<EventSystem>().enabled = false;
-        }
+        // if(PhotonNetwork.CurrentRoom.PlayerCount > 1){
+        //     _player.GetComponent<AudioListener>().enabled = false;
+        //     _player.GetComponentInChildren<EventSystem>().GetComponent<EventSystem>().enabled = false;
+        // }
 
         // print("Numvber of players : " + PhotonNetwork.CurrentRoom.PlayerCount);
         
