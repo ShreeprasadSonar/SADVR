@@ -50,7 +50,7 @@ public class Launcher : MonoBehaviourPunCallbacks
             gameStartMenuCanvas.SetActive(false);
         }
         else if(startGame && joinedRoom && PhotonNetwork.CurrentRoom.PlayerCount == noOfPlayers){
-            //
+            PhotonNetwork.LoadLevel(1);
         }
     }
 
