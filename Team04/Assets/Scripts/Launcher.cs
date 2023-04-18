@@ -84,6 +84,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         Debug.Log(message:"Joined Lobby");
 
         PhotonNetwork.JoinOrCreateRoom(roomName: "Spaceship", roomOptions: null, typedLobby: null);
+
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
