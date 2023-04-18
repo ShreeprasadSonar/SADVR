@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.EventSystems;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -30,9 +31,10 @@ public class CharacterMovement : MonoBehaviour
     void Start()
     {
         if(!PV.IsMine){
-            // Destroy(GetComponentInChildren<Camera>().gameObject);
-            Destroy(GetComponentInChildren<Camera>());
             Destroy(GetComponentInChildren<AudioListener>());
+            GetComponentInChildren<Camera>().enabled = false;
+            GetComponentInChildren<PhysicsRaycaster>().enabled = false;
+            GetComponentInChildren<XRCardboardController>().enabled = false;
             Destroy(rb);
         }
         charCntrl = GetComponent<CharacterController>();
