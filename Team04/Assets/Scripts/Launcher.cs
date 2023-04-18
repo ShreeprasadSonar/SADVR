@@ -9,7 +9,7 @@ using TMPro;
 public class Launcher : MonoBehaviourPunCallbacks
 {
 
-    public static RoomManager instance;
+    public static Launcher instance;
 
     [Space]
     public GameObject Camera;
@@ -31,9 +31,9 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     private string nickname = "Astroboy";
 
-    // void Awake() {
-    //     instance = this;
-    // }
+    void Awake() {
+        instance = this;
+    }
 
     void Start()
     {
@@ -49,8 +49,9 @@ public class Launcher : MonoBehaviourPunCallbacks
             waitUI.SetActive(true);
             gameStartMenuCanvas.SetActive(false);
         }
-        else if(startGame && joinedRoom && PhotonNetwork.CurrentRoom.PlayerCount == noOfPlayers){
+        else if(startGame && joinedRoom && PhotonNetwork.CurrentRoom.PlayerCount >= noOfPlayers){
             PhotonNetwork.LoadLevel(1);
+            Destroy(this);
         }
     }
 
@@ -74,6 +75,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         Debug.Log(message:"Connected to Master");
 
         PhotonNetwork.JoinLobby();
+        PhotonNetwork.AutomaticallySyncScene = true;
     }
 
 
@@ -96,6 +98,8 @@ public class Launcher : MonoBehaviourPunCallbacks
         base.OnJoinedRoom();
 
         joinedRoom = true;
+
+        // Player[] players = PhotonNetwork.PlayerList;
 
         Debug.Log("Current room name: " + PhotonNetwork.CurrentRoom.Name);
 
@@ -122,6 +126,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public void QuitGame() 
     {
+        PhotonNetwork.LeaveRoom();
         Application.Quit();
     }
 
