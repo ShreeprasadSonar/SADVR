@@ -33,3 +33,7 @@ Inventory (Close) | O | X
   - https://assetstore.unity.com/packages/3d/environments/sci-fi/planet-earth-free-23399
 - Temp Astronaut
   - https://assetstore.unity.com/packages/3d/characters/humanoids/sci-fi/stylized-astronaut-114298
+- Photon Pun 2
+  - https://assetstore.unity.com/packages/tools/network/pun-2-free-119922
+- Photon Voice 2
+  - https://assetstore.unity.com/packages/tools/audio/photon-voice-2-130518
