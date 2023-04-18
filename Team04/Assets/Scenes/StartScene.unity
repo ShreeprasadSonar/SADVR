@@ -1016,7 +1016,7 @@ MonoBehaviour:
   startGameButton: {fileID: 0}
   playerSpeedSettingsButton: {fileID: 0}
   taskManager: {fileID: 0}
-  noOfPlayers: 2
+  noOfPlayers: 1
 --- !u!82 &382998542
 AudioSource:
   m_ObjectHideFlags: 0

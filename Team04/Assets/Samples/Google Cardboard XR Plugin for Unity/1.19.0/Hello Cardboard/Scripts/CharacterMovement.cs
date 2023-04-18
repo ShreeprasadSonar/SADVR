@@ -16,17 +16,23 @@ public class CharacterMovement : MonoBehaviour
     Rigidbody rb;
     PhotonView PV;
 
+    PlayerManager playerManager;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         PV = GetComponent<PhotonView>();
+
+        // playerManager = PhotonView.Find((int)PV.InstantiationData[0]).GetComponent<PlayerManager>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         if(!PV.IsMine){
-            Destroy(GetComponentInChildren<Camera>().gameObject);
+            // Destroy(GetComponentInChildren<Camera>().gameObject);
+            Destroy(GetComponentInChildren<Camera>());
+            Destroy(GetComponentInChildren<AudioListener>());
             Destroy(rb);
         }
         charCntrl = GetComponent<CharacterController>();
