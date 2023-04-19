@@ -8,6 +8,7 @@ public class FixPipe : MonoBehaviour
     public GameObject Smoke;
     public GameObject ProgressBar;
     public GameObject taskCompletedMsgScriptObj;
+    public AudioSource audioSource;
 
     private float holdTime;
     private bool isPointerOnPipe=false;
@@ -30,6 +31,7 @@ public class FixPipe : MonoBehaviour
 
                 Smoke.SetActive(false);
                 ProgressBar.SetActive(false);
+                audioSource.Play();
             }
         }
         else

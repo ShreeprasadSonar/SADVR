@@ -8,13 +8,13 @@ public class FixWire : MonoBehaviour
     public GameObject Wires;
     public GameObject ProgressBar;
     public GameObject taskCompletedMsgScriptObj;
+    public AudioSource audioSource;
 
     private float holdTime;
     private bool isPointerOnWire = false;
 
     void Start()
     {
-
     }
 
     void Update()
@@ -34,6 +34,7 @@ public class FixWire : MonoBehaviour
                 
                 Wires.SetActive(false);
                 ProgressBar.SetActive(false);
+                audioSource.Play();
             }
         }
         else
