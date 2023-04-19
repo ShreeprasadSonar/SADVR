@@ -15,6 +15,9 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
     {
         if (photonView.IsMine){
             nicknameText.text = "Astroboy " + PhotonNetwork.CurrentRoom.PlayerCount;
+            GetComponentInChildren<AudioListener>().enabled = true;
+        } else {
+            GetComponentInChildren<AudioListener>().enabled = false;
         }
     }
 
