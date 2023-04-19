@@ -37,3 +37,9 @@ Inventory (Close) | O | X
   - https://assetstore.unity.com/packages/tools/network/pun-2-free-119922
 - Photon Voice 2
   - https://assetstore.unity.com/packages/tools/audio/photon-voice-2-130518
+
+# Youtube Refernces
+- Multiplayer Voice Chat
+  - https://www.youtube.com/watch?v=yjUltw6eypQ&t=30s
+- Pun 2 Multiplayer
+  - https://www.youtube.com/playlist?list=PLhsVv9Uw1WzjI8fEBjBQpTyXNZ6Yp1ZLw
