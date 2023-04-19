@@ -8,6 +8,8 @@ public class VideoPlay : MonoBehaviour
     public VideoPlayer videoPlayer;
     private bool isPointerOnMonitor = false;
     private bool isVideoPlaying = false;
+    public AudioSource audioSource;
+    public bool isAudioPlaying = false;
 
     void Update()
     {
@@ -28,6 +30,11 @@ public class VideoPlay : MonoBehaviour
                 {
                     videoPlayer.Play();
                     isVideoPlaying = true;
+                    if (!isAudioPlaying)
+                    {
+                        audioSource.Play();
+                        isAudioPlaying = true;
+                    }
                 }
                 else
                 {
