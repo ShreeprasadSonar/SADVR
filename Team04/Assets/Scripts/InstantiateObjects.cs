@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class InstantiateObjects : MonoBehaviour
+public class InstantiateObjects : MonoBehaviourPunCallbacks
 {
     public GameObject plyer;
     // Start is called before the first frame update
