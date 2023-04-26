@@ -27,6 +27,7 @@ public class FixPipe : MonoBehaviour
                 position.z -= 0.002f;
                 Pipe.transform.position = position;
 
+                taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().SetTaskCompleted(4);
                 taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().ShowTaskCompletedMessage();
 
                 Smoke.SetActive(false);

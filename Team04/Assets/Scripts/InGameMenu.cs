@@ -9,6 +9,7 @@ public class InGameMenu : MonoBehaviour
 {
     public GameObject inGameMenu;
     public GameObject gameStartMenu;
+    public GameObject taskManagerCanvas;
     
     public GameObject playerSpeedManager;
     public AudioManager audioManager;
@@ -69,6 +70,8 @@ public class InGameMenu : MonoBehaviour
 
           inGameMenu.GetComponent<Canvas>().worldCamera = playerMainCamera.GetComponent<Camera>();
           inGameMenu.GetComponent<Canvas>().planeDistance = 1;
+
+          if (taskManagerCanvas.activeSelf) taskManagerCanvas.SetActive(false);
 
           OpenInGameMenu();
         }

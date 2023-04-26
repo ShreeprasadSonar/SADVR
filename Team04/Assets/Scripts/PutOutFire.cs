@@ -21,8 +21,9 @@ public class PutOutFire : MonoBehaviour
 
             if (holdTime >= 3f)
             {
-
+                taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().SetTaskCompleted(2);
                 taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().ShowTaskCompletedMessage();
+                
                 Fire.SetActive(false);
                 progressBar.SetActive(false);
                 audiosource.Play();

@@ -15,11 +15,11 @@ public class FixWire : MonoBehaviour
 
     void Start()
     {
+        // TODO:
     }
 
     void Update()
-    {
-        
+    {   
         if ((Input.GetKey(KeyCode.E) || Input.GetButton("js2")) && isPointerOnWire) // Keyboard L, Android js2 (X)
         {
 
@@ -29,6 +29,8 @@ public class FixWire : MonoBehaviour
             if (holdTime >= 3f)
             {
                 Debug.Log("FixWire :: Fixing wire...");
+
+                taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().SetTaskCompleted(1);
 
                 taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().ShowTaskCompletedMessage();
                 
