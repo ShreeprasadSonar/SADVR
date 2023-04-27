@@ -12,7 +12,7 @@ public class TaskCompletionMsg : MonoBehaviour
     public GameObject introOkButton;
     public GameObject inGameMenuCanvas;
 
-    public const int numberOfTasks = 4;
+    public const int numberOfTasks = 5;
     public GameObject[] taskCheckboxButtonsRed = new GameObject[numberOfTasks];
     public GameObject[] taskCheckboxButtonsGreen = new GameObject[numberOfTasks];
 
@@ -27,6 +27,7 @@ public class TaskCompletionMsg : MonoBehaviour
     private bool task2Completion = false;
     private bool task3Completion = false;
     private bool task4Completion = false;
+    private bool task5Completion = false;
 
     void Start()
     {
@@ -93,6 +94,9 @@ public class TaskCompletionMsg : MonoBehaviour
             case 4:
                 task4Completion = true;
                 break;
+            case 5:
+                task5Completion = true;
+                break;
             default:
                 return;
         }
@@ -141,6 +145,12 @@ public class TaskCompletionMsg : MonoBehaviour
         {
             taskCheckboxButtonsGreen[3].SetActive(true);
             taskCheckboxButtonsRed[3].SetActive(false);
+        }
+
+         if (task5Completion) 
+        {
+            taskCheckboxButtonsGreen[4].SetActive(true);
+            taskCheckboxButtonsRed[4].SetActive(false);
         }
     }
 
