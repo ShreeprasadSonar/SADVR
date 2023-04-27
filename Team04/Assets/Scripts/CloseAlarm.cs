@@ -35,6 +35,7 @@ public class CloseAlarm : MonoBehaviour
             {
                 if (isPointerOnAlarm)
                 {
+                    taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().SetTaskCompleted(5);
                     taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().ShowTaskCompletedMessage();
 
                     OnPress();
