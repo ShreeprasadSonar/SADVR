@@ -1,0 +1,839 @@
+commit 80dbd87e893fcc122f19295f503bbb5d32add1f2
+Merge: 34cb542 4de9bf1
+Author: Abhishek Chauhan <chauhan.abhishek596@gmail.com>
+Date:   Wed Apr 19 07:50:04 2023 +0530
+
+    Merge pull request #27 from vedangwartikar/main
+    
+    Add audio cues - 1, 2, 4, 5 and fix Alarm Progressbar
+
+commit 4de9bf169b914dd5d622dc18539461e13d2e9c35
+Author: vedangwartikar <vedangwartikar17@gmail.com>
+Date:   Tue Apr 18 21:17:08 2023 -0500
+
+    Add audio cues - 1, 2, 4, 5 and fix Alarm Progressbar
+
+commit 34cb54252c217c98aedd3cb1a9655fd093d519c6
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Tue Apr 18 19:22:47 2023 -0500
+
+    Voice chat - Advance Feature Complete - Includes asking for mic permission on android devices
+
+commit 317fe829eaa1251382038d8cb38829a25bcabfb9
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Tue Apr 18 19:03:59 2023 -0500
+
+    Update README.md
+
+commit 813ed107c190ce27f6054ee53be9f8f74336e29f
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Tue Apr 18 18:17:23 2023 -0500
+
+    Update README.md
+
+commit 9f5b47496780ff12900cddbe10dcc628e246762c
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Tue Apr 18 17:58:11 2023 -0500
+
+    Nickname Change
+
+commit 3e8ea1343a12d9fde5bd3b6a4a19859842a23183
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Tue Apr 18 14:18:39 2023 -0500
+
+    Now player movement is independant (No rotation sync though)
+
+commit c47967f2053003be68ab1f56203243f6f521ffd9
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Tue Apr 18 13:32:19 2023 -0500
+
+    Both Players syncing well (Still the rotation issue)
+
+commit b44aaba0dcf3272b665b9d980ff7525e3334cd02
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Tue Apr 18 12:08:24 2023 -0500
+
+    Changes for multiplayer to sync movement (Still need to fix rotation issue)
+
+commit 41d6577264b99e0de1dda4b0e0344a2e146a0067
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Tue Apr 18 10:40:23 2023 -0500
+
+    Chnages in start scene to reflect menus (World Space) well on phone
+
+commit 0295440c301054e093500e1967a91dbf7512335d
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Tue Apr 18 10:19:17 2023 -0500
+
+    Changes to launcher so as to resolve some errors
+
+commit e94f49b8326fc749992289acde28f8f84dc4b5d3
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Sun Apr 16 18:21:38 2023 -0500
+
+    Added few more fixes, working now for 1 player (Still need to fix the object pickup and store functionality)
+
+commit 5adeff62bb562b4b61093a1954e1259c9dcbbb93
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Sun Apr 16 18:10:25 2023 -0500
+
+    More fix to charcter movement so thers less interference
+
+commit 89c53777ac759de2ff9329b69c1613f498360425
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Sun Apr 16 18:03:10 2023 -0500
+
+    Camera switch fix
+
+commit f738d77886d00a7be89a4490a89a450947a01e60
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Sun Apr 16 17:59:50 2023 -0500
+
+    Changed player prefab and character controller script so that it only controls own player
+
+commit e6f7a60ac6e98275851423b879f3072200872320
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Sun Apr 16 17:39:07 2023 -0500
+
+    Deleted photon demos
+
+commit d143515990950612d5498f74f402c26925f907c4
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Sun Apr 16 12:31:24 2023 -0500
+
+    More changes as to start scene and getting playerManager into the gameplay scene
+
+commit 416b175308a7229820f90d05af925ee062bde465
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Sun Apr 16 11:55:53 2023 -0500
+
+    Execution logic until start game for startscene
+
+commit 1a3741767ec0735c8c2c28d5328757bf019cf701
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Sun Apr 16 11:23:00 2023 -0500
+
+    Some start scene changes
+
+commit d57a5bafad47309a68631b86596ed9a6ba66047b
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Sun Apr 16 10:29:37 2023 -0500
+
+    Updated photon region
+
+commit 375d50f3a1f36332cc3a1de16a37ca4b41392932
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Sun Apr 16 10:29:12 2023 -0500
+
+    Update room manager to less interfere with other player
+
+commit 03ff66a2fc16828d1ec08634530f67079f0eb8aa
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Sat Apr 15 21:01:59 2023 -0500
+
+    Added Audios
+
+commit d087c8037c82d69390fc9a94fa4848c033e18f2d
+Merge: 0a6d7dd 1a275ef
+Author: Vedang Wartikar <vedangwartikar17@gmail.com>
+Date:   Sat Apr 15 12:33:49 2023 -0500
+
+    Add alarm progressbar
+
+commit 1a275ef9c294ed29e0c032b3566092f2d17108ab
+Author: vedangwartikar <vedangwartikar17@gmail.com>
+Date:   Sat Apr 15 12:32:57 2023 -0500
+
+    alarm progressbar
+
+commit 0a6d7dd8f6eafca61819903958c38f2dda4d89eb
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Sat Apr 15 12:04:34 2023 -0500
+
+    Two players showing up but controls are mixed, will work for 1 player at a time now
+
+commit 29deeb2ca0fa9e9500b96952c85a127a698b84c6
+Merge: 05a408e 884ddff
+Author: Vedang Wartikar <vedangwartikar17@gmail.com>
+Date:   Fri Apr 14 11:18:45 2023 -0500
+
+    Progress-bar for Wire and Pipe
+
+commit 884ddffb3337ad4818188281a0df2404d4495231
+Author: vedangwartikar <vedangwartikar17@gmail.com>
+Date:   Fri Apr 14 11:17:34 2023 -0500
+
+    Progressbar for Wire and Pipe
+
+commit 05a408e5b51c1b13d39fc8afe2fbcdf38b904aef
+Merge: f618153 4022d27
+Author: Vedang Wartikar <vedangwartikar17@gmail.com>
+Date:   Fri Apr 14 11:04:51 2023 -0500
+
+    Add task to extinguish fire
+
+commit 4022d27fd2d6a6117fd53f438dcd56591a2cd55a
+Author: mrabhishekchauhan <chauhan.abhishek596@gmail.com>
+Date:   Fri Apr 14 11:02:24 2023 -0500
+
+    added task to extinguish fire
+
+commit f61815361fb496df1155e70daeb70119998a521e
+Merge: f4ae54c 6da8c51
+Author: Abhishek Chauhan <chauhan.abhishek596@gmail.com>
+Date:   Fri Apr 14 20:33:35 2023 +0530
+
+    Merge pull request #20 from ShreeprasadSonar/change-dashboard-display
+    
+    modified gameplay to use one display
+
+commit 6da8c51be9ea5b30af2e207189db0ee508720f64
+Author: mrabhishekchauhan <chauhan.abhishek596@gmail.com>
+Date:   Fri Apr 14 10:02:17 2023 -0500
+
+    modified gameplay to use one display
+
+commit f4ae54cf6a0a2421fc8dde6d7ac1d3c5e6dc3472
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Thu Apr 13 21:59:26 2023 -0500
+
+    Some changes for room failed indication
+
+commit 98866886984aea0e5df528f3afd1bad22d67978b
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Thu Apr 13 21:07:11 2023 -0500
+
+    Changing name based on number of players in the room
+
+commit 6795f969986d9a31c73a8aa7b41b34d0348a0bc7
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Thu Apr 13 20:50:14 2023 -0500
+
+    Few spawnpoint changes
+
+commit 6566938305bc622f7b4e478dc9003ef4d6a355d5
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Thu Apr 13 20:48:53 2023 -0500
+
+    Some canvas fix and added randomized spawn points
+
+commit 7d17a568a307536700cbe394767d93b93d0d02c8
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Thu Apr 13 20:39:17 2023 -0500
+
+    Player changes related to nametag
+
+commit 424688d33ee1d7c82ec48918f83f287eaaaabdf9
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Thu Apr 13 20:37:16 2023 -0500
+
+    PLayer and roommanager changers
+
+commit 3370b8535cfd88267b02ca141413cd7b589de7df
+Merge: 234fc58 0cced4a
+Author: Vedang Wartikar <vedangwartikar17@gmail.com>
+Date:   Wed Apr 12 11:33:56 2023 -0500
+
+    Verified grab object change, make earth more visible
+
+commit 0cced4ab90f1f6a476d9f35c48d7a425af94fec0
+Author: vedangwartikar <vedangwartikar17@gmail.com>
+Date:   Wed Apr 12 11:32:56 2023 -0500
+
+    Verified grab object change, make earth more visible
+
+commit 234fc58197ff38ef20b5a96e61f4b2864399eb61
+Author: Abhishek Chauhan <chauhan.abhishek596@gmail.com>
+Date:   Wed Apr 12 11:13:44 2023 +0530
+
+    Changed tool distance from reticle pointer
+
+commit 2c408ead671688b81d9391af8120ee2c9844d67b
+Merge: c2c0c97 70bf48c
+Author: Vedang Wartikar <vedangwartikar17@gmail.com>
+Date:   Tue Apr 11 22:00:00 2023 -0500
+
+    Add pre-final button mapping that includes all buttons
+
+commit 70bf48c2bada71d929f0499e1329741076399ba0
+Author: vedangwartikar <vedangwartikar17@gmail.com>
+Date:   Tue Apr 11 21:58:21 2023 -0500
+
+    Add pre-final button mapping that includes all buttons
+
+commit c2c0c972bc110eda95fc00eb56b0a86445ef45c6
+Merge: eb2c2c5 6412302
+Author: Vedang Wartikar <vedangwartikar17@gmail.com>
+Date:   Tue Apr 11 20:29:07 2023 -0500
+
+    Fix tool grab issue
+
+commit 6412302366dca0d1c7ce2b5e4a856b56bc04f8af
+Author: mrabhishekchauhan <chauhan.abhishek596@gmail.com>
+Date:   Tue Apr 11 20:22:59 2023 -0500
+
+    added task video
+
+commit a41808267e2f9eaf1ea45bd2e9d89f6a0696207a
+Author: mrabhishekchauhan <chauhan.abhishek596@gmail.com>
+Date:   Tue Apr 11 19:31:22 2023 -0500
+
+    fixed task completed successfully canvas position
+
+commit 75266fde794457df716a4a2d2390fd0be26306ee
+Author: mrabhishekchauhan <chauhan.abhishek596@gmail.com>
+Date:   Tue Apr 11 19:24:49 2023 -0500
+
+    changed position where tool is attached to avoid passthrough
+
+commit eb2c2c5a17f821fba593b77122acaeb7c28b25e9
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Tue Apr 11 18:24:17 2023 -0500
+
+    Multiplayer changes
+
+commit da6588fad418c00f9402ce966fde09414a27415e
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Tue Apr 11 18:18:57 2023 -0500
+
+    Revert "Made changes to multiplayer so that player spawns into different room and multiple devices can play at same time"
+    
+    This reverts commit 93380aec8b102de34af1cc7e05a49b2c076ffe31.
+
+commit 0ed5c849cdcc3592b8d9023084edb4e11a113007
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Tue Apr 11 18:18:52 2023 -0500
+
+    Revert "Player changes to reflect well in game"
+    
+    This reverts commit eba2f66f372586a1c36163dc01d7e8dd712fc7d7.
+
+commit 244048a0db3790fcddcfc458593a6ec64bc5695b
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Tue Apr 11 18:18:38 2023 -0500
+
+    Revert "Revert "added saved changes to gameplay""
+    
+    This reverts commit 085964fe8a5f934fef38c0ebf94db1b9b71e2491.
+
+commit 085964fe8a5f934fef38c0ebf94db1b9b71e2491
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Tue Apr 11 18:17:02 2023 -0500
+
+    Revert "added saved changes to gameplay"
+    
+    This reverts commit 83a53b642d14e57bef0a145fb3063ff886d5d776.
+
+commit 93380aec8b102de34af1cc7e05a49b2c076ffe31
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Tue Apr 11 12:25:20 2023 -0500
+
+    Made changes to multiplayer so that player spawns into different room and multiple devices can play at same time
+
+commit eba2f66f372586a1c36163dc01d7e8dd712fc7d7
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Tue Apr 11 11:48:53 2023 -0500
+
+    Player changes to reflect well in game
+
+commit 83a53b642d14e57bef0a145fb3063ff886d5d776
+Author: mrabhishekchauhan <chauhan.abhishek596@gmail.com>
+Date:   Tue Apr 11 00:50:36 2023 -0500
+
+    added saved changes to gameplay
+
+commit 66b0995486c73f334454444d4293e92e73fa9858
+Author: mrabhishekchauhan <chauhan.abhishek596@gmail.com>
+Date:   Tue Apr 11 00:47:52 2023 -0500
+
+    removed backup folders
+
+commit 9e1736435433de2b262b4797fe235794087527c3
+Author: mrabhishekchauhan <chauhan.abhishek596@gmail.com>
+Date:   Tue Apr 11 00:46:40 2023 -0500
+
+    changed grab object position and added box collider to wires
+
+commit 5e58a05f5be4dcc9f54fb1d65b5fd8f62e0584d3
+Author: rashikaur <51988106+rashikaur@users.noreply.github.com>
+Date:   Mon Apr 10 23:53:42 2023 -0500
+
+    add game introduction canvas
+
+commit eca61959e458740ee1039fd65b3addbf97596ecb
+Author: Daksh Khetan <2012daksh@gmail.com>
+Date:   Mon Apr 10 21:33:47 2023 -0500
+
+    add `TaskCompletedMsg`
+
+commit 9ea9b85dd801a4d6b1b0dada822ae33b32cb17ae
+Author: Daksh Khetan <2012daksh@gmail.com>
+Date:   Mon Apr 10 20:31:30 2023 -0500
+
+    Updated inputs, spawn resizing (#11)
+    
+    Co-authored-by: vedangwartikar <vedangwartikar17@gmail.com>
+
+commit d87011dd976b61a44296356d8be22dda73a18066
+Merge: ab43312 28d0d6b
+Author: Vedang Wartikar <vedangwartikar17@gmail.com>
+Date:   Sun Apr 9 18:35:04 2023 -0500
+
+    Add Button mapping for Fortune Gamepad
+    
+    Button mapping
+
+commit 28d0d6ba3a29338a63bf0cf15efca1a69fe136ec
+Author: vedangwartikar <vedangwartikar17@gmail.com>
+Date:   Sun Apr 9 18:19:40 2023 -0500
+
+    rm BackUpFolder
+
+commit 535369bae0ef81153324f448de5a0bb9b9c24780
+Author: vedangwartikar <vedangwartikar17@gmail.com>
+Date:   Sun Apr 9 18:17:19 2023 -0500
+
+    Added gamepad button mappings
+
+commit ab43312d8ae4c69c99e36ae75af3739b7f8be353
+Author: Daksh Khetan <2012daksh@gmail.com>
+Date:   Sun Apr 9 17:04:44 2023 -0500
+
+    fix canvas menus + minor fixes
+
+commit 070b6b5094f158d3164a07d8351517e2ada4c3ba
+Author: Daksh Khetan <2012daksh@gmail.com>
+Date:   Sun Apr 9 13:47:37 2023 -0500
+
+    fix inventory & add inventoryFullMessage
+
+commit 07ed019ddaea8ca8ef7cd8bf5a2bb3260da018d5
+Author: mrabhishekchauhan <chauhan.abhishek596@gmail.com>
+Date:   Sun Apr 9 12:50:28 2023 -0500
+
+    fixed floor colliders and added tool
+
+commit 11c658826d513812af5bb580f50eb988002365eb
+Author: Daksh Khetan <2012daksh@gmail.com>
+Date:   Sun Apr 9 00:41:25 2023 -0500
+
+    add inventory support & outline script
+
+commit 04142dd1478d4c400040df749c93e04fe09eca1d
+Author: mrabhishekchauhan <chauhan.abhishek596@gmail.com>
+Date:   Sat Apr 8 19:55:14 2023 -0500
+
+    added lift section with cues
+
+commit 599431c85e573a70b4b6f985c8160ffbf2aafa33
+Author: mrabhishekchauhan <chauhan.abhishek596@gmail.com>
+Date:   Sat Apr 8 18:32:09 2023 -0500
+
+    fixed pipe prefab position
+
+commit a99c936c4f7107441943786bba61484f89455c3c
+Author: Daksh Khetan <2012daksh@gmail.com>
+Date:   Sat Apr 8 15:37:06 2023 -0500
+
+    fix menu event system
+
+commit 25d8ea95bc76d08d1c85459d06be4052e71802eb
+Author: mrabhishekchauhan <chauhan.abhishek596@gmail.com>
+Date:   Sat Apr 8 01:43:08 2023 -0500
+
+    Added pipe task and fixed teleport issue
+
+commit e2e8241a12292501989496c9b5a270d9f54f8d7c
+Author: Daksh Khetan <2012daksh@gmail.com>
+Date:   Fri Apr 7 12:56:55 2023 -0500
+
+    game settings menu
+
+commit aaaec099a23ee4d495b9d02dcb1d58076b9fc66f
+Author: Daksh Khetan <2012daksh@gmail.com>
+Date:   Fri Apr 7 02:54:39 2023 -0500
+
+    game menu `[WIP]`
+
+commit 920defe5d40dfaefb6a0ee07b7e889d1b8418f32
+Author: mrabhishekchauhan <chauhan.abhishek596@gmail.com>
+Date:   Thu Apr 6 23:05:24 2023 -0500
+
+    add teleport between levels
+
+commit f4e808d4d87c1bb605f33fcf1d817a7891d2698b
+Author: mrabhishekchauhan <chauhan.abhishek596@gmail.com>
+Date:   Thu Apr 6 21:32:02 2023 -0500
+
+    edited scene and added teleportation
+
+commit 1c378ab25c1922df23e2931333cfce902a0b1d7e
+Author: Vedang Wartikar <vedangwartikar17@gmail.com>
+Date:   Thu Apr 6 19:22:32 2023 -0500
+
+    simple button (X, Y) control
+
+commit 2cf272ba5d0f161cc493daa2d7b6433672afafcb
+Merge: c9300ce cea754f
+Author: Vedang Wartikar <vedangwartikar17@gmail.com>
+Date:   Thu Apr 6 19:21:36 2023 -0500
+
+    Add gamepad controls, enable starting audio
+
+commit cea754f83ac683c3b39c5e843275671860ec9c00
+Author: vedangwartikar <vedangwartikar17@gmail.com>
+Date:   Thu Apr 6 19:20:02 2023 -0500
+
+    minor syntax error, save scene
+
+commit 2627aaeeb75cd1dcb5d7ceaa16a2095bb3fca88f
+Author: vedangwartikar <vedangwartikar17@gmail.com>
+Date:   Thu Apr 6 19:18:46 2023 -0500
+
+    Add gamepad inputs, enable start audio
+
+commit c9300ce4771d2e1554dd9d574fd962621161fbc7
+Author: mrabhishekchauhan <chauhan.abhishek596@gmail.com>
+Date:   Thu Apr 6 19:03:45 2023 -0500
+
+    removed sketchfab plugin
+
+commit 4d58989a2a550fb9c94c0a150d2efdf59f31d0bb
+Author: mrabhishekchauhan <chauhan.abhishek596@gmail.com>
+Date:   Thu Apr 6 18:52:24 2023 -0500
+
+    Added wires fixing task, fixed monitor issue
+
+commit 02f129c8647be1ce3bc5e11490ccf2646b534329
+Merge: 8ceb26b caae316
+Author: Vedang Wartikar <vedangwartikar17@gmail.com>
+Date:   Thu Apr 6 18:33:44 2023 -0500
+
+    Long press alarm button (R) to close Alarm
+
+commit caae31627b124d399ed89d2b7c68f05d473ec237
+Author: vedangwartikar <vedangwartikar17@gmail.com>
+Date:   Thu Apr 6 18:30:43 2023 -0500
+
+    update input controls
+
+commit 27f52c2544b335395343c659d0ccac84cd29dd65
+Author: vedangwartikar <vedangwartikar17@gmail.com>
+Date:   Thu Apr 6 18:29:06 2023 -0500
+
+    Hold the alarm button (R) fot 3 seconds to close alarm
+
+commit 8ceb26b769e399bdfaf39263e6daae2149129714
+Author: Vedang Wartikar <vedangwartikar17@gmail.com>
+Date:   Thu Apr 6 15:05:53 2023 -0500
+
+    add input controls (keyboard and gamepad)
+
+commit beb730b4bc1dff911b39100d1fb0569e889260c4
+Merge: 4a33415 0c6445e
+Author: Vedang Wartikar <vedangwartikar17@gmail.com>
+Date:   Thu Apr 6 14:59:58 2023 -0500
+
+    Lower video volume, Monitor interactable, Play/Stop vide on KeyCode P
+
+commit 0c6445e64fe2ae6012e40d06741aeb7c4f53c9bb
+Author: vedangwartikar <vedangwartikar17@gmail.com>
+Date:   Thu Apr 6 14:55:21 2023 -0500
+
+    Remove backup folder
+
+commit 6e7f96367811c513e0586ad253f0be08c9a55601
+Author: vedangwartikar <vedangwartikar17@gmail.com>
+Date:   Thu Apr 6 14:51:28 2023 -0500
+
+    Lower video volume, Monitor interactable, Play/Stop vide on KeyCode P
+
+commit 4a33415500b2f184070c6a4a186a7ce3f873a41d
+Merge: 1a90cd8 2959b34
+Author: Vedang Wartikar <vedangwartikar17@gmail.com>
+Date:   Thu Apr 6 13:05:49 2023 -0500
+
+    Fixed reticle issue, audio listener, floor collider
+
+commit 2959b342ea44e14412d1593cf683a892267c198c
+Author: vedangwartikar <vedangwartikar17@gmail.com>
+Date:   Thu Apr 6 13:03:40 2023 -0500
+
+    add saved scene
+
+commit 16a212a55247bb8c9419288db992c187cc9b8cc0
+Author: vedangwartikar <vedangwartikar17@gmail.com>
+Date:   Thu Apr 6 12:58:47 2023 -0500
+
+    Fixed reticle issue, audio listener, floor collider
+
+commit 1a90cd86bab7d24892129c642f190cef9eea113f
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Thu Apr 6 12:41:56 2023 -0500
+
+    Retical pointer fixed
+
+commit 9b22708a30c098f93fd516f455c08fee3031838d
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Thu Apr 6 11:50:58 2023 -0500
+
+    Made changes to audio by adding script to play cue, improved on canvas
+
+commit 868a42976c2b5fed380d367be8afc1d54a268a60
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Wed Apr 5 18:58:54 2023 -0500
+
+    Removed initial menu and made connecting menu world space
+
+commit a752cb952f22e04af7b00ee53f2016275fc2a1e4
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Tue Apr 4 17:24:46 2023 -0500
+
+    Added Join Lobby with name menu screen, Added Connecting Screen, Fixed player bugs, addded script that makes text align to camera.
+
+commit 24630c5208adf56efb81f6b1bb6050394470bf85
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Tue Apr 4 17:05:35 2023 -0500
+
+    Revert "Added Join Lobby with name menu screen, Added Connecting Screen, Fixed player bugs, addded script that makes text align to camera."
+    
+    This reverts commit e33c6e60a0cb43bd2a39c414747726003785a6ed.
+
+commit e33c6e60a0cb43bd2a39c414747726003785a6ed
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Tue Apr 4 17:02:41 2023 -0500
+
+    Added Join Lobby with name menu screen, Added Connecting Screen, Fixed player bugs, addded script that makes text align to camera.
+
+commit 4b39e906a8d6e6b43daa4380a31c0e92ad422ad1
+Author: mrabhishekchauhan <chauhan.abhishek596@gmail.com>
+Date:   Tue Apr 4 16:30:18 2023 -0500
+
+    added dashboard display
+
+commit 2b421bc1bc39363b6c05dd956d3273f26ea7802b
+Merge: d137d26 4d6f6dd
+Author: Vedang Wartikar <vedangwartikar17@gmail.com>
+Date:   Tue Apr 4 16:12:38 2023 -0500
+
+    Merge pull request #5 from ShreeprasadSonar/2-interactable-obj
+    
+    Add door, grab functionality
+
+commit 4d6f6dd8d22bba797fcfc4b93c87520a4a194b5e
+Author: vedangwartikar <vedangwartikar17@gmail.com>
+Date:   Tue Apr 4 16:00:46 2023 -0500
+
+    fix door open (E), grab object (Q)
+
+commit 8ab29f464fb5a6eb3c4eff8098c3f94ba94047f5
+Author: vedangwartikar <vedangwartikar17@gmail.com>
+Date:   Tue Apr 4 15:59:52 2023 -0500
+
+    fix door open (E), grab object (Q)
+
+commit d137d26974243571293e25cfee0e722dec6808fb
+Author: Vedang Wartikar <vedangwartikar17@gmail.com>
+Date:   Tue Apr 4 14:09:04 2023 -0500
+
+    Add files via upload
+
+commit 1d5494b68fb339041d933d47d1253ffe2fe8bfe7
+Author: mrabhishekchauhan <chauhan.abhishek596@gmail.com>
+Date:   Mon Apr 3 20:10:41 2023 -0500
+
+    fixed rendering issue
+
+commit a67b2e9242b696acc02ec179daacead0b45472da
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Sat Apr 1 19:29:03 2023 -0500
+
+    Update Gameplay.unity
+
+commit e3fd347bd50e9f1f1b0cf84e1a49bb4da059bbec
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Sat Apr 1 19:28:48 2023 -0500
+
+    Removed Gravity and errors
+
+commit fdda4347dd8b643537d361f069a877a04b6b124c
+Merge: 88d4f69 04a69f3
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Sat Apr 1 18:43:10 2023 -0500
+
+    Merge branch 'main' of https://github.com/ShreeprasadSonar/SADVR
+
+commit 88d4f6907b75791d172b86371ab2c37d8ccd7c90
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Sat Apr 1 18:42:51 2023 -0500
+
+    Temp astronaut and multiplayer fix added
+
+commit 04a69f3ea2f333b2c02589e22f75846910290077
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Sat Apr 1 18:26:55 2023 -0500
+
+    Update README.md
+
+commit 66ee75355200bfc4a4a25dd8930d4cdd7db53d36
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Sat Apr 1 14:22:32 2023 -0500
+
+    Added some reverted changes
+
+commit f9a6be692a653bbf29013fbc6951f9386d3b9141
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Sat Apr 1 14:21:54 2023 -0500
+
+    Added Multiplayer support with player spawning, changes to grab script
+
+commit f41873ba95bcaeed58a1e9fbb9c8437340c02bab
+Author: mrabhishekchauhan <chauhan.abhishek596@gmail.com>
+Date:   Sat Apr 1 13:25:00 2023 -0500
+
+    Added mesh colliders and door script
+
+commit 12302e81cc7543d05aad9866e5369dc8f5e6598d
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Sat Apr 1 12:22:19 2023 -0500
+
+    Asacg
+
+commit a0f0481ca9009cb9b726116a651d1d872e26f5dd
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Sat Apr 1 12:09:08 2023 -0500
+
+    Added starting audio
+
+commit edaa941aab2c6cf02309731f7175d7c0b2afbfe0
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Sat Apr 1 11:34:31 2023 -0500
+
+    Update README.md
+
+commit 601bd87574cc593d6365f494295ba75b721ad03a
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Sat Apr 1 11:33:23 2023 -0500
+
+    Added earth, corrected orientation, noticeable render issues in objects
+
+commit 98c449b47d229d1a57a761ea19027e27a3b39c49
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Sat Apr 1 11:11:14 2023 -0500
+
+    Resolved skybox not loading in playmode error, added terrain so that player does not keep falling
+
+commit 3c24479fa5a2c7aa02bc7720611b7c3aaf2a60cf
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Sat Apr 1 11:04:02 2023 -0500
+
+    Removed unnecessary assets to reduce size
+
+commit 52c991bdad5e183cc5b0aec665ea2d438905ee80
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Sat Apr 1 10:56:23 2023 -0500
+
+    Removed Jugad of the plane inserted under main room & fixed by adding collider
+
+commit d33cc13648787c50a944c0bf4187caa4b73ca82b
+Author: mrabhishekchauhan <chauhan.abhishek596@gmail.com>
+Date:   Fri Mar 31 20:06:08 2023 -0500
+
+    added box collider and environment changes
+
+commit 8409f668bdd062b014b4d3bd7038d6578479282d
+Author: Vedang Wartikar <vedangwartikar17@gmail.com>
+Date:   Thu Mar 30 19:11:53 2023 -0500
+
+    open & close automatic main room door using box collider (#3)
+    
+    * open, close door using box collider
+    * add reference/citation links
+
+commit 37c1b439887829a58e941c44d67ee063066753d2
+Author: Daksh Khetan <2012daksh@gmail.com>
+Date:   Wed Mar 29 14:07:32 2023 -0500
+
+    add grab to pliers
+
+commit 9aa365abe117009d70b7bb3895a4c2b73a330f8c
+Author: Daksh Khetan <2012daksh@gmail.com>
+Date:   Wed Mar 29 12:20:38 2023 -0500
+
+    add `GameStartMenu` canvas
+
+commit 541cb4aab68c0407fbdb812600e77b1408ed0295
+Author: Daksh Khetan <2012daksh@gmail.com>
+Date:   Wed Mar 29 10:38:03 2023 -0500
+
+    update gitignore
+
+commit d0d5d3c8669202db4f508891e36b42cd703ee91d
+Author: Daksh Khetan <2012daksh@gmail.com>
+Date:   Wed Mar 29 01:45:20 2023 -0500
+
+    Add room, bed, objects, plane, menu [WIP] (#2)
+    
+    * Added room and bunker bed
+    * Adding interactable object
+    * Add plane & game start menu [WIP]
+
+commit 9c88ebc93aac80a43872ae125f11b914d52394a5
+Author: Vedang Wartikar <vedangwartikar17@gmail.com>
+Date:   Thu Mar 16 18:22:33 2023 -0500
+
+    add helpful prefab links
+
+commit c441fdacd29c1fa9b88a93da9615320fe9ffaae3
+Author: Vedang Wartikar <vedangwartikar17@gmail.com>
+Date:   Thu Mar 16 15:08:19 2023 -0500
+
+    add .dwlt file to gitignore
+
+commit 6ec658c6607333800db9e95dc0456bf06a5e7297
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Thu Mar 16 14:44:24 2023 -0500
+
+    Saved point
+
+commit 555f46fc3cc092b3530392aeabc1a535fce2cb36
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Thu Mar 16 14:43:52 2023 -0500
+
+    Photon room manager script created, server and lobby connection implemented
+
+commit 36be14509480d06e6d5df147e8fb01eb18c6b603
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Thu Mar 16 14:25:21 2023 -0500
+
+    Google VR SDK added, Retical pointer, Cardboard setup, player and game settings, inital movement script check, all errors resolved
+
+commit 4b9529d2f84463b04012a1f269048c738785a552
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Thu Mar 16 12:54:17 2023 -0500
+
+    Project Naming convention acc to instructions
+
+commit 1c60e55305e234fe891e1e865aee97f7c35b7d90
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Wed Feb 22 19:42:04 2023 -0600
+
+    Initial Commit
+
+commit 603ce1d89b3ccc651ec8f3c775a346bd014a1b6f
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Wed Feb 22 19:37:27 2023 -0600
+
+    Update .gitignore
+
+commit a700bf0be450c87233a3e9ae3c19936133d7f93d
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Wed Feb 22 19:33:46 2023 -0600
+
+    Update README.md
+
+commit 9c07e876e64add79327cf212d24187355fb2b77e
+Author: Shreeprasad Sonar <65328555+ShreeprasadSonar@users.noreply.github.com>
+Date:   Wed Feb 22 19:33:12 2023 -0600
+
+    Initial commit
