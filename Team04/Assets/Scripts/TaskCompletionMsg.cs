@@ -11,6 +11,9 @@ public class TaskCompletionMsg : MonoBehaviour
     public GameObject introMsgCanvas;
     public GameObject introOkButton;
     public GameObject inGameMenuCanvas;
+    public GameObject timerCanvas;
+    public GameObject timeUpCanvas;
+    public GameObject allTasksCompletedCanvas;
 
     public const int numberOfTasks = 5;
     public GameObject[] taskCheckboxButtonsRed = new GameObject[numberOfTasks];
@@ -34,6 +37,9 @@ public class TaskCompletionMsg : MonoBehaviour
         taskCompletedMsgCanvas.SetActive(false);
         taskManagerCanvas.SetActive(false);
         introMsgCanvas.SetActive(false);
+        timeUpCanvas.SetActive(false);
+        allTasksCompletedCanvas.SetActive(false);
+        timerCanvas.SetActive(true);
 
         for (int i = 0; i < numberOfTasks; i++)
         {
@@ -44,35 +50,85 @@ public class TaskCompletionMsg : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.N)) {
+        if (player == null)
+        {
+            player = GameObject.FindWithTag("Player");
 
-          Debug.Log("TaskCompletionMsg :: 'N' key pressed!");
+            playerXRCardboardRig = player.transform.GetChild(0).gameObject;
+            playerEventSystem = playerXRCardboardRig.transform.GetChild(1).gameObject;
+            playerMainCamera = playerXRCardboardRig.transform.GetChild(0).GetChild(0).gameObject;
+            playerReticleMesh1 = playerMainCamera.transform.GetChild(1).GetChild(0).gameObject;
+            playerReticleMesh2 = playerMainCamera.transform.GetChild(1).GetChild(0).GetChild(0).gameObject;
 
-          player = GameObject.FindWithTag("Player");
+            Debug.Log("*******");
+            Debug.Log("player: " + player);
+            Debug.Log("playerXRCardboardRig: " + playerXRCardboardRig);
+            Debug.Log("playerEventSystem: " + playerEventSystem);
+            Debug.Log("playerMainCamera: " + playerMainCamera);
+            Debug.Log("playerReticleMesh1: " + playerReticleMesh1);
+            Debug.Log("playerReticleMesh2: " + playerReticleMesh2);
+            Debug.Log("*******");
+        }
 
-          playerXRCardboardRig = player.transform.GetChild(0).gameObject;
-          playerEventSystem = playerXRCardboardRig.transform.GetChild(1).gameObject;
-          playerMainCamera = playerXRCardboardRig.transform.GetChild(0).GetChild(0).gameObject;
-          playerReticleMesh1 = playerMainCamera.transform.GetChild(1).GetChild(0).gameObject;
-          playerReticleMesh2 = playerMainCamera.transform.GetChild(1).GetChild(0).GetChild(0).gameObject;
+        if (player != null)
+        {
+            taskManagerCanvas.GetComponent<Canvas>().worldCamera = playerMainCamera.GetComponent<Camera>();
+            taskManagerCanvas.GetComponent<Canvas>().planeDistance = 1;
 
-          Debug.Log("*******");
-          Debug.Log("player: " + player);
-          Debug.Log("playerXRCardboardRig: " + playerXRCardboardRig);
-          Debug.Log("playerEventSystem: " + playerEventSystem);
-          Debug.Log("playerMainCamera: " + playerMainCamera);
-          Debug.Log("playerReticleMesh1: " + playerReticleMesh1);
-          Debug.Log("playerReticleMesh2: " + playerReticleMesh2);
-          Debug.Log("*******");
+            timerCanvas.GetComponent<Canvas>().worldCamera = playerMainCamera.GetComponent<Camera>();
+            timerCanvas.GetComponent<Canvas>().planeDistance = 1;
 
-          taskManagerCanvas.GetComponent<Canvas>().worldCamera = playerMainCamera.GetComponent<Camera>();
-          taskManagerCanvas.GetComponent<Canvas>().planeDistance = 1;
+            timeUpCanvas.GetComponent<Canvas>().worldCamera = playerMainCamera.GetComponent<Camera>();
+            timeUpCanvas.GetComponent<Canvas>().planeDistance = 1;
 
-          EnableTaskManagerMenu();
+            allTasksCompletedCanvas.GetComponent<Canvas>().worldCamera = playerMainCamera.GetComponent<Camera>();
+            allTasksCompletedCanvas.GetComponent<Canvas>().planeDistance = 1;
+        }
+
+        if (player != null && Input.GetKeyDown(KeyCode.N)) 
+        {
+
+            Debug.Log("TaskCompletionMsg :: 'N' key pressed!");
+
+            //   player = GameObject.FindWithTag("Player");
+
+            //   playerXRCardboardRig = player.transform.GetChild(0).gameObject;
+            //   playerEventSystem = playerXRCardboardRig.transform.GetChild(1).gameObject;
+            //   playerMainCamera = playerXRCardboardRig.transform.GetChild(0).GetChild(0).gameObject;
+            //   playerReticleMesh1 = playerMainCamera.transform.GetChild(1).GetChild(0).gameObject;
+            //   playerReticleMesh2 = playerMainCamera.transform.GetChild(1).GetChild(0).GetChild(0).gameObject;
+
+            //   Debug.Log("*******");
+            //   Debug.Log("player: " + player);
+            //   Debug.Log("playerXRCardboardRig: " + playerXRCardboardRig);
+            //   Debug.Log("playerEventSystem: " + playerEventSystem);
+            //   Debug.Log("playerMainCamera: " + playerMainCamera);
+            //   Debug.Log("playerReticleMesh1: " + playerReticleMesh1);
+            //   Debug.Log("playerReticleMesh2: " + playerReticleMesh2);
+            //   Debug.Log("*******");
+
+            // taskManagerCanvas.GetComponent<Canvas>().worldCamera = playerMainCamera.GetComponent<Camera>();
+            // taskManagerCanvas.GetComponent<Canvas>().planeDistance = 1;
+
+            EnableTaskManagerMenu();
         }
 
         if (taskManagerCanvas.activeSelf && (Input.GetKeyDown(KeyCode.V))) {
             DisableTaskManagerMenu();
+        }
+
+        CheckAllTasksCompleted();
+    }
+
+    private void CheckAllTasksCompleted()
+    {
+        Debug.Log("TaskCompletionMsg :: CheckAllTasksCompleted() called");
+
+        if (task1Completion && task2Completion && task3Completion && task4Completion && task5Completion)
+        {
+            Debug.Log("TaskCompletionMsg :: All tasks completed successfully!");
+            allTasksCompletedCanvas.SetActive(true);
+            DisablePlayerMovement();
         }
     }
 
@@ -210,7 +266,19 @@ public class TaskCompletionMsg : MonoBehaviour
         introMsgCanvas.SetActive(false);
     }
 
-    private void DisablePlayerMovement()
+    public void TimeUpQuitButtonHandler()
+    {
+        Debug.Log("TaskCompletionMsg :: TimeUpQuitButtonHandler() called");
+        Application.Quit();
+    }
+
+    public void TasksCompletedQuitButtonHandler()
+    {
+        Debug.Log("TaskCompletionMsg :: TasksCompletedQuitButtonHandler() called");
+        Application.Quit();
+    }
+
+    public void DisablePlayerMovement()
     {
         player.GetComponent<CharacterMovement>().enabled = false;
 
@@ -225,7 +293,7 @@ public class TaskCompletionMsg : MonoBehaviour
         } 
     }
 
-    private void EnablePlayerMovement()
+    public void EnablePlayerMovement()
     {
         player.GetComponent<CharacterMovement>().enabled = true;
 
