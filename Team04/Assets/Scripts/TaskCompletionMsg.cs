@@ -14,6 +14,7 @@ public class TaskCompletionMsg : MonoBehaviour
     public GameObject timerCanvas;
     public GameObject timeUpCanvas;
     public GameObject allTasksCompletedCanvas;
+    public GameObject allTasksCompletedQuitButton;
 
     public const int numberOfTasks = 5;
     public GameObject[] taskCheckboxButtonsRed = new GameObject[numberOfTasks];
@@ -87,33 +88,12 @@ public class TaskCompletionMsg : MonoBehaviour
 
         if (player != null && Input.GetKeyDown(KeyCode.N)) 
         {
-
             Debug.Log("TaskCompletionMsg :: 'N' key pressed!");
-
-            //   player = GameObject.FindWithTag("Player");
-
-            //   playerXRCardboardRig = player.transform.GetChild(0).gameObject;
-            //   playerEventSystem = playerXRCardboardRig.transform.GetChild(1).gameObject;
-            //   playerMainCamera = playerXRCardboardRig.transform.GetChild(0).GetChild(0).gameObject;
-            //   playerReticleMesh1 = playerMainCamera.transform.GetChild(1).GetChild(0).gameObject;
-            //   playerReticleMesh2 = playerMainCamera.transform.GetChild(1).GetChild(0).GetChild(0).gameObject;
-
-            //   Debug.Log("*******");
-            //   Debug.Log("player: " + player);
-            //   Debug.Log("playerXRCardboardRig: " + playerXRCardboardRig);
-            //   Debug.Log("playerEventSystem: " + playerEventSystem);
-            //   Debug.Log("playerMainCamera: " + playerMainCamera);
-            //   Debug.Log("playerReticleMesh1: " + playerReticleMesh1);
-            //   Debug.Log("playerReticleMesh2: " + playerReticleMesh2);
-            //   Debug.Log("*******");
-
-            // taskManagerCanvas.GetComponent<Canvas>().worldCamera = playerMainCamera.GetComponent<Camera>();
-            // taskManagerCanvas.GetComponent<Canvas>().planeDistance = 1;
-
             EnableTaskManagerMenu();
         }
 
-        if (taskManagerCanvas.activeSelf && (Input.GetKeyDown(KeyCode.V))) {
+        if (taskManagerCanvas.activeSelf && (Input.GetKeyDown(KeyCode.V))) 
+        {
             DisableTaskManagerMenu();
         }
 
@@ -127,7 +107,9 @@ public class TaskCompletionMsg : MonoBehaviour
         if (task1Completion && task2Completion && task3Completion && task4Completion && task5Completion)
         {
             Debug.Log("TaskCompletionMsg :: All tasks completed successfully!");
-            allTasksCompletedCanvas.SetActive(true);
+            
+            SetMenuOptionInEventSystem(allTasksCompletedQuitButton);
+            StartCoroutine(AllTasksCompletedCanvasCoroutine());
             DisablePlayerMovement();
         }
     }
@@ -228,6 +210,11 @@ public class TaskCompletionMsg : MonoBehaviour
         }
     }
 
+    public void SetMenuOptionInEventSystem(GameObject obj)
+    {
+        if (playerEventSystem) playerEventSystem.GetComponent<EventSystem>().SetSelectedGameObject(obj);  
+    }
+
     public void TriggerIntroMsgCanvas()
     {
         Debug.Log("TaskCompletionMsg :: TriggerIntroMsgCanvas() called");
@@ -248,7 +235,7 @@ public class TaskCompletionMsg : MonoBehaviour
             
             introMsgCanvas.GetComponent<Canvas>().planeDistance = 1;
 
-            playerEventSystem.GetComponent<EventSystem>().SetSelectedGameObject(introOkButton);  
+            playerEventSystem.GetComponent<EventSystem>().SetSelectedGameObject(introOkButton);
 
             // DisablePlayerMovement();
             StartCoroutine(DisablePlayerMovementCoroutine());
@@ -343,6 +330,13 @@ public class TaskCompletionMsg : MonoBehaviour
         if (playerEventSystem.GetComponent<XRCardboardInputModule>().enabled != false){
             playerEventSystem.GetComponent<XRCardboardInputModule>().enabled = false;
         } 
+    }
+
+    IEnumerator AllTasksCompletedCanvasCoroutine()
+    {
+        yield return new WaitForSeconds(2.5f);
+        timerCanvas.SetActive(false);
+        allTasksCompletedCanvas.SetActive(true);
     }
 
 }
