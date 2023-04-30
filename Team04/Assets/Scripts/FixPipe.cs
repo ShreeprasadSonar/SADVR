@@ -26,7 +26,7 @@ public class FixPipe : MonoBehaviour
 
             if (holdTime >= 3f)
             {
-                if(!isPositionCorrect) 
+                if (!isPositionCorrect) 
                 {   
                     Vector3 position = Pipe.transform.position;
                     position.y += 0.075f;
@@ -39,7 +39,7 @@ public class FixPipe : MonoBehaviour
                 taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().ShowTaskCompletedMessage();
 
                 Smoke.SetActive(false);
-                isPipeFixed=true;
+                isPipeFixed = true;
                 ProgressBar.SetActive(false);
                 audioSource.Play();
             }

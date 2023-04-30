@@ -10,6 +10,7 @@ public class InGameMenu : MonoBehaviour
     public GameObject inGameMenu;
     public GameObject gameStartMenu;
     public GameObject taskManagerCanvas;
+    public GameObject timerCanvas;
     
     public GameObject taskManager;
     public GameObject playerSpeedManager;
@@ -63,38 +64,17 @@ public class InGameMenu : MonoBehaviour
             Debug.Log("*******");
         }
 
-        if (!gameStartMenu.activeSelf && (Input.GetKeyDown(KeyCode.M) || Input.GetButtonDown("js7"))) // 'H' key, js7 (OK)
+        bool isGameTimeUp = timerCanvas.GetComponent<Timer>().GetIsTimeUp();
+        bool allTasksCompletedFlag = taskManager.GetComponent<TaskCompletionMsg>().GetAllTasksCompletedFlag();
+
+        if (!isGameTimeUp && !allTasksCompletedFlag && !gameStartMenu.activeSelf && (Input.GetKeyDown(KeyCode.M) || Input.GetButtonDown("js7"))) // 'M' key, js7 (OK)
         {
-            Debug.Log("InGameMenu.cs :: 'H' key pressed!");
-
-        //   player = GameObject.FindWithTag("Player");
-
-        //   playerXRCardboardRig = player.transform.GetChild(0).gameObject;
-        //   playerEventSystem = playerXRCardboardRig.transform.GetChild(1).gameObject;
-        //   playerMainCamera = playerXRCardboardRig.transform.GetChild(0).GetChild(0).gameObject;
-        //   playerReticleMesh1 = playerMainCamera.transform.GetChild(1).GetChild(0).gameObject;
-        //   playerReticleMesh2 = playerMainCamera.transform.GetChild(1).GetChild(0).GetChild(0).gameObject;
-
-        //   // XRCardboardRig = player.transform.Find("XRCardboardRig").gameObject;
-        //   // EventSystem = player.transform.Find("EventSystem").gameObject;
-        //   // mainCamera = player.transform.Find("Main Camera").gameObject;
-        //   // Reticle = player.transform.Find("Reticle").gameObject;
-
-        //   Debug.Log("*******");
-        //   Debug.Log("player: " + player);
-        //   Debug.Log("playerXRCardboardRig: " + playerXRCardboardRig);
-        //   Debug.Log("playerEventSystem: " + playerEventSystem);
-        //   Debug.Log("playerMainCamera: " + playerMainCamera);
-        //   Debug.Log("playerReticleMesh1: " + playerReticleMesh1);
-        //   Debug.Log("playerReticleMesh2: " + playerReticleMesh2);
-        //   Debug.Log("*******");
+            Debug.Log("InGameMenu.cs :: 'M' key / (OK) button pressed!");
 
             if (player != null)
             {
                 inGameMenu.GetComponent<Canvas>().worldCamera = playerMainCamera.GetComponent<Camera>();
                 inGameMenu.GetComponent<Canvas>().planeDistance = 1;
-
-                // if (taskManagerCanvas.activeSelf) taskManagerCanvas.SetActive(false);
 
                 OpenInGameMenu();
             }
@@ -104,6 +84,8 @@ public class InGameMenu : MonoBehaviour
     public void OpenInGameMenu()
     {
         Debug.Log("InGameMenu.cs :: OpenInGameMenu() called");
+
+        if (taskManagerCanvas.activeSelf) return;
 
         inGameMenu.SetActive(true);
 
@@ -155,14 +137,9 @@ public class InGameMenu : MonoBehaviour
     {
         Debug.Log("InGameMenu.cs :: OpenTaskList() called");
         taskManager.GetComponent<TaskCompletionMsg>().EnableTaskManagerMenu();
-        CloseInGameMenu();
+        // CloseInGameMenu();
+        inGameMenu.SetActive(false);
     }
-
-    // public void CloseTaskList()
-    // {
-    //     Debug.Log("InGameMenu.cs :: CloseTaskList() called");
-    //     taskManager.GetComponent<TaskCompletionMsg>().DisableTaskManagerMenu();
-    // }
 
     public void PlayerSpeed() 
     {
@@ -218,4 +195,5 @@ public class InGameMenu : MonoBehaviour
         Debug.Log("InGameMenu.cs :: QuitGame() called");
         Application.Quit();
     }
+
 }

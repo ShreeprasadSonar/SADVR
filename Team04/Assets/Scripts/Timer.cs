@@ -18,7 +18,7 @@ public class Timer : MonoBehaviour
     public Color onColor = Color.red;
     public Color offColor = Color.white;
     private bool isTimeLessThanAMinute = false;
-    private bool isTimeUp = false;
+    public bool isTimeUp = false;
 
     private float timeRemaining;
 
@@ -45,7 +45,7 @@ public class Timer : MonoBehaviour
 
         if (!isTimeLessThanAMinute && timeRemaining <= 60f)
         {
-            Debug.Log("Timer.cs :: 1 minute remaining");
+            Debug.Log("Timer.cs :: 1 minute remaining!");
             isTimeLessThanAMinute = true;
             StartCoroutine(BlinkTimer());
         }
@@ -53,6 +53,11 @@ public class Timer : MonoBehaviour
         if (isTimeUp) return;
 
         UpdateTimerDisplay();
+    }
+
+    public bool GetIsTimeUp()
+    {
+        return isTimeUp;
     }
 
     private void UpdateTimerDisplay()
