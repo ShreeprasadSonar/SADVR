@@ -86,13 +86,13 @@ public class TaskCompletionMsg : MonoBehaviour
             allTasksCompletedCanvas.GetComponent<Canvas>().planeDistance = 1;
         }
 
-        if (player != null && Input.GetKeyDown(KeyCode.N)) 
-        {
-            Debug.Log("TaskCompletionMsg :: 'N' key pressed!");
-            EnableTaskManagerMenu();
-        }
+        // if (player != null && Input.GetKeyDown(KeyCode.N)) 
+        // {
+        //     Debug.Log("TaskCompletionMsg :: 'N' key pressed!");
+        //     EnableTaskManagerMenu();
+        // }
 
-        if (taskManagerCanvas.activeSelf && (Input.GetKeyDown(KeyCode.V))) 
+        if (taskManagerCanvas.activeSelf && (Input.GetKey(KeyCode.E) || Input.GetButton("js10"))) // Keyboard L, Android js2 (A)
         {
             DisableTaskManagerMenu();
         }
