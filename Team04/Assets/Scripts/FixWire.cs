@@ -20,7 +20,7 @@ public class FixWire : MonoBehaviour
 
     void Update()
     {   
-        if ((Input.GetKey(KeyCode.E) || Input.GetButton("js2")) && isPointerOnWire) // Keyboard L, Android js2 (X)
+        if ((Input.GetKey(KeyCode.E) || Input.GetButton("js10")) && isPointerOnWire) // Keyboard L, Android js2 (A)
         {
 
             ProgressBar.SetActive(true);

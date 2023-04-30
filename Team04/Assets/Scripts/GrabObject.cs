@@ -16,7 +16,7 @@ public class GrabObject : MonoBehaviour
 
   private void Update()
   {
-    if (Input.GetKeyDown(KeyCode.Q) || Input.GetButton("js2"))
+    if (Input.GetKeyDown(KeyCode.Q) || Input.GetButton("js5")) // Keyboard Q, Android js5 (B)
     {
       if (heldObj == null)
       {

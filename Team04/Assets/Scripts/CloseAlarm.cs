@@ -26,7 +26,7 @@ public class CloseAlarm : MonoBehaviour
 
     void Update()
     {
-        if ((Input.GetKey(KeyCode.E) || Input.GetButton("js2")) && isPointerOnAlarm) // Keyboard R, Android j2 (X)
+        if ((Input.GetKey(KeyCode.E) || Input.GetButton("js10")) && isPointerOnAlarm) // Keyboard R, Android j2 (A)
         {
             ProgressBar.SetActive(true);
             holdTime += Time.deltaTime;

@@ -14,7 +14,7 @@ public class PutOutFire : MonoBehaviour
 
     void Update()
     {
-        if ((Input.GetKey(KeyCode.E) || Input.GetButton("js2")) && isPointerOnFire) // Keyboard F, Android js2 (X)
+        if ((Input.GetKey(KeyCode.E) || Input.GetButton("js10")) && isPointerOnFire) // Keyboard F, Android js2 (A)
         {
             progressBar.SetActive(true);
             holdTime += Time.deltaTime;

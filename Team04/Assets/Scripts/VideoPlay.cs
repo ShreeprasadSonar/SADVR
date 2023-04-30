@@ -23,7 +23,7 @@ public class VideoPlay : MonoBehaviour
         //     Debug.Log("Object hit: " + hit.collider.gameObject.name);
         // }
 
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetButton("js2")) // Keyboard P, Android js2 (X)
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetButton("js10")) // Keyboard P, Android js2 (A)
         {
             Debug.Log(isPointerOnMonitor);
 
