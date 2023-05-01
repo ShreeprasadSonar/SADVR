@@ -87,6 +87,9 @@ public class TaskCompletionMsg : MonoBehaviour
 
             allTasksCompletedCanvas.GetComponent<Canvas>().worldCamera = playerMainCamera.GetComponent<Camera>();
             allTasksCompletedCanvas.GetComponent<Canvas>().planeDistance = 1;
+
+            taskCompletedMsgCanvas.GetComponent<Canvas>().worldCamera = playerMainCamera.GetComponent<Camera>();
+            taskCompletedMsgCanvas.GetComponent<Canvas>().planeDistance = 1;
         }
 
         // if (player != null && Input.GetKeyDown(KeyCode.N)) 
@@ -203,24 +206,6 @@ public class TaskCompletionMsg : MonoBehaviour
         {
             taskCheckboxButtonsGreen[4].SetActive(true);
             taskCheckboxButtonsRed[4].SetActive(false);
-        }
-    }
-
-    private void SetPlayerGameObjects()
-    {
-        Debug.Log("TaskCompletionMsg :: SetPlayerGameObjects() called");
-
-        player = GameObject.FindWithTag("Player");
-
-        // Debug.Log("TaskCompletionMsg :: player: " + player);
-
-        if (player != null) 
-        {
-            playerMainCamera = player.transform.GetChild(0).GetChild(0).GetChild(0).gameObject;
-
-            taskCompletedMsgCanvas.GetComponent<Canvas>().worldCamera = playerMainCamera.GetComponent<Camera>();
-            
-            taskCompletedMsgCanvas.GetComponent<Canvas>().planeDistance = 1;
         }
     }
 
