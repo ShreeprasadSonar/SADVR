@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class PutOutFire : MonoBehaviour
+public class PutOutFire : MonoBehaviourPunCallbacks
 {
     public GameObject Fire;
     public GameObject taskCompletedMsgScriptObj;

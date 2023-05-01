@@ -5,7 +5,7 @@ using UnityEngine.Video;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class VideoPlay : MonoBehaviour
+public class VideoPlay : MonoBehaviourPunCallbacks
 {
     public VideoPlayer videoPlayer;
     public AudioSource audioSource;

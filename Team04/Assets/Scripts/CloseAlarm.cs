@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class CloseAlarm : MonoBehaviour
+public class CloseAlarm : MonoBehaviourPunCallbacks
 {
     [SerializeField] private Animator alarm = null;
     [SerializeField] private GameObject viewPoint = null;

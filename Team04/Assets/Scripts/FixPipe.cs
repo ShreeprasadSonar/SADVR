@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class FixPipe : MonoBehaviour
+public class FixPipe : MonoBehaviourPunCallbacks
 {
     public GameObject Pipe;
     public GameObject Smoke;
