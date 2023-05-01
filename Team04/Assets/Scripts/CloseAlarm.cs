@@ -12,21 +12,21 @@ public class CloseAlarm : MonoBehaviour
 
     public GameObject taskCompletedMsgScriptObj;
 
-    // void Update()
-    // {
-    //     if (Input.GetKeyDown(KeyCode.R))
-    //     {
-    //         // print(isPointerOnAlarm);
-    //         if (isPointerOnAlarm)
-    //         {
-    //             OnPress();
-    //         }
-    //     }
-    // }
+    public bool isActive = true;
+    private bool isExecuted = false;
 
     void Update()
     {
-        if ((Input.GetKey(KeyCode.E) || Input.GetButton("js10")) && isPointerOnAlarm) // Keyboard R, Android j2 (A)
+        if (!isExecuted && !isActive)
+        {
+            Debug.Log("PutOutFire.cs :: Multiplayer :: Disabling alarm...");
+            
+            OnPress();
+            taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().SetTaskCompleted(5);
+            isExecuted = true;
+        }
+        
+        if (isActive && (Input.GetKey(KeyCode.E) || Input.GetButton("js10")) && isPointerOnAlarm) // Keyboard R, Android j2 (A)
         {
             ProgressBar.SetActive(true);
             holdTime += Time.deltaTime;
@@ -35,7 +35,14 @@ public class CloseAlarm : MonoBehaviour
             {
                 if (isPointerOnAlarm)
                 {
+                    Debug.Log("PutOutFire.cs :: Disabling alarm...");
+
+                    isActive = false;
+                    // Call the "OnMyVariableChanged" method over the Photon Network
+                    photonView.RPC("OnMyVariableChanged", RpcTarget.All, isActive);
+
                     taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().SetTaskCompleted(5);
+
                     taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().ShowTaskCompletedMessage();
 
                     OnPress();
@@ -50,6 +57,13 @@ public class CloseAlarm : MonoBehaviour
         }
     }
 
+    // This method is called over the Photon Network to update "myVariable"
+    [PunRPC]
+    public void OnMyVariableChanged(bool newValue)
+    {
+        isActive = newValue;
+    }
+
     public void OnPointerEnter()
     {
         isPointerOnAlarm = true;
@@ -62,7 +76,7 @@ public class CloseAlarm : MonoBehaviour
     
     public void OnPress()
     {   
-        print("inside onpress alarm");
+        Debug.Log("CloseAram.cs :: OnPress() called!");
         Destroy(viewPoint);
     }
 

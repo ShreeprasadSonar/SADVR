@@ -11,32 +11,38 @@ public class FixWire : MonoBehaviourPunCallbacks
     public GameObject ProgressBar;
     public GameObject taskCompletedMsgScriptObj;
     public AudioSource audioSource;
-    public bool active = true;
+
+    public bool isActive = true;
 
     private float holdTime;
     private bool isPointerOnWire = false;
-
-    void Start()
-    {
-        // TODO:
-    }
+    private bool isExecuted = false;
 
     void Update()
     {   
-        if ((Input.GetKey(KeyCode.E) || Input.GetButton("js10")) && isPointerOnWire) // Keyboard L, Android js2 (A)
+        if (!isExecuted && !isActive)
+        {
+            Debug.Log("PutOutFire.cs :: Multiplayer :: Fixing wire...");
+            
+            Wires.SetActive(false);
+            taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().SetTaskCompleted(1);
+            isExecuted = true;
+        }
+
+        if (isActive && (Input.GetKey(KeyCode.E) || Input.GetButton("js10")) && isPointerOnWire) // Keyboard L, Android js2 (A)
         {
             ProgressBar.SetActive(true);
             holdTime += Time.deltaTime;
 
             if (holdTime >= 3f)
             {
-                Debug.Log("FixWire :: Fixing wire...");
+                Debug.Log("FixWire.cs :: Fixing wire...");
+
+                isActive = false;
+                // Call the "OnMyVariableChanged" method over the Photon Network
+                photonView.RPC("OnMyVariableChanged", RpcTarget.All, isActive);
 
                 taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().SetTaskCompleted(1);
-
-                active = false;
-                // Call the "OnMyVariableChanged" method over the Photon Network
-                photonView.RPC("OnMyVariableChanged", RpcTarget.All, active);
 
                 taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().ShowTaskCompletedMessage();
                 
@@ -56,7 +62,7 @@ public class FixWire : MonoBehaviourPunCallbacks
     [PunRPC]
     public void OnMyVariableChanged(bool newValue)
     {
-        active = newValue;
+        isActive = newValue;
     }
 
     public void OnPointerEnter()
