@@ -14,6 +14,8 @@ public class TaskCompletionMsg : MonoBehaviour
     public GameObject timerCanvas;
     public GameObject timeUpCanvas;
     public GameObject allTasksCompletedCanvas;
+    public GameObject allTasksCompletedQuitButton;
+    public GameObject closeTaskListMenuButton;
 
     public const int numberOfTasks = 5;
     public GameObject[] taskCheckboxButtonsRed = new GameObject[numberOfTasks];
@@ -31,6 +33,8 @@ public class TaskCompletionMsg : MonoBehaviour
     private bool task3Completion = false;
     private bool task4Completion = false;
     private bool task5Completion = false;
+    
+    private bool allTasksCompletedFlag = false;
 
     void Start()
     {
@@ -85,51 +89,42 @@ public class TaskCompletionMsg : MonoBehaviour
             allTasksCompletedCanvas.GetComponent<Canvas>().planeDistance = 1;
         }
 
-        if (player != null && Input.GetKeyDown(KeyCode.N)) 
+        // if (player != null && Input.GetKeyDown(KeyCode.N)) 
+        // {
+        //     Debug.Log("TaskCompletionMsg :: 'N' key pressed!");
+        //     EnableTaskManagerMenu();
+        // }
+
+        if (!inGameMenuCanvas.activeSelf && taskManagerCanvas.activeSelf && (Input.GetKey(KeyCode.E) || Input.GetButton("js10"))) // Keyboard L, Android js2 (A)
         {
-
-            Debug.Log("TaskCompletionMsg :: 'N' key pressed!");
-
-            //   player = GameObject.FindWithTag("Player");
-
-            //   playerXRCardboardRig = player.transform.GetChild(0).gameObject;
-            //   playerEventSystem = playerXRCardboardRig.transform.GetChild(1).gameObject;
-            //   playerMainCamera = playerXRCardboardRig.transform.GetChild(0).GetChild(0).gameObject;
-            //   playerReticleMesh1 = playerMainCamera.transform.GetChild(1).GetChild(0).gameObject;
-            //   playerReticleMesh2 = playerMainCamera.transform.GetChild(1).GetChild(0).GetChild(0).gameObject;
-
-            //   Debug.Log("*******");
-            //   Debug.Log("player: " + player);
-            //   Debug.Log("playerXRCardboardRig: " + playerXRCardboardRig);
-            //   Debug.Log("playerEventSystem: " + playerEventSystem);
-            //   Debug.Log("playerMainCamera: " + playerMainCamera);
-            //   Debug.Log("playerReticleMesh1: " + playerReticleMesh1);
-            //   Debug.Log("playerReticleMesh2: " + playerReticleMesh2);
-            //   Debug.Log("*******");
-
-            // taskManagerCanvas.GetComponent<Canvas>().worldCamera = playerMainCamera.GetComponent<Camera>();
-            // taskManagerCanvas.GetComponent<Canvas>().planeDistance = 1;
-
-            EnableTaskManagerMenu();
-        }
-
-        if (taskManagerCanvas.activeSelf && (Input.GetKeyDown(KeyCode.V))) {
+            Debug.Log("TaskCompletionMsg :: E key pressed; Closing Task List Menu...");
             DisableTaskManagerMenu();
         }
 
-        CheckAllTasksCompleted();
+        bool isGameTimeUp = timerCanvas.GetComponent<Timer>().GetIsTimeUp();
+
+        if (!allTasksCompletedFlag && !isGameTimeUp) CheckAllTasksCompleted();
     }
 
     private void CheckAllTasksCompleted()
     {
-        Debug.Log("TaskCompletionMsg :: CheckAllTasksCompleted() called");
+        // Debug.Log("TaskCompletionMsg :: CheckAllTasksCompleted() called");
 
         if (task1Completion && task2Completion && task3Completion && task4Completion && task5Completion)
         {
             Debug.Log("TaskCompletionMsg :: All tasks completed successfully!");
-            allTasksCompletedCanvas.SetActive(true);
+
+            allTasksCompletedFlag = true;
+            
+            SetMenuOptionInEventSystem(allTasksCompletedQuitButton);
+            StartCoroutine(AllTasksCompletedCanvasCoroutine());
             DisablePlayerMovement();
         }
+    }
+
+    public bool GetAllTasksCompletedFlag()
+    {
+        return allTasksCompletedFlag;
     }
 
     public void SetTaskCompleted(int taskNum)
@@ -162,9 +157,9 @@ public class TaskCompletionMsg : MonoBehaviour
     {
         Debug.Log("TaskCompletionMsg :: EnableTaskManagerMenu() called");
 
-        if (inGameMenuCanvas.activeSelf) inGameMenuCanvas.SetActive(false);
-
+        DisablePlayerMovement();
         RefreshTaskManagerMenu();
+        SetMenuOptionInEventSystem(closeTaskListMenuButton);
         taskManagerCanvas.SetActive(true);
     }
 
@@ -172,6 +167,7 @@ public class TaskCompletionMsg : MonoBehaviour
     {
         Debug.Log("TaskCompletionMsg :: DisableTaskManagerMenu() called");
 
+        EnablePlayerMovement();
         taskManagerCanvas.SetActive(false);
     }
 
@@ -228,6 +224,11 @@ public class TaskCompletionMsg : MonoBehaviour
         }
     }
 
+    public void SetMenuOptionInEventSystem(GameObject obj)
+    {
+        if (playerEventSystem) playerEventSystem.GetComponent<EventSystem>().SetSelectedGameObject(obj);  
+    }
+
     public void TriggerIntroMsgCanvas()
     {
         Debug.Log("TaskCompletionMsg :: TriggerIntroMsgCanvas() called");
@@ -248,7 +249,7 @@ public class TaskCompletionMsg : MonoBehaviour
             
             introMsgCanvas.GetComponent<Canvas>().planeDistance = 1;
 
-            playerEventSystem.GetComponent<EventSystem>().SetSelectedGameObject(introOkButton);  
+            playerEventSystem.GetComponent<EventSystem>().SetSelectedGameObject(introOkButton);
 
             // DisablePlayerMovement();
             StartCoroutine(DisablePlayerMovementCoroutine());
@@ -280,6 +281,8 @@ public class TaskCompletionMsg : MonoBehaviour
 
     public void DisablePlayerMovement()
     {
+        Debug.Log("TaskCompletionMsg :: DisablePlayerMovement() called");
+
         player.GetComponent<CharacterMovement>().enabled = false;
 
         playerXRCardboardRig.GetComponent<XRCardboardController>().enabled = false;
@@ -295,6 +298,8 @@ public class TaskCompletionMsg : MonoBehaviour
 
     public void EnablePlayerMovement()
     {
+        Debug.Log("TaskCompletionMsg :: EnablePlayerMovement() called");
+
         player.GetComponent<CharacterMovement>().enabled = true;
 
         playerXRCardboardRig.GetComponent<XRCardboardController>().enabled = true;
@@ -343,6 +348,13 @@ public class TaskCompletionMsg : MonoBehaviour
         if (playerEventSystem.GetComponent<XRCardboardInputModule>().enabled != false){
             playerEventSystem.GetComponent<XRCardboardInputModule>().enabled = false;
         } 
+    }
+
+    IEnumerator AllTasksCompletedCanvasCoroutine()
+    {
+        yield return new WaitForSeconds(2.5f);
+        timerCanvas.SetActive(false);
+        allTasksCompletedCanvas.SetActive(true);
     }
 
 }

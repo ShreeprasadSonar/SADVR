@@ -11,21 +11,22 @@ public class FixPipe : MonoBehaviour
     public AudioSource audioSource;
 
     private float holdTime;
-    private bool isPointerOnPipe=false;
-    private bool isPositionCorrect=false;
-    private bool isPipeFixed=false;
+    private bool isPointerOnPipe = false;
+    private bool isPositionCorrect = false;
+    private bool isPipeFixed = false;
 
     void Update()
     {
         if ((Input.GetKey(KeyCode.E) || Input.GetButton("js2")) && isPointerOnPipe) // Keyboard F, Android js2 (X)
         {
-            if(!isPipeFixed)
+            if (!isPipeFixed)
                 ProgressBar.SetActive(true);
+
             holdTime += Time.deltaTime;
 
             if (holdTime >= 3f)
             {
-                if(!isPositionCorrect) 
+                if (!isPositionCorrect) 
                 {   
                     Vector3 position = Pipe.transform.position;
                     position.y += 0.075f;
@@ -38,7 +39,7 @@ public class FixPipe : MonoBehaviour
                 taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().ShowTaskCompletedMessage();
 
                 Smoke.SetActive(false);
-                isPipeFixed=true;
+                isPipeFixed = true;
                 ProgressBar.SetActive(false);
                 audioSource.Play();
             }
