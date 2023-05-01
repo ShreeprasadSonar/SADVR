@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class VideoPlay : MonoBehaviour
 {
