@@ -9,7 +9,7 @@ public class FixWire : MonoBehaviourPunCallbacks
 {
     public GameObject Wires;
     public GameObject ProgressBar;
-    public GameObject taskCompletedMsgScriptObj;
+    public GameObject taskManager;
     public AudioSource audioSource;
 
     public bool isActive = true;
@@ -25,7 +25,7 @@ public class FixWire : MonoBehaviourPunCallbacks
             Debug.Log("FixWire.cs :: MULTIPLAYER :: Fixing wire...");
 
             Wires.SetActive(false);
-            taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().SetTaskCompleted(1);
+            taskManager.GetComponent<TaskManager>().SetTaskCompleted(1);
             isExecuted = true;
         }
 
@@ -42,9 +42,9 @@ public class FixWire : MonoBehaviourPunCallbacks
                 // Call the "OnMyVariableChanged" method over the Photon Network
                 photonView.RPC("OnMyVariableChanged", RpcTarget.All, isActive);
 
-                taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().SetTaskCompleted(1);
+                taskManager.GetComponent<TaskManager>().SetTaskCompleted(1);
 
-                taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().ShowTaskCompletedMessage();
+                taskManager.GetComponent<TaskManager>().ShowTaskCompletedMessage();
                 
                 Wires.SetActive(false);
                 ProgressBar.SetActive(false);

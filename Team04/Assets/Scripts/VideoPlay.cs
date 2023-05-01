@@ -9,7 +9,7 @@ public class VideoPlay : MonoBehaviourPunCallbacks
 {
     public VideoPlayer videoPlayer;
     public AudioSource audioSource;
-    public GameObject taskCompletedMsgScriptObj;
+    public GameObject taskManager;
 
     private bool isPointerOnMonitor = false;
     private bool isVideoPlaying = false;
@@ -36,7 +36,7 @@ public class VideoPlay : MonoBehaviourPunCallbacks
                 isAudioPlaying = true;
             }
 
-            taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().SetTaskCompleted(3);
+            taskManager.GetComponent<TaskManager>().SetTaskCompleted(3);
 
             isExecuted = true;
         }
@@ -59,9 +59,9 @@ public class VideoPlay : MonoBehaviourPunCallbacks
                     // Call the "OnMyVariableChanged" method over the Photon Network
                     photonView.RPC("OnMyVariableChanged", RpcTarget.All, isActive);
 
-                    taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().SetTaskCompleted(3);
+                    taskManager.GetComponent<TaskManager>().SetTaskCompleted(3);
 
-                    taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().ShowTaskCompletedMessage();
+                    taskManager.GetComponent<TaskManager>().ShowTaskCompletedMessage();
                 }
             }
             else

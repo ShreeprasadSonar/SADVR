@@ -36,9 +36,9 @@ public class Timer : MonoBehaviour
             Debug.Log("Timer.cs :: Time's up!");
 
             isTimeUp = true;
-            taskManager.GetComponent<TaskCompletionMsg>().SetMenuOptionInEventSystem(timeUpQuitButton);
+            taskManager.GetComponent<TaskManager>().SetMenuOptionInEventSystem(timeUpQuitButton);
             timeUpCanvas.SetActive(true);
-            taskManager.GetComponent<TaskCompletionMsg>().DisablePlayerMovement();
+            taskManager.GetComponent<TaskManager>().DisablePlayerMovement();
 
             return;
         }

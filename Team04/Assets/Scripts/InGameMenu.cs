@@ -65,7 +65,7 @@ public class InGameMenu : MonoBehaviour
         }
 
         bool isGameTimeUp = timerCanvas.GetComponent<Timer>().GetIsTimeUp();
-        bool allTasksCompletedFlag = taskManager.GetComponent<TaskCompletionMsg>().GetAllTasksCompletedFlag();
+        bool allTasksCompletedFlag = taskManager.GetComponent<TaskManager>().GetAllTasksCompletedFlag();
 
         if (!isGameTimeUp && !allTasksCompletedFlag && !gameStartMenu.activeSelf && (Input.GetKeyDown(KeyCode.M) || Input.GetButtonDown("js7"))) // 'M' key, js7 (OK)
         {
@@ -136,7 +136,7 @@ public class InGameMenu : MonoBehaviour
     public void OpenTaskList()
     {
         Debug.Log("InGameMenu.cs :: OpenTaskList() called");
-        taskManager.GetComponent<TaskCompletionMsg>().EnableTaskManagerMenu();
+        taskManager.GetComponent<TaskManager>().EnableTaskManagerMenu();
         // CloseInGameMenu();
         inGameMenu.SetActive(false);
     }
