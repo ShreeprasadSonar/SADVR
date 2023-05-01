@@ -22,8 +22,8 @@ public class FixWire : MonoBehaviourPunCallbacks
     {   
         if (!isExecuted && !isActive)
         {
-            Debug.Log("PutOutFire.cs :: Multiplayer :: Fixing wire...");
-            
+            Debug.Log("FixWire.cs :: MULTIPLAYER :: Fixing wire...");
+
             Wires.SetActive(false);
             taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().SetTaskCompleted(1);
             isExecuted = true;

@@ -21,7 +21,7 @@ public class CloseAlarm : MonoBehaviourPunCallbacks
     {
         if (!isExecuted && !isActive)
         {
-            Debug.Log("PutOutFire.cs :: Multiplayer :: Disabling alarm...");
+            Debug.Log("CloseAlarm.cs :: MULTIPLAYER :: Disabling alarm...");
             
             OnPress();
             taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().SetTaskCompleted(5);
@@ -37,7 +37,7 @@ public class CloseAlarm : MonoBehaviourPunCallbacks
             {
                 if (isPointerOnAlarm)
                 {
-                    Debug.Log("PutOutFire.cs :: Disabling alarm...");
+                    Debug.Log("CloseAlarm.cs :: Disabling alarm...");
 
                     isActive = false;
                     // Call the "OnMyVariableChanged" method over the Photon Network

@@ -21,7 +21,7 @@ public class PutOutFire : MonoBehaviourPunCallbacks
     {
         if (!isExecuted && !isActive)
         {
-            Debug.Log("PutOutFire.cs :: Multiplayer :: Putting out fire...");
+            Debug.Log("PutOutFire.cs :: MULTIPLAYER :: Putting out fire...");
             
             Fire.SetActive(false);
             taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().SetTaskCompleted(2);
@@ -38,6 +38,7 @@ public class PutOutFire : MonoBehaviourPunCallbacks
                 Debug.Log("PutOutFire.cs :: Putting out fire...");
 
                 isActive = false;
+
                 // Call the "OnMyVariableChanged" method over the Photon Network
                 photonView.RPC("OnMyVariableChanged", RpcTarget.All, isActive);
 

@@ -22,7 +22,7 @@ public class VideoPlay : MonoBehaviourPunCallbacks
     {
         if (!isExecuted && !isActive)
         {
-            Debug.Log("VideoPlay.cs :: Multiplayer :: Putting out fire...");
+            Debug.Log("VideoPlay.cs :: MULTIPLAYER :: Playing video on monitor...");
 
             if (!isVideoPlaying)
             {

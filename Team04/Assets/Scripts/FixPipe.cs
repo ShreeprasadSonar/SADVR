@@ -24,7 +24,7 @@ public class FixPipe : MonoBehaviourPunCallbacks
     {
         if (!isExecuted && !isActive)
         {
-            Debug.Log("FixPipe.cs :: Multiplayer :: Fixing pipe...");
+            Debug.Log("FixPipe.cs :: MULTIPLAYER :: Fixing pipe...");
 
             if (!isPositionCorrect) 
             {
