@@ -134,7 +134,7 @@ public class RoomManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
         playerSpeedManager.GetComponent<PlayerSpeedManager>().SetInitialLoadPlayerSpeed();
 
-        // taskManager.GetComponent<TaskCompletionMsg>().TriggerIntroMsgCanvas();
+        // taskManager.GetComponent<TaskManager>().TriggerIntroMsgCanvas();
     
         StartCoroutine(IntoMsgCoroutine());
     }
@@ -162,6 +162,6 @@ public class RoomManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     {
         yield return new WaitForSeconds(2f); // 2 seconds
 
-        taskManager.GetComponent<TaskCompletionMsg>().TriggerIntroMsgCanvas();
+        taskManager.GetComponent<TaskManager>().TriggerIntroMsgCanvas();
     }
 }

@@ -12,7 +12,7 @@ public class CloseAlarm : MonoBehaviourPunCallbacks
     private float holdTime;
     public GameObject ProgressBar;
 
-    public GameObject taskCompletedMsgScriptObj;
+    public GameObject taskManager;
 
     public bool isActive = true;
     private bool isExecuted = false;
@@ -24,7 +24,7 @@ public class CloseAlarm : MonoBehaviourPunCallbacks
             Debug.Log("CloseAlarm.cs :: MULTIPLAYER :: Disabling alarm...");
             
             OnPress();
-            taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().SetTaskCompleted(5);
+            taskManager.GetComponent<TaskManager>().SetTaskCompleted(5);
             isExecuted = true;
         }
         
@@ -43,9 +43,9 @@ public class CloseAlarm : MonoBehaviourPunCallbacks
                     // Call the "OnMyVariableChanged" method over the Photon Network
                     photonView.RPC("OnMyVariableChanged", RpcTarget.All, isActive);
 
-                    taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().SetTaskCompleted(5);
+                    taskManager.GetComponent<TaskManager>().SetTaskCompleted(5);
 
-                    taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().ShowTaskCompletedMessage();
+                    taskManager.GetComponent<TaskManager>().ShowTaskCompletedMessage();
 
                     OnPress();
                     ProgressBar.SetActive(false);

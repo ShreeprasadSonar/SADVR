@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TaskCompletionMsg : MonoBehaviour
+public class TaskManager : MonoBehaviour
 {
     public GameObject taskCompletedMsgCanvas;
     public GameObject taskManagerCanvas;
@@ -94,13 +94,13 @@ public class TaskCompletionMsg : MonoBehaviour
 
         // if (player != null && Input.GetKeyDown(KeyCode.N)) 
         // {
-        //     Debug.Log("TaskCompletionMsg :: 'N' key pressed!");
+        //     Debug.Log("TaskManager :: 'N' key pressed!");
         //     EnableTaskManagerMenu();
         // }
 
         if (!inGameMenuCanvas.activeSelf && taskManagerCanvas.activeSelf && (Input.GetKey(KeyCode.E) || Input.GetButton("js10"))) // Keyboard L, Android js2 (A)
         {
-            Debug.Log("TaskCompletionMsg :: E key pressed; Closing Task List Menu...");
+            Debug.Log("TaskManager :: E key pressed; Closing Task List Menu...");
             DisableTaskManagerMenu();
         }
 
@@ -111,11 +111,11 @@ public class TaskCompletionMsg : MonoBehaviour
 
     private void CheckAllTasksCompleted()
     {
-        // Debug.Log("TaskCompletionMsg :: CheckAllTasksCompleted() called");
+        // Debug.Log("TaskManager :: CheckAllTasksCompleted() called");
 
         if (task1Completion && task2Completion && task3Completion && task4Completion && task5Completion)
         {
-            Debug.Log("TaskCompletionMsg :: All tasks completed successfully!");
+            Debug.Log("TaskManager :: All tasks completed successfully!");
 
             allTasksCompletedFlag = true;
             
@@ -132,7 +132,7 @@ public class TaskCompletionMsg : MonoBehaviour
 
     public void SetTaskCompleted(int taskNum)
     {
-        Debug.Log("TaskCompletionMsg :: SetTaskCompleted() called");
+        Debug.Log("TaskManager :: SetTaskCompleted() called");
 
         switch (taskNum)
         {
@@ -158,7 +158,7 @@ public class TaskCompletionMsg : MonoBehaviour
 
     public void EnableTaskManagerMenu()
     {
-        Debug.Log("TaskCompletionMsg :: EnableTaskManagerMenu() called");
+        Debug.Log("TaskManager :: EnableTaskManagerMenu() called");
 
         DisablePlayerMovement();
         RefreshTaskManagerMenu();
@@ -168,7 +168,7 @@ public class TaskCompletionMsg : MonoBehaviour
 
     public void DisableTaskManagerMenu()
     {
-        Debug.Log("TaskCompletionMsg :: DisableTaskManagerMenu() called");
+        Debug.Log("TaskManager :: DisableTaskManagerMenu() called");
 
         EnablePlayerMovement();
         taskManagerCanvas.SetActive(false);
@@ -176,7 +176,7 @@ public class TaskCompletionMsg : MonoBehaviour
 
     private void RefreshTaskManagerMenu()
     {
-        Debug.Log("TaskCompletionMsg :: RefreshTaskManagerMenu() called");
+        Debug.Log("TaskManager :: RefreshTaskManagerMenu() called");
 
         if (task1Completion) 
         {
@@ -216,11 +216,11 @@ public class TaskCompletionMsg : MonoBehaviour
 
     public void TriggerIntroMsgCanvas()
     {
-        Debug.Log("TaskCompletionMsg :: TriggerIntroMsgCanvas() called");
+        Debug.Log("TaskManager :: TriggerIntroMsgCanvas() called");
 
         player = GameObject.FindWithTag("Player");
 
-        // Debug.Log("TaskCompletionMsg :: player: " + player);
+        // Debug.Log("TaskManager :: player: " + player);
 
         if (player != null) 
         {
@@ -245,7 +245,7 @@ public class TaskCompletionMsg : MonoBehaviour
 
     public void CloseIntroMsgCanvas()
     {
-        Debug.Log("TaskCompletionMsg :: CloseIntroMsgCanvas() called");
+        Debug.Log("TaskManager :: CloseIntroMsgCanvas() called");
 
         EnablePlayerMovement();
 
@@ -254,19 +254,19 @@ public class TaskCompletionMsg : MonoBehaviour
 
     public void TimeUpQuitButtonHandler()
     {
-        Debug.Log("TaskCompletionMsg :: TimeUpQuitButtonHandler() called");
+        Debug.Log("TaskManager :: TimeUpQuitButtonHandler() called");
         Application.Quit();
     }
 
     public void TasksCompletedQuitButtonHandler()
     {
-        Debug.Log("TaskCompletionMsg :: TasksCompletedQuitButtonHandler() called");
+        Debug.Log("TaskManager :: TasksCompletedQuitButtonHandler() called");
         Application.Quit();
     }
 
     public void DisablePlayerMovement()
     {
-        Debug.Log("TaskCompletionMsg :: DisablePlayerMovement() called");
+        Debug.Log("TaskManager :: DisablePlayerMovement() called");
 
         player.GetComponent<CharacterMovement>().enabled = false;
 
@@ -283,7 +283,7 @@ public class TaskCompletionMsg : MonoBehaviour
 
     public void EnablePlayerMovement()
     {
-        Debug.Log("TaskCompletionMsg :: EnablePlayerMovement() called");
+        Debug.Log("TaskManager :: EnablePlayerMovement() called");
 
         player.GetComponent<CharacterMovement>().enabled = true;
 
@@ -302,7 +302,7 @@ public class TaskCompletionMsg : MonoBehaviour
 
     public void ShowTaskCompletedMessage()
     {
-        Debug.Log("TaskCompletionMsg :: ShowTaskCompletedMessage() called");
+        Debug.Log("TaskManager :: ShowTaskCompletedMessage() called");
 
         StartCoroutine(TaskCompletedMessageCoroutine());
     }
@@ -318,7 +318,7 @@ public class TaskCompletionMsg : MonoBehaviour
 
     IEnumerator DisablePlayerMovementCoroutine()
     {
-        Debug.Log("TaskCompletionMsg :: DisablePlayerMovementCoroutine() called");
+        Debug.Log("TaskManager :: DisablePlayerMovementCoroutine() called");
 
         yield return new WaitForSeconds(4f); // 4 seconds
 

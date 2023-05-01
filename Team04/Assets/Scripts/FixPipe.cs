@@ -9,7 +9,7 @@ public class FixPipe : MonoBehaviourPunCallbacks
     public GameObject Pipe;
     public GameObject Smoke;
     public GameObject ProgressBar;
-    public GameObject taskCompletedMsgScriptObj;
+    public GameObject taskManager;
     public AudioSource audioSource;
 
     private float holdTime;
@@ -38,7 +38,7 @@ public class FixPipe : MonoBehaviourPunCallbacks
             Smoke.SetActive(false);
             isPipeFixed = true;
 
-            taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().SetTaskCompleted(4);
+            taskManager.GetComponent<TaskManager>().SetTaskCompleted(4);
 
             isExecuted = true;
         }
@@ -66,8 +66,8 @@ public class FixPipe : MonoBehaviourPunCallbacks
                 // Call the "OnMyVariableChanged" method over the Photon Network
                 photonView.RPC("OnMyVariableChanged", RpcTarget.All, isActive);
 
-                taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().SetTaskCompleted(4);
-                taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().ShowTaskCompletedMessage();
+                taskManager.GetComponent<TaskManager>().SetTaskCompleted(4);
+                taskManager.GetComponent<TaskManager>().ShowTaskCompletedMessage();
 
                 Smoke.SetActive(false);
                 isPipeFixed = true;

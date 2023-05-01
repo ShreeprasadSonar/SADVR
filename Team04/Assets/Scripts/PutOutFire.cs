@@ -7,7 +7,7 @@ using Photon.Realtime;
 public class PutOutFire : MonoBehaviourPunCallbacks
 {
     public GameObject Fire;
-    public GameObject taskCompletedMsgScriptObj;
+    public GameObject taskManager;
     public GameObject progressBar;
 
     private float holdTime;
@@ -24,7 +24,7 @@ public class PutOutFire : MonoBehaviourPunCallbacks
             Debug.Log("PutOutFire.cs :: MULTIPLAYER :: Putting out fire...");
             
             Fire.SetActive(false);
-            taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().SetTaskCompleted(2);
+            taskManager.GetComponent<TaskManager>().SetTaskCompleted(2);
             isExecuted = true;
         }
 
@@ -42,9 +42,9 @@ public class PutOutFire : MonoBehaviourPunCallbacks
                 // Call the "OnMyVariableChanged" method over the Photon Network
                 photonView.RPC("OnMyVariableChanged", RpcTarget.All, isActive);
 
-                taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().SetTaskCompleted(2);
+                taskManager.GetComponent<TaskManager>().SetTaskCompleted(2);
 
-                taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().ShowTaskCompletedMessage();
+                taskManager.GetComponent<TaskManager>().ShowTaskCompletedMessage();
                 
                 Fire.SetActive(false);
                 progressBar.SetActive(false);
