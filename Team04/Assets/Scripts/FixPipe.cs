@@ -51,7 +51,7 @@ public class FixPipe : MonoBehaviourPunCallbacks
         if (distance < 3f)
         {
 
-            if (isActive && (Input.GetKey(KeyCode.E) || Input.GetButton("js2")) && isPointerOnPipe) // Keyboard F, Android js2 (X)
+            if (isActive && (Input.GetKey(KeyCode.E) || Input.GetButton("js10")) && isPointerOnPipe) // Keyboard F, Android js2 (X)
             {
                 if (!isPipeFixed) ProgressBar.SetActive(true);
 
