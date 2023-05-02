@@ -5,9 +5,13 @@ using UnityEngine;
 public class PlayerSpeedManager : MonoBehaviour
 {
     private GameObject player = null;
+
     // public GameObject gameStartMenu;
-    public int playerSpeed = 1; // medium
-    private int[] speedLevelArray = { 6, 8, 10 };
+
+    public int playerSpeed = 0; // low
+    private int[] speedLevelArray = { 5, 10, 15 };
+
+    private bool isExecuted = false;
 
     void Start()
     {
@@ -20,6 +24,17 @@ public class PlayerSpeedManager : MonoBehaviour
         // {
         //     player = GameObject.FindWithTag("Player");
         // }
+
+        if (player == null)
+        {
+            player = GameObject.FindWithTag("Player");
+        }
+
+        if (!isExecuted && player != null)
+        {
+            SetInitialLoadPlayerSpeed();
+            isExecuted = true;
+        }
     }
 
     void FindPlayerUsingTag()
@@ -38,9 +53,6 @@ public class PlayerSpeedManager : MonoBehaviour
     public void SetInitialLoadPlayerSpeed()
     {
         Debug.Log("PlayerSpeedManager.cs :: Setting initial player speed to level " + playerSpeed);
-        
-        FindPlayerUsingTag();
-
         player.GetComponent<CharacterMovement>().speed = speedLevelArray[playerSpeed];
     }
 

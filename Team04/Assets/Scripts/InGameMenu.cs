@@ -162,7 +162,7 @@ public class InGameMenu : MonoBehaviour
             player.GetComponent<CharacterMovement>().speed = 10;
         } else if (newSpeedLevel == 2) {
             speedButton.GetComponent<Image>().sprite = highSpeedButtonImageSprite; // high
-            player.GetComponent<CharacterMovement>().speed = 20;
+            player.GetComponent<CharacterMovement>().speed = 15;
         }
     }
 
