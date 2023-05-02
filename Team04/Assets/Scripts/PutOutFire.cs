@@ -23,8 +23,6 @@ public class PutOutFire : MonoBehaviourPunCallbacks
 
     void Update()
     {
-
-        distance = Vector3.Distance(Fire.transform.position, FireExtinquisher.transform.position);
         if (!isExecuted && !isActive)
         {
             Debug.Log("PutOutFire.cs :: MULTIPLAYER :: Putting out fire...");
@@ -33,9 +31,11 @@ public class PutOutFire : MonoBehaviourPunCallbacks
             taskManager.GetComponent<TaskManager>().SetTaskCompleted(2);
             isExecuted = true;
         }
+
+        distance = Vector3.Distance(Fire.transform.position, FireExtinquisher.transform.position);
+
         if (distance < 3f)
         {   
-
             if (isActive && (Input.GetKey(KeyCode.E) || Input.GetButton("js10")) && isPointerOnFire) // Keyboard F, Android js2 (A)
             {
                 progressBar.SetActive(true);

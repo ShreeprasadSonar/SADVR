@@ -24,7 +24,6 @@ public class FixWire : MonoBehaviourPunCallbacks
 
     void Update()
     {   
-        distance = Vector3.Distance(Wires.transform.position, Plier.transform.position);
         if (!isExecuted && !isActive)
         {
             Debug.Log("FixWire.cs :: MULTIPLAYER :: Fixing wire...");
@@ -33,10 +32,11 @@ public class FixWire : MonoBehaviourPunCallbacks
             taskManager.GetComponent<TaskManager>().SetTaskCompleted(1);
             isExecuted = true;
         }
+        
+        distance = Vector3.Distance(Wires.transform.position, Plier.transform.position);
 
         if (distance < 3f)
         {
-
             if (isActive && (Input.GetKey(KeyCode.E) || Input.GetButton("js10")) && isPointerOnWire) // Keyboard L, Android js2 (A)
             {
                 ProgressBar.SetActive(true);
@@ -47,11 +47,9 @@ public class FixWire : MonoBehaviourPunCallbacks
                     Debug.Log("FixWire.cs :: Fixing wire...");
 
                     isActive = false;
-                    // Call the "OnMyVariableChanged" method over the Photon Network
                     photonView.RPC("OnMyVariableChanged", RpcTarget.All, isActive);
 
                     taskManager.GetComponent<TaskManager>().SetTaskCompleted(1);
-
                     taskManager.GetComponent<TaskManager>().ShowTaskCompletedMessage();
                     
                     Wires.SetActive(false);

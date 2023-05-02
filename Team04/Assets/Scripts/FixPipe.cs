@@ -26,7 +26,6 @@ public class FixPipe : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        distance = Vector3.Distance(Pipe.transform.position, Wrench.transform.position);
         if (!isExecuted && !isActive)
         {
             Debug.Log("FixPipe.cs :: MULTIPLAYER :: Fixing pipe...");
@@ -48,9 +47,10 @@ public class FixPipe : MonoBehaviourPunCallbacks
             isExecuted = true;
         }
 
+        distance = Vector3.Distance(Pipe.transform.position, Wrench.transform.position);
+
         if (distance < 3f)
         {
-
             if (isActive && (Input.GetKey(KeyCode.E) || Input.GetButton("js10")) && isPointerOnPipe) // Keyboard F, Android js2 (X)
             {
                 if (!isPipeFixed) ProgressBar.SetActive(true);
