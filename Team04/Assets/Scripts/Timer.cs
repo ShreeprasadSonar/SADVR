@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Photon.Pun;
+using Photon.Realtime;
 using TMPro;
 
-public class Timer : MonoBehaviour
+public class Timer : MonoBehaviourPunCallbacks
 {
     public GameObject timerText;
     public GameObject timeUpCanvas;
@@ -19,6 +21,8 @@ public class Timer : MonoBehaviour
     public Color offColor = Color.white;
     private bool isTimeLessThanAMinute = false;
     public bool isTimeUp = false;
+    public bool isTimeUpForAllPlayers = false;
+    private bool isExecuted = false;
 
     private float timeRemaining;
 
@@ -29,6 +33,23 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
+        if (!isExecuted && isTimeUpForAllPlayers)
+        {
+            Debug.Log("Timer.cs :: MULTIPLAYER :: First player's time up; Ending Game...");
+
+            timerText.GetComponent<TextMeshProUGUI>().SetText("00:00");
+            timerButton.image.color = onColor;
+
+            isTimeUp = true;
+            taskManager.GetComponent<TaskManager>().SetMenuOptionInEventSystem(timeUpQuitButton);
+            timeUpCanvas.SetActive(true);
+            taskManager.GetComponent<TaskManager>().DisablePlayerMovement();
+
+            isExecuted = true;
+        }
+
+        if (isExecuted) return;
+
         timeRemaining -= Time.deltaTime;
 
         if (!isTimeUp && timeRemaining <= 0f)
@@ -36,6 +57,10 @@ public class Timer : MonoBehaviour
             Debug.Log("Timer.cs :: Time's up!");
 
             isTimeUp = true;
+
+            isTimeUpForAllPlayers = true;
+            photonView.RPC("OnMyVariableChanged", RpcTarget.All, isTimeUpForAllPlayers);
+
             taskManager.GetComponent<TaskManager>().SetMenuOptionInEventSystem(timeUpQuitButton);
             timeUpCanvas.SetActive(true);
             taskManager.GetComponent<TaskManager>().DisablePlayerMovement();
@@ -43,14 +68,14 @@ public class Timer : MonoBehaviour
             return;
         }
 
+        if (isTimeUp) return;
+
         if (!isTimeLessThanAMinute && timeRemaining <= 60f)
         {
             Debug.Log("Timer.cs :: 1 minute remaining!");
             isTimeLessThanAMinute = true;
             StartCoroutine(BlinkTimer());
         }
-
-        if (isTimeUp) return;
 
         UpdateTimerDisplay();
     }
@@ -65,6 +90,13 @@ public class Timer : MonoBehaviour
         int minutes = Mathf.FloorToInt(timeRemaining / 60f);
         int seconds = Mathf.FloorToInt(timeRemaining % 60f);
         timerText.GetComponent<TextMeshProUGUI>().SetText(string.Format("{0:00}:{1:00}", minutes, seconds));
+    }
+
+    // This method is called over the Photon Network to update "isTimeUpForAllPlayers"
+    [PunRPC]
+    public void OnMyVariableChanged(bool newValue)
+    {
+        isTimeUpForAllPlayers = newValue;
     }
 
     private IEnumerator BlinkTimer()

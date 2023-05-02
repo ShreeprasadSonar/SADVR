@@ -9,13 +9,10 @@ public class OpenDoor : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetButton("js10"))  // Keyboard E, Android js2 (A)
+        if ((Input.GetKeyDown(KeyCode.E) || Input.GetButton("js10")) && isPointerOnDoor)  // Keyboard E, Android js2 (A)
         {
-            print(isPointerOnDoor);
-            if (isPointerOnDoor)
-            {
-                OnPress();
-            }
+            Debug.Log("OpenDoor.cs :: Opening door...");
+            OnPress();
         }
     }
 
