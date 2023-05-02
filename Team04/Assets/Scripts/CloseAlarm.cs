@@ -40,7 +40,6 @@ public class CloseAlarm : MonoBehaviourPunCallbacks
                     Debug.Log("CloseAlarm.cs :: Disabling alarm...");
 
                     isActive = false;
-                    // Call the "OnMyVariableChanged" method over the Photon Network
                     photonView.RPC("OnMyVariableChanged", RpcTarget.All, isActive);
 
                     taskManager.GetComponent<TaskManager>().SetTaskCompleted(5);
@@ -78,7 +77,7 @@ public class CloseAlarm : MonoBehaviourPunCallbacks
     
     public void OnPress()
     {   
-        Debug.Log("CloseAram.cs :: OnPress() called!");
+        Debug.Log("CloseAlarm.cs :: OnPress() called!");
         Destroy(viewPoint);
     }
 
