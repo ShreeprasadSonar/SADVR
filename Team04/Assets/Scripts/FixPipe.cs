@@ -27,29 +27,29 @@ public class FixPipe : MonoBehaviourPunCallbacks
     void Update()
     {
         distance = Vector3.Distance(Pipe.transform.position, Wrench.transform.position);
+        if (!isExecuted && !isActive)
+        {
+            Debug.Log("FixPipe.cs :: MULTIPLAYER :: Fixing pipe...");
+
+            if (!isPositionCorrect) 
+            {
+                Vector3 position = Pipe.transform.position;
+                position.y += 0.075f;
+                position.z -= 0.03f;
+                Pipe.transform.position = position;
+                isPositionCorrect = true;
+            }
+
+            Smoke.SetActive(false);
+            isPipeFixed = true;
+
+            taskManager.GetComponent<TaskManager>().SetTaskCompleted(4);
+
+            isExecuted = true;
+        }
 
         if (distance < 3f)
         {
-            if (!isExecuted && !isActive)
-            {
-                Debug.Log("FixPipe.cs :: MULTIPLAYER :: Fixing pipe...");
-
-                if (!isPositionCorrect) 
-                {
-                    Vector3 position = Pipe.transform.position;
-                    position.y += 0.075f;
-                    position.z -= 0.03f;
-                    Pipe.transform.position = position;
-                    isPositionCorrect = true;
-                }
-
-                Smoke.SetActive(false);
-                isPipeFixed = true;
-
-                taskManager.GetComponent<TaskManager>().SetTaskCompleted(4);
-
-                isExecuted = true;
-            }
 
             if (isActive && (Input.GetKey(KeyCode.E) || Input.GetButton("js2")) && isPointerOnPipe) // Keyboard F, Android js2 (X)
             {

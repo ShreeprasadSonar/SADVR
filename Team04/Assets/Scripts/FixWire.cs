@@ -25,17 +25,17 @@ public class FixWire : MonoBehaviourPunCallbacks
     void Update()
     {   
         distance = Vector3.Distance(Wires.transform.position, Plier.transform.position);
+        if (!isExecuted && !isActive)
+        {
+            Debug.Log("FixWire.cs :: MULTIPLAYER :: Fixing wire...");
+
+            Wires.SetActive(false);
+            taskManager.GetComponent<TaskManager>().SetTaskCompleted(1);
+            isExecuted = true;
+        }
 
         if (distance < 3f)
         {
-            if (!isExecuted && !isActive)
-            {
-                Debug.Log("FixWire.cs :: MULTIPLAYER :: Fixing wire...");
-
-                Wires.SetActive(false);
-                taskManager.GetComponent<TaskManager>().SetTaskCompleted(1);
-                isExecuted = true;
-            }
 
             if (isActive && (Input.GetKey(KeyCode.E) || Input.GetButton("js10")) && isPointerOnWire) // Keyboard L, Android js2 (A)
             {

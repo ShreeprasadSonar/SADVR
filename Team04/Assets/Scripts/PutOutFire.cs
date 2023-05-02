@@ -25,17 +25,16 @@ public class PutOutFire : MonoBehaviourPunCallbacks
     {
 
         distance = Vector3.Distance(Fire.transform.position, FireExtinquisher.transform.position);
-
+        if (!isExecuted && !isActive)
+        {
+            Debug.Log("PutOutFire.cs :: MULTIPLAYER :: Putting out fire...");
+            
+            Fire.SetActive(false);
+            taskManager.GetComponent<TaskManager>().SetTaskCompleted(2);
+            isExecuted = true;
+        }
         if (distance < 3f)
         {   
-            if (!isExecuted && !isActive)
-            {
-                Debug.Log("PutOutFire.cs :: MULTIPLAYER :: Putting out fire...");
-                
-                Fire.SetActive(false);
-                taskManager.GetComponent<TaskManager>().SetTaskCompleted(2);
-                isExecuted = true;
-            }
 
             if (isActive && (Input.GetKey(KeyCode.E) || Input.GetButton("js10")) && isPointerOnFire) // Keyboard F, Android js2 (A)
             {
