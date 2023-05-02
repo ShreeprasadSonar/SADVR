@@ -1,19 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class OpenDoor : MonoBehaviour
+public class OpenDoor : MonoBehaviourPunCallbacks
 {
     [SerializeField] private Animator door = null;
     private bool isPointerOnDoor = false;
 
+    public bool doorOpened = false;
+
     void Update()
     {
+        if (doorOpened)
+        {
+            OnPress();
+            doorOpened = false;
+            photonView.RPC("OnMyVariableChanged", RpcTarget.All, doorOpened);
+        }
         if ((Input.GetKeyDown(KeyCode.E) || Input.GetButton("js10")) && isPointerOnDoor)  // Keyboard E, Android js2 (A)
         {
             Debug.Log("OpenDoor.cs :: Opening door...");
             OnPress();
+            doorOpened = true;
+            photonView.RPC("OnMyVariableChanged", RpcTarget.All, doorOpened);
         }
+    }
+
+    [PunRPC]
+    public void OnMyVariableChanged(bool newValue)
+    {
+        doorOpened = newValue;
     }
 
     public void OnPointerEnter()

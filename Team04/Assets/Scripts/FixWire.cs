@@ -12,6 +12,10 @@ public class FixWire : MonoBehaviourPunCallbacks
     public GameObject taskManager;
     public AudioSource audioSource;
 
+    public GameObject Plier;
+    
+    private float distance;
+
     public bool isActive = true;
 
     private float holdTime;
@@ -20,42 +24,48 @@ public class FixWire : MonoBehaviourPunCallbacks
 
     void Update()
     {   
-        if (!isExecuted && !isActive)
+        distance = Vector3.Distance(Wires.transform.position, Plier.transform.position);
+
+        if (distance < 3f)
         {
-            Debug.Log("FixWire.cs :: MULTIPLAYER :: Fixing wire...");
-
-            Wires.SetActive(false);
-            taskManager.GetComponent<TaskManager>().SetTaskCompleted(1);
-            isExecuted = true;
-        }
-
-        if (isActive && (Input.GetKey(KeyCode.E) || Input.GetButton("js10")) && isPointerOnWire) // Keyboard L, Android js2 (A)
-        {
-            ProgressBar.SetActive(true);
-            holdTime += Time.deltaTime;
-
-            if (holdTime >= 3f)
+            if (!isExecuted && !isActive)
             {
-                Debug.Log("FixWire.cs :: Fixing wire...");
+                Debug.Log("FixWire.cs :: MULTIPLAYER :: Fixing wire...");
 
-                isActive = false;
-                // Call the "OnMyVariableChanged" method over the Photon Network
-                photonView.RPC("OnMyVariableChanged", RpcTarget.All, isActive);
-
-                taskManager.GetComponent<TaskManager>().SetTaskCompleted(1);
-
-                taskManager.GetComponent<TaskManager>().ShowTaskCompletedMessage();
-                
                 Wires.SetActive(false);
+                taskManager.GetComponent<TaskManager>().SetTaskCompleted(1);
+                isExecuted = true;
+            }
+
+            if (isActive && (Input.GetKey(KeyCode.E) || Input.GetButton("js10")) && isPointerOnWire) // Keyboard L, Android js2 (A)
+            {
+                ProgressBar.SetActive(true);
+                holdTime += Time.deltaTime;
+
+                if (holdTime >= 3f)
+                {
+                    Debug.Log("FixWire.cs :: Fixing wire...");
+
+                    isActive = false;
+                    // Call the "OnMyVariableChanged" method over the Photon Network
+                    photonView.RPC("OnMyVariableChanged", RpcTarget.All, isActive);
+
+                    taskManager.GetComponent<TaskManager>().SetTaskCompleted(1);
+
+                    taskManager.GetComponent<TaskManager>().ShowTaskCompletedMessage();
+                    
+                    Wires.SetActive(false);
+                    ProgressBar.SetActive(false);
+                    audioSource.Play();
+                }
+            }
+            else
+            {
                 ProgressBar.SetActive(false);
-                audioSource.Play();
+                holdTime = 0f;
             }
         }
-        else
-        {
-            ProgressBar.SetActive(false);
-            holdTime = 0f;
-        }
+
     }
 
     // This method is called over the Photon Network to update "myVariable"
