@@ -12,6 +12,10 @@ public class FixPipe : MonoBehaviourPunCallbacks
     public GameObject taskManager;
     public AudioSource audioSource;
 
+    public GameObject Wrench;
+    
+    private float distance;
+
     private float holdTime;
     private bool isPointerOnPipe = false;
     private bool isPositionCorrect = false;
@@ -22,6 +26,7 @@ public class FixPipe : MonoBehaviourPunCallbacks
 
     void Update()
     {
+        distance = Vector3.Distance(Pipe.transform.position, Wrench.transform.position);
         if (!isExecuted && !isActive)
         {
             Debug.Log("FixPipe.cs :: MULTIPLAYER :: Fixing pipe...");
@@ -43,42 +48,46 @@ public class FixPipe : MonoBehaviourPunCallbacks
             isExecuted = true;
         }
 
-        if (isActive && (Input.GetKey(KeyCode.E) || Input.GetButton("js2")) && isPointerOnPipe) // Keyboard F, Android js2 (X)
+        if (distance < 3f)
         {
-            if (!isPipeFixed) ProgressBar.SetActive(true);
 
-            holdTime += Time.deltaTime;
-
-            if (holdTime >= 3f)
+            if (isActive && (Input.GetKey(KeyCode.E) || Input.GetButton("js2")) && isPointerOnPipe) // Keyboard F, Android js2 (X)
             {
-                if (!isPositionCorrect) 
+                if (!isPipeFixed) ProgressBar.SetActive(true);
+
+                holdTime += Time.deltaTime;
+
+                if (holdTime >= 3f)
                 {
-                    Vector3 position = Pipe.transform.position;
-                    position.y += 0.075f;
-                    position.z -= 0.03f;
-                    Pipe.transform.position = position;
-                    isPositionCorrect = true;
+                    if (!isPositionCorrect) 
+                    {
+                        Vector3 position = Pipe.transform.position;
+                        position.y += 0.075f;
+                        position.z -= 0.03f;
+                        Pipe.transform.position = position;
+                        isPositionCorrect = true;
+                    }
+
+                    Debug.Log("FixPipe.cs :: Fixing pipe...");
+
+                    isActive = false;
+                    // Call the "OnMyVariableChanged" method over the Photon Network
+                    photonView.RPC("OnMyVariableChanged", RpcTarget.All, isActive);
+
+                    taskManager.GetComponent<TaskManager>().SetTaskCompleted(4);
+                    taskManager.GetComponent<TaskManager>().ShowTaskCompletedMessage();
+
+                    Smoke.SetActive(false);
+                    isPipeFixed = true;
+                    ProgressBar.SetActive(false);
+                    audioSource.Play();
                 }
-
-                Debug.Log("FixPipe.cs :: Fixing pipe...");
-
-                isActive = false;
-                // Call the "OnMyVariableChanged" method over the Photon Network
-                photonView.RPC("OnMyVariableChanged", RpcTarget.All, isActive);
-
-                taskManager.GetComponent<TaskManager>().SetTaskCompleted(4);
-                taskManager.GetComponent<TaskManager>().ShowTaskCompletedMessage();
-
-                Smoke.SetActive(false);
-                isPipeFixed = true;
-                ProgressBar.SetActive(false);
-                audioSource.Play();
             }
-        }
-        else
-        {
-            ProgressBar.SetActive(false);
-            holdTime = 0f;
+            else
+            {
+                ProgressBar.SetActive(false);
+                holdTime = 0f;
+            }
         }
     }
 

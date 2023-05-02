@@ -12,6 +12,10 @@ public class FixWire : MonoBehaviourPunCallbacks
     public GameObject taskManager;
     public AudioSource audioSource;
 
+    public GameObject Plier;
+    
+    private float distance;
+
     public bool isActive = true;
 
     private float holdTime;
@@ -20,6 +24,7 @@ public class FixWire : MonoBehaviourPunCallbacks
 
     void Update()
     {   
+        distance = Vector3.Distance(Wires.transform.position, Plier.transform.position);
         if (!isExecuted && !isActive)
         {
             Debug.Log("FixWire.cs :: MULTIPLAYER :: Fixing wire...");
@@ -29,33 +34,38 @@ public class FixWire : MonoBehaviourPunCallbacks
             isExecuted = true;
         }
 
-        if (isActive && (Input.GetKey(KeyCode.E) || Input.GetButton("js10")) && isPointerOnWire) // Keyboard L, Android js2 (A)
+        if (distance < 3f)
         {
-            ProgressBar.SetActive(true);
-            holdTime += Time.deltaTime;
 
-            if (holdTime >= 3f)
+            if (isActive && (Input.GetKey(KeyCode.E) || Input.GetButton("js10")) && isPointerOnWire) // Keyboard L, Android js2 (A)
             {
-                Debug.Log("FixWire.cs :: Fixing wire...");
+                ProgressBar.SetActive(true);
+                holdTime += Time.deltaTime;
 
-                isActive = false;
-                // Call the "OnMyVariableChanged" method over the Photon Network
-                photonView.RPC("OnMyVariableChanged", RpcTarget.All, isActive);
+                if (holdTime >= 3f)
+                {
+                    Debug.Log("FixWire.cs :: Fixing wire...");
 
-                taskManager.GetComponent<TaskManager>().SetTaskCompleted(1);
+                    isActive = false;
+                    // Call the "OnMyVariableChanged" method over the Photon Network
+                    photonView.RPC("OnMyVariableChanged", RpcTarget.All, isActive);
 
-                taskManager.GetComponent<TaskManager>().ShowTaskCompletedMessage();
-                
-                Wires.SetActive(false);
+                    taskManager.GetComponent<TaskManager>().SetTaskCompleted(1);
+
+                    taskManager.GetComponent<TaskManager>().ShowTaskCompletedMessage();
+                    
+                    Wires.SetActive(false);
+                    ProgressBar.SetActive(false);
+                    audioSource.Play();
+                }
+            }
+            else
+            {
                 ProgressBar.SetActive(false);
-                audioSource.Play();
+                holdTime = 0f;
             }
         }
-        else
-        {
-            ProgressBar.SetActive(false);
-            holdTime = 0f;
-        }
+
     }
 
     // This method is called over the Photon Network to update "myVariable"

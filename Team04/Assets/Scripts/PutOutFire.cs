@@ -10,6 +10,10 @@ public class PutOutFire : MonoBehaviourPunCallbacks
     public GameObject taskManager;
     public GameObject progressBar;
 
+    public GameObject FireExtinquisher;
+    
+    private float distance;
+
     private float holdTime;
     private bool isPointerOnFire = false;
     public AudioSource audiosource;
@@ -19,6 +23,8 @@ public class PutOutFire : MonoBehaviourPunCallbacks
 
     void Update()
     {
+
+        distance = Vector3.Distance(Fire.transform.position, FireExtinquisher.transform.position);
         if (!isExecuted && !isActive)
         {
             Debug.Log("PutOutFire.cs :: MULTIPLAYER :: Putting out fire...");
@@ -27,34 +33,37 @@ public class PutOutFire : MonoBehaviourPunCallbacks
             taskManager.GetComponent<TaskManager>().SetTaskCompleted(2);
             isExecuted = true;
         }
+        if (distance < 3f)
+        {   
 
-        if (isActive && (Input.GetKey(KeyCode.E) || Input.GetButton("js10")) && isPointerOnFire) // Keyboard F, Android js2 (A)
-        {
-            progressBar.SetActive(true);
-            holdTime += Time.deltaTime;
-
-            if (holdTime >= 3f)
+            if (isActive && (Input.GetKey(KeyCode.E) || Input.GetButton("js10")) && isPointerOnFire) // Keyboard F, Android js2 (A)
             {
-                Debug.Log("PutOutFire.cs :: Putting out fire...");
+                progressBar.SetActive(true);
+                holdTime += Time.deltaTime;
 
-                isActive = false;
+                if (holdTime >= 3f)
+                {
+                    Debug.Log("PutOutFire.cs :: Putting out fire...");
 
-                // Call the "OnMyVariableChanged" method over the Photon Network
-                photonView.RPC("OnMyVariableChanged", RpcTarget.All, isActive);
+                    isActive = false;
 
-                taskManager.GetComponent<TaskManager>().SetTaskCompleted(2);
+                    // Call the "OnMyVariableChanged" method over the Photon Network
+                    photonView.RPC("OnMyVariableChanged", RpcTarget.All, isActive);
 
-                taskManager.GetComponent<TaskManager>().ShowTaskCompletedMessage();
-                
-                Fire.SetActive(false);
-                progressBar.SetActive(false);
-                audiosource.Play();
+                    taskManager.GetComponent<TaskManager>().SetTaskCompleted(2);
+
+                    taskManager.GetComponent<TaskManager>().ShowTaskCompletedMessage();
+                    
+                    Fire.SetActive(false);
+                    progressBar.SetActive(false);
+                    audiosource.Play();
+                }
             }
-        }
-        else
-        {
-            progressBar.SetActive(false);
-            holdTime = 0f;
+            else
+            {
+                progressBar.SetActive(false);
+                holdTime = 0f;
+            }
         }
     }
 
