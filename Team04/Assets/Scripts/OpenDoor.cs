@@ -14,18 +14,24 @@ public class OpenDoor : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        if (doorOpened)
+        if (isPointerOnDoor)  // Keyboard E, Android js2 (A)
         {
-            OnPress();
-            doorOpened = false;
-            photonView.RPC("OnMyVariableChanged", RpcTarget.All, doorOpened);
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetButton("js10"))
+            {
+                Debug.Log("OpenDoor.cs :: Opening door...");
+                OnPress();
+                doorOpened = true;
+                photonView.RPC("OnMyVariableChanged", RpcTarget.All, doorOpened);
+            }
         }
-        if ((Input.GetKeyDown(KeyCode.E) || Input.GetButton("js10")) && isPointerOnDoor)  // Keyboard E, Android js2 (A)
+        else
         {
-            Debug.Log("OpenDoor.cs :: Opening door...");
-            OnPress();
-            doorOpened = true;
-            photonView.RPC("OnMyVariableChanged", RpcTarget.All, doorOpened);
+            if (doorOpened)
+            {
+                OnPress();
+                doorOpened = false;
+                photonView.RPC("OnMyVariableChanged", RpcTarget.All, doorOpened);
+            }
         }
     }
 
@@ -56,4 +62,5 @@ public class OpenDoor : MonoBehaviourPunCallbacks
         yield return new WaitForSeconds(3f);
         door.Play("DoorClose", 0, 0.0f);
     }
+
 }
