@@ -26,6 +26,10 @@ public class Timer : MonoBehaviourPunCallbacks
 
     private float timeRemaining;
 
+    private bool isTimerLimitSetupExecuted = false;
+    public bool isFirstPlayer = false;
+    public float timeRemainingShared = 0f;
+
     void Start()
     {
         timeRemaining = timeLimit;
@@ -50,6 +54,33 @@ public class Timer : MonoBehaviourPunCallbacks
 
         if (isExecuted) return;
 
+        if (!isTimerLimitSetupExecuted)
+        {
+            Debug.Log("Timer.cs :: *******************");
+            Debug.Log("Timer.cs :: isTimerLimitSetupExecuted: " + isTimerLimitSetupExecuted);
+            Debug.Log("Timer.cs :: isFirstPlayer: " + isFirstPlayer);
+            Debug.Log("Timer.cs :: timeRemaining: " + timeRemaining);
+
+            if (!isFirstPlayer)
+            {
+                isFirstPlayer = true;
+                timeRemainingShared = timeRemaining;
+
+                photonView.RPC("OnVariablesChanged", RpcTarget.All, isTimeUpForAllPlayers, isFirstPlayer);
+            }
+            else
+            {
+                // for other players, get the time remaining from the first player
+                timeRemaining = timeRemainingShared;
+            }
+
+            Debug.Log("Timer.cs :: timeRemainingShared: " + timeRemainingShared);
+            Debug.Log("Timer.cs :: *******************");
+
+            isTimerLimitSetupExecuted = true;
+        }
+
+        // decrement time remaining by 1 second
         timeRemaining -= Time.deltaTime;
 
         if (!isTimeUp && timeRemaining <= 0f)
@@ -59,7 +90,8 @@ public class Timer : MonoBehaviourPunCallbacks
             isTimeUp = true;
 
             isTimeUpForAllPlayers = true;
-            photonView.RPC("OnMyVariableChanged", RpcTarget.All, isTimeUpForAllPlayers);
+            // photonView.RPC("OnMyVariableChanged", RpcTarget.All, isTimeUpForAllPlayers);
+            photonView.RPC("OnVariablesChanged", RpcTarget.All, isTimeUpForAllPlayers, isFirstPlayer);
 
             taskManager.GetComponent<TaskManager>().SetMenuOptionInEventSystem(timeUpQuitButton);
             timeUpCanvas.SetActive(true);
@@ -92,11 +124,20 @@ public class Timer : MonoBehaviourPunCallbacks
         timerText.GetComponent<TextMeshProUGUI>().SetText(string.Format("{0:00}:{1:00}", minutes, seconds));
     }
 
-    // This method is called over the Photon Network to update "isTimeUpForAllPlayers"
+    // [PunRPC]
+    // public void OnMyVariableChanged(bool newValue)
+    // {
+    //     isTimeUpForAllPlayers = newValue;
+    // }
+
     [PunRPC]
-    public void OnMyVariableChanged(bool newValue)
+    public void OnVariablesChanged(bool _isTimeUp, bool _isFirstPlayer)
     {
-        isTimeUpForAllPlayers = newValue;
+        Debug.Log("*** Timer.cs :: OnVariablesChanged() :: OLD isFirstPlayer: " + isFirstPlayer);
+        Debug.Log("*** Timer.cs :: OnVariablesChanged() :: _isFirstPlayer: " + _isFirstPlayer);
+
+        isTimeUpForAllPlayers = _isTimeUp;
+        isFirstPlayer = _isFirstPlayer;
     }
 
     private IEnumerator BlinkTimer()
