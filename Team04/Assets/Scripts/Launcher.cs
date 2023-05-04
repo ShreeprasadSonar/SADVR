@@ -40,6 +40,10 @@ public class Launcher : MonoBehaviourPunCallbacks
         connectingUI.SetActive(true);
         Debug.Log("Connecting to Master");
         PhotonNetwork.ConnectUsingSettings();
+
+        if (photonView.IsMine){
+            nicknameText.text = "Astroboy " + PhotonNetwork.CurrentRoom.PlayerCount;
+        }
     }
 
     void Update()
