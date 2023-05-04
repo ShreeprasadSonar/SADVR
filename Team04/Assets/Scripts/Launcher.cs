@@ -44,7 +44,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        if (startGame && joinedRoom && PhotonNetwork.CurrentRoom.PlayerCount != noOfPlayers)
+        if (startGame && joinedRoom && PhotonNetwork.CurrentRoom.PlayerCount < noOfPlayers)
         {
             waitUI.SetActive(true);
             gameStartMenuCanvas.SetActive(false);

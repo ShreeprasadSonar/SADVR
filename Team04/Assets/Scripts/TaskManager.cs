@@ -118,7 +118,8 @@ public class TaskManager : MonoBehaviour
             Debug.Log("TaskManager :: All tasks completed successfully!");
 
             allTasksCompletedFlag = true;
-            
+            inGameMenuCanvas.SetActive(false);
+            taskManagerCanvas.SetActive(false);
             SetMenuOptionInEventSystem(allTasksCompletedQuitButton);
             StartCoroutine(AllTasksCompletedCanvasCoroutine());
             DisablePlayerMovement();

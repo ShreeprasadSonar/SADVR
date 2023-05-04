@@ -40,6 +40,11 @@ MonoBehaviour:
   - DestroyRpc
   - HeresWhy
   - OnMyVariableChanged
+  - OnFirstPlayerVariableChanged
+  - OnTimeRemainingVariableChanged
+  - OnTimeUpVariableChanged
+  - OnFirstPlayerSharedVariableChanged
+  - OnVariablesChanged
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
