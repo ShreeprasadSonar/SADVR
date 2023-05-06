@@ -2,6 +2,8 @@
 
 This is the final prototype for CS6334 Virtual Reality course, developed by Team 4 - S.A.D.V.R. This project is designed to help users learn to diagnose and fix problems in a spacecraft using Virtual Reality.
 
+Demo : https://youtu.be/EAHulr-_4tU
+
 ## Unity Scene
 
 The project consists of two Unity scenes. The first scene is the "StartScene.unity", which is the initial menu, and the second scene is "Gameplay.unity", which contains the complete implementation of the game.
