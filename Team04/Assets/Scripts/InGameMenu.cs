@@ -9,7 +9,10 @@ public class InGameMenu : MonoBehaviour
 {
     public GameObject inGameMenu;
     public GameObject gameStartMenu;
+    public GameObject taskManagerCanvas;
+    public GameObject timerCanvas;
     
+    public GameObject taskManager;
     public GameObject playerSpeedManager;
     public AudioManager audioManager;
     public GameObject gameMenuEventSystem;
@@ -36,47 +39,53 @@ public class InGameMenu : MonoBehaviour
 
     void Start()
     {
-        // player = GameObject.FindWithTag("Player");
+        // TODO:
     }
 
     void Update()
     {
-        if (!gameStartMenu.activeSelf && (Input.GetKeyDown(KeyCode.M) || Input.GetButtonDown("js7"))) { // 'H' key, js7 (OK)
+        if (player == null)
+        {
+            player = GameObject.FindWithTag("Player");
 
-          Debug.Log("InGameMenu.cs :: 'H' key pressed!");
+            playerXRCardboardRig = player.transform.GetChild(0).gameObject;
+            playerEventSystem = playerXRCardboardRig.transform.GetChild(1).gameObject;
+            playerMainCamera = playerXRCardboardRig.transform.GetChild(0).GetChild(0).gameObject;
+            playerReticleMesh1 = playerMainCamera.transform.GetChild(1).GetChild(0).gameObject;
+            playerReticleMesh2 = playerMainCamera.transform.GetChild(1).GetChild(0).GetChild(0).gameObject;
 
-          player = GameObject.FindWithTag("Player");
+            Debug.Log("*******");
+            Debug.Log("player: " + player);
+            Debug.Log("playerXRCardboardRig: " + playerXRCardboardRig);
+            Debug.Log("playerEventSystem: " + playerEventSystem);
+            Debug.Log("playerMainCamera: " + playerMainCamera);
+            Debug.Log("playerReticleMesh1: " + playerReticleMesh1);
+            Debug.Log("playerReticleMesh2: " + playerReticleMesh2);
+            Debug.Log("*******");
+        }
 
-          playerXRCardboardRig = player.transform.GetChild(0).gameObject;
-          playerEventSystem = playerXRCardboardRig.transform.GetChild(1).gameObject;
-          playerMainCamera = playerXRCardboardRig.transform.GetChild(0).GetChild(0).gameObject;
-          playerReticleMesh1 = playerMainCamera.transform.GetChild(1).GetChild(0).gameObject;
-          playerReticleMesh2 = playerMainCamera.transform.GetChild(1).GetChild(0).GetChild(0).gameObject;
+        bool isGameTimeUp = timerCanvas.GetComponent<Timer>().GetIsTimeUp();
+        bool allTasksCompletedFlag = taskManager.GetComponent<TaskManager>().GetAllTasksCompletedFlag();
 
-          // XRCardboardRig = player.transform.Find("XRCardboardRig").gameObject;
-          // EventSystem = player.transform.Find("EventSystem").gameObject;
-          // mainCamera = player.transform.Find("Main Camera").gameObject;
-          // Reticle = player.transform.Find("Reticle").gameObject;
+        if (!isGameTimeUp && !allTasksCompletedFlag && !gameStartMenu.activeSelf && (Input.GetKeyDown(KeyCode.M) || Input.GetButtonDown("js7"))) // 'M' key, js7 (OK)
+        {
+            Debug.Log("InGameMenu.cs :: 'M' key / (OK) button pressed!");
 
-          Debug.Log("*******");
-          Debug.Log("player: " + player);
-          Debug.Log("playerXRCardboardRig: " + playerXRCardboardRig);
-          Debug.Log("playerEventSystem: " + playerEventSystem);
-          Debug.Log("playerMainCamera: " + playerMainCamera);
-          Debug.Log("playerReticleMesh1: " + playerReticleMesh1);
-          Debug.Log("playerReticleMesh2: " + playerReticleMesh2);
-          Debug.Log("*******");
+            if (player != null)
+            {
+                inGameMenu.GetComponent<Canvas>().worldCamera = playerMainCamera.GetComponent<Camera>();
+                inGameMenu.GetComponent<Canvas>().planeDistance = 1;
 
-          inGameMenu.GetComponent<Canvas>().worldCamera = playerMainCamera.GetComponent<Camera>();
-          inGameMenu.GetComponent<Canvas>().planeDistance = 1;
-
-          OpenInGameMenu();
+                OpenInGameMenu();
+            }
         }
     }
 
     public void OpenInGameMenu()
     {
-        Debug.Log("OpenInGameMenu() called");
+        Debug.Log("InGameMenu.cs :: OpenInGameMenu() called");
+
+        if (taskManagerCanvas.activeSelf) return;
 
         inGameMenu.SetActive(true);
 
@@ -99,7 +108,7 @@ public class InGameMenu : MonoBehaviour
 
     public void CloseInGameMenu()
     {
-        Debug.Log("CloseInGameMenu() called");
+        Debug.Log("InGameMenu.cs :: CloseInGameMenu() called");
 
         inGameMenu.SetActive(false);
 
@@ -120,13 +129,21 @@ public class InGameMenu : MonoBehaviour
 
     public void ResumeGame()
     {
-        Debug.Log("ResumeGame() called");
+        Debug.Log("InGameMenu.cs :: ResumeGame() called");
         CloseInGameMenu();
+    }
+
+    public void OpenTaskList()
+    {
+        Debug.Log("InGameMenu.cs :: OpenTaskList() called");
+        taskManager.GetComponent<TaskManager>().EnableTaskManagerMenu();
+        // CloseInGameMenu();
+        inGameMenu.SetActive(false);
     }
 
     public void PlayerSpeed() 
     {
-        Debug.Log("PlayerSpeed() called");
+        Debug.Log("InGameMenu.cs :: PlayerSpeed() called");
 
         int currentSpeedLevel = playerSpeedManager.GetComponent<PlayerSpeedManager>().playerSpeed;
 
@@ -145,13 +162,13 @@ public class InGameMenu : MonoBehaviour
             player.GetComponent<CharacterMovement>().speed = 10;
         } else if (newSpeedLevel == 2) {
             speedButton.GetComponent<Image>().sprite = highSpeedButtonImageSprite; // high
-            player.GetComponent<CharacterMovement>().speed = 20;
+            player.GetComponent<CharacterMovement>().speed = 15;
         }
     }
 
     public void AudioCuesVolumeControl() 
     {
-        Debug.Log("AudioCuesVolumeControl() called");
+        Debug.Log("InGameMenu.cs :: AudioCuesVolumeControl() called");
 
         int newVolumeLevel = (audioManager.volumeLevel + 1) % 3;
         audioManager.SetVolumeLevel(newVolumeLevel);
@@ -175,7 +192,8 @@ public class InGameMenu : MonoBehaviour
 
     public void QuitGame() 
     {
-        Debug.Log("inGameMenu :: QuitGame() called");
+        Debug.Log("InGameMenu.cs :: QuitGame() called");
         Application.Quit();
     }
+
 }

@@ -16,7 +16,7 @@ public class GrabObject : MonoBehaviour
 
   private void Update()
   {
-    if (Input.GetKeyDown(KeyCode.Q) || Input.GetButton("js2"))
+    if (Input.GetKeyDown(KeyCode.Q) || Input.GetButton("js2")) // Keyboard Q, Android js2 (X)
     {
       if (heldObj == null)
       {
@@ -31,6 +31,7 @@ public class GrabObject : MonoBehaviour
         DropObject();
       }
     }
+    
     if (heldObj != null)
     {
       MoveObject();
@@ -40,7 +41,7 @@ public class GrabObject : MonoBehaviour
 
   void MoveObject()
   {
-    if(Vector3.Distance(heldObj.transform.position, holdArea.position) > 0.1f)
+    if (Vector3.Distance(heldObj.transform.position, holdArea.position) > 0.1f)
     {
       Vector3 moveDirection = (holdArea.position - heldObj.transform.position);
       heldObjRB.AddForce(moveDirection * pickupForce);
@@ -58,7 +59,7 @@ public class GrabObject : MonoBehaviour
 
       heldObjRB.transform.parent = holdArea;
       heldObj = pickObj;
-      //isObjHeld=true;
+      // isObjHeld = true;
     }
   }
 
@@ -70,6 +71,7 @@ public class GrabObject : MonoBehaviour
 
     heldObjRB.transform.parent = null;
     heldObj = null;
-    //isObjHeld=false;
+    // isObjHeld=false;
   }
+
 }

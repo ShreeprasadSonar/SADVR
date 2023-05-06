@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class CloseAlarm : MonoBehaviour
+public class CloseAlarm : MonoBehaviourPunCallbacks
 {
     [SerializeField] private Animator alarm = null;
     [SerializeField] private GameObject viewPoint = null;
@@ -10,23 +12,23 @@ public class CloseAlarm : MonoBehaviour
     private float holdTime;
     public GameObject ProgressBar;
 
-    public GameObject taskCompletedMsgScriptObj;
+    public GameObject taskManager;
 
-    // void Update()
-    // {
-    //     if (Input.GetKeyDown(KeyCode.R))
-    //     {
-    //         // print(isPointerOnAlarm);
-    //         if (isPointerOnAlarm)
-    //         {
-    //             OnPress();
-    //         }
-    //     }
-    // }
+    public bool isActive = true;
+    private bool isExecuted = false;
 
     void Update()
     {
-        if ((Input.GetKey(KeyCode.E) || Input.GetButton("js2")) && isPointerOnAlarm) // Keyboard R, Android j2 (X)
+        if (!isExecuted && !isActive)
+        {
+            Debug.Log("CloseAlarm.cs :: MULTIPLAYER :: Disabling alarm...");
+            
+            OnPress();
+            taskManager.GetComponent<TaskManager>().SetTaskCompleted(5);
+            isExecuted = true;
+        }
+        
+        if (isActive && (Input.GetKey(KeyCode.E) || Input.GetButton("js10")) && isPointerOnAlarm) // Keyboard R, Android j2 (A)
         {
             ProgressBar.SetActive(true);
             holdTime += Time.deltaTime;
@@ -35,7 +37,14 @@ public class CloseAlarm : MonoBehaviour
             {
                 if (isPointerOnAlarm)
                 {
-                    taskCompletedMsgScriptObj.GetComponent<TaskCompletionMsg>().ShowTaskCompletedMessage();
+                    Debug.Log("CloseAlarm.cs :: Disabling alarm...");
+
+                    isActive = false;
+                    photonView.RPC("OnMyVariableChanged", RpcTarget.All, isActive);
+
+                    taskManager.GetComponent<TaskManager>().SetTaskCompleted(5);
+
+                    taskManager.GetComponent<TaskManager>().ShowTaskCompletedMessage();
 
                     OnPress();
                     ProgressBar.SetActive(false);
@@ -47,6 +56,13 @@ public class CloseAlarm : MonoBehaviour
             ProgressBar.SetActive(false);
             holdTime = 0f;
         }
+    }
+
+    // This method is called over the Photon Network to update "myVariable"
+    [PunRPC]
+    public void OnMyVariableChanged(bool newValue)
+    {
+        isActive = newValue;
     }
 
     public void OnPointerEnter()
@@ -61,7 +77,7 @@ public class CloseAlarm : MonoBehaviour
     
     public void OnPress()
     {   
-        print("inside onpress alarm");
+        Debug.Log("CloseAlarm.cs :: OnPress() called!");
         Destroy(viewPoint);
     }
 

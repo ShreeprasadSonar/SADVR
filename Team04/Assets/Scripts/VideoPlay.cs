@@ -2,47 +2,81 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class VideoPlay : MonoBehaviour
+public class VideoPlay : MonoBehaviourPunCallbacks
 {
     public VideoPlayer videoPlayer;
+    public AudioSource audioSource;
+    public GameObject taskManager;
+
     private bool isPointerOnMonitor = false;
     private bool isVideoPlaying = false;
-    public AudioSource audioSource;
     public bool isAudioPlaying = false;
+
+    public bool isActive = true;
+    private bool isExecuted = false;
 
     void Update()
     {
-        // RaycastHit hit;
-        // Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        // if (Physics.Raycast(ray, out hit))
-        // {
-        //     Debug.Log("Object hit: " + hit.collider.gameObject.name);
-        // }
-
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetButton("js2")) // Keyboard P, Android js2 (X)
+        if (!isExecuted && !isActive)
         {
-            print(isPointerOnMonitor);
-            if (isPointerOnMonitor)
+            Debug.Log("VideoPlay.cs :: MULTIPLAYER :: Playing video on monitor...");
+
+            if (!isVideoPlaying)
             {
-                if (!isVideoPlaying)
+                videoPlayer.Play();
+                isVideoPlaying = true;
+            }
+
+            if (!isAudioPlaying)
+            {
+                audioSource.Play();
+                isAudioPlaying = true;
+            }
+
+            taskManager.GetComponent<TaskManager>().SetTaskCompleted(3);
+
+            isExecuted = true;
+        }
+
+        if (isActive && (Input.GetKeyDown(KeyCode.E) || Input.GetButton("js10")) && isPointerOnMonitor) // Keyboard P, Android js2 (A)
+        {
+            if (!isVideoPlaying)
+            {
+                videoPlayer.Play();
+                isVideoPlaying = true;
+
+                if (!isAudioPlaying)
                 {
-                    videoPlayer.Play();
-                    isVideoPlaying = true;
-                    if (!isAudioPlaying)
-                    {
-                        audioSource.Play();
-                        isAudioPlaying = true;
-                    }
-                }
-                else
-                {
-                    videoPlayer.Stop();
-                    isVideoPlaying = false;
+                    Debug.Log("VideoPlay.cs :: Playing video on monitor...");
+
+                    audioSource.Play();
+                    isAudioPlaying = true;
+
+                    isActive = false;
+                    // Call the "OnMyVariableChanged" method over the Photon Network
+                    photonView.RPC("OnMyVariableChanged", RpcTarget.All, isActive);
+
+                    taskManager.GetComponent<TaskManager>().SetTaskCompleted(3);
+
+                    taskManager.GetComponent<TaskManager>().ShowTaskCompletedMessage();
                 }
             }
+            else
+            {
+                videoPlayer.Stop();
+                isVideoPlaying = false;
+            }
         }
+    }
+
+    // This method is called over the Photon Network to update "myVariable"
+    [PunRPC]
+    public void OnMyVariableChanged(bool newValue)
+    {
+        isActive = newValue;
     }
 
     public void OnPointerEnter()
