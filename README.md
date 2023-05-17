@@ -45,7 +45,7 @@ To open a door | A
   - Wire: https://sketchfab.com/3d-models/bunch-of-electric-wires-b45c18880f9147429394274411e97dc8
 
 
-## Reference links (to avoid plagiarism):
+## Reference links:
 - Red Alarm
   - https://youtu.be/JuvY0fYVPM0
 - Automatic Door
